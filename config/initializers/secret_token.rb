@@ -9,4 +9,22 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Allaboard::Application.config.secret_key_base = '193c5e275020bf94c7c01b3775ce6828f4fa707f70d39398c45977bbae416fce2f10efa9712714a55147e194ee4fa84d2cb52c053eaa55ade09c2057281635f3'
+
+require 'securerandom'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+
+#Allaboard::Application.config.secret_key_base = '193c5e275020bf94c7c01b3775ce6828f4fa707f70d39398c45977bbae416fce2f10efa9712714a55147e194ee4fa84d2cb52c053eaa55ade09c2057281635f3'
+Allaboard::Application.config.secret_key_base = secure_token
