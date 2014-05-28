@@ -1,2 +1,16 @@
-<p>Contribute an anonymous review</p>
+<p class="lead">Contribute an <strong>anonymous</strong> review</p>
 <p>TBD has associate board reviews shared by real associate board members. Leaving a review only only takes a minute and your contribution will never be shared by us.</p>
+
+<%= form_for (@review) do |f| %>
+	<div class="form-group">
+		<%= render 'error_messages' %>
+  	
+		<%= f.label :title, :class => 'col-sm-4 control-label' %>
+  		<%= f.text_area :title, :placeholder=>"In one sentence, describe your experience", :rows=>2 %>
+
+  		<p><%= f.submit "Submit Review", class: "btn btn-primary" %></p>
+	</div>
+<% end %>
+
+
+	
