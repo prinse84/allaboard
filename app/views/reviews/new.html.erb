@@ -1,16 +1,40 @@
 <p class="lead">Contribute an <strong>anonymous</strong> review</p>
 <p>TBD has associate board reviews shared by real associate board members. Leaving a review only only takes a minute and your contribution will never be shared by us.</p>
 
+
 <%= form_for (@review) do |f| %>
 	<div class="form-group">
 		<%= render 'error_messages' %>
-  	
-		<%= f.label :title, :class => 'col-sm-4 control-label' %>
-  		<%= f.text_area :title, :placeholder=>"In one sentence, describe your experience", :rows=>2 %>
+		
+  		<p>Your overall rating of this Associate Board</p>
+		<div id="star"></div><div id="hint"></div>
+		
+		<%= f.label :board_id %>
+		<%= f.collection_select :board_id, Board.all, :id, :name, prompt: true %>
+		
+		<%= f.label :title %>
+  		<%= f.text_area :title, :placeholder=>"In one sentence, describe your experience.", :rows=>2, :class=>'input-block-level' %>
+
+		<%= f.label :pros %>
+  		<%= f.text_area :pros, :placeholder=>"What are the best reasons to volunteer here? Describe things like you are talking to a friend.", :rows=>4, :class=>'input-block-level' %>
+
+		<%= f.label :cons %>
+  		<%= f.text_area :cons, :placeholder=>"What are some of the challenges of volunteering here?", :rows=>4, :class=>'input-block-level' %>
 
   		<p><%= f.submit "Submit Review", class: "btn btn-primary" %></p>
 	</div>
 <% end %>
 
 
-	
+<script>
+$('#star').raty({ score: 3.5,
+	      		halfScore: true,
+				size   : 48,
+				target : '#hint',
+				noRatedMsg: 'Not rated yet!',
+				hints: ['Very Dissatisfied', 'Dissatisfied', 'Neutral "OK"', 'Satisfied', 'Very Satisfied'],
+				path: '/assets'
+				});
+</script>
+
+

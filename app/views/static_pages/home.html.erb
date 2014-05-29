@@ -7,3 +7,11 @@
 
   <%= link_to "Write a Review!", new_review_path, class: "btn btn-large btn-primary" %>
 </div>
+<div>
+	<p>Previous Reviews</p>
+	<% @reviews.each do |review| %>
+		<p><%= review.board.name %><br />
+			<strong><%= review.title %></strong>
+			</p>
+<% end %>
+</div>
