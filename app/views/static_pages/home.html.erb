@@ -15,7 +15,11 @@
 			<div>&nbsp;</div>	
 	<blockquote>
 			<p><%= board.reviews.first.title %></p>
-			<small>Someone currently on this board.</small>
+			<small>Current boardmember</small>
+			<h5>Pros:</h5>
+			<p style="font-size:14px"><%= board.reviews.first.pros %></p>
+			<h5>Cons:</h5>	
+			<p style="font-size:14px"><%= board.reviews.first.cons %></p>
 	</blockquote>
 <% end %>
 </div>
