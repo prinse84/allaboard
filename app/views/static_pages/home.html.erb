@@ -8,10 +8,25 @@
   <%= link_to "Write a Review!", new_review_path, class: "btn btn-large btn-primary" %>
 </div>
 <div>
-	<p>Previous Reviews</p>
-	<% @reviews.each do |review| %>
-		<p><%= review.board.name %><br />
-			<strong><%= review.title %></strong>
-			</p>
+	<h3>Previous Reviews</h3>
+	<% @boards.each do |board| %>
+	<strong><%= board.name %></strong> <small>( <%= pluralize(board.reviews.size, 'review') %> )</small>
+	<div class="star" data-score='<%= board.average_rating %>'></div>	
+			<div>&nbsp;</div>	
+	<blockquote>
+			<p><%= board.reviews.first.title %></p>
+			<small>Someone currently on this board.</small>
+	</blockquote>
 <% end %>
 </div>
+
+<script>
+$('.star').raty({ score: function() {
+    						return $(this).attr('data-score');
+  							},
+	      		halfScore: true,
+				readOnly: true,
+				hints: ['Very Dissatisfied', 'Dissatisfied', 'Neutral "OK"', 'Satisfied', 'Very Satisfied'],
+				path: '/assets'
+				});
+</script>
