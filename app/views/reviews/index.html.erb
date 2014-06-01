@@ -1,0 +1,9 @@
+<p>Reviews for <%= @board.name %>! </p>
+
+
+<%= will_paginate %>
+
+<% @reviews.each do |review| %>
+	<p><%= review.title %></p>
+<% end %>
+

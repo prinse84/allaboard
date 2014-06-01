@@ -11,7 +11,8 @@ namespace :db do
         b.reviews.create!(title: Faker::Lorem.sentence.to_s,
                           rating: [*1..5].sample,
                           pros: Faker::Lorem.sentences.to_s,
-                          cons: Faker::Lorem.sentences.to_s
+                          cons: Faker::Lorem.sentences.to_s,
+                          reviewer_type_id: [*1..4].sample
                           )
       end
     end

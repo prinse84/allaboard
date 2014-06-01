@@ -2,26 +2,30 @@
   <h1>Welcome to the TBD</h1>
 
   <h2>
-    Get Involved. See what goes in around Chicago's Associate Boards.
+    Get Involved. See what goes on around Chicago's Associate Boards.
   </h2>
 
   <%= link_to "Write a Review!", new_review_path, class: "btn btn-large btn-primary" %>
 </div>
-<div>
+<div class="span8">
 	<h3>Previous Reviews</h3>
 	<% @boards.each do |board| %>
-	<strong><%= board.name %></strong> <small>( <%= pluralize(board.reviews.size, 'review') %> )</small>
+	<strong><%= link_to board.name, board_reviews_path(board) %></strong> <small>( <%= pluralize(board.reviews.size, 'review') %> )</small>
 	<div class="star" data-score='<%= board.average_rating %>'></div>	
 			<div>&nbsp;</div>	
 	<blockquote>
-			<p><%= board.reviews.first.title %></p>
-			<small>Current boardmember</small>
+			<p><%= board.reviews.last.title %></p>
+			<small><%= board.reviews.last.reviewer_type.name%>. Submitted <%= time_ago_in_words(board.reviews.last.created_at) %> ago.</small>
 			<h5>Pros:</h5>
-			<p style="font-size:14px"><%= board.reviews.first.pros %></p>
+			<p style="font-size:14px"><%= board.reviews.last.pros.truncate(80, separator:' ') %></p>
 			<h5>Cons:</h5>	
-			<p style="font-size:14px"><%= board.reviews.first.cons %></p>
+			<p style="font-size:14px"><%= board.reviews.last.cons.truncate(80, separator:' ') %></p>
 	</blockquote>
 <% end %>
+</div>
+<div class="span2">
+	<%= @reviews.size %> submitted so far. 
+	
 </div>
 
 <script>

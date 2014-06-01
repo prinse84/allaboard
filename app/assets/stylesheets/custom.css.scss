@@ -63,6 +63,11 @@ p {
   line-height: 1.7em;
 }
 
+label{
+	font-weight:bold;
+	margin-top: 10px;
+	margin-bottom: 10px;	
+}
 /* header */
 
 #logo {
@@ -121,4 +126,10 @@ footer ul li {
   width: 100%;
   margin-top: 45px;
   @include box_sizing;
+}
+
+.separator{
+  border-top: 1px solid #eaeaea;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }

@@ -1,7 +1,7 @@
 class StaticPagesController < ApplicationController
   def home
-    @reviews = Review.all.limit(5)
-    @boards = Board.all.limit(5)
+    @reviews = Review.all
+    @boards = Board.all.limit(5).order('created_at DESC')
   end
 
   def help

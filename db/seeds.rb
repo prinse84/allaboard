@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+ReviewerType.create(name:'Current member')
+ReviewerType.create(name:'Former member')
+ReviewerType.create(name:'Staff Liaison')
+ReviewerType.create(name:'Not Affliated')
