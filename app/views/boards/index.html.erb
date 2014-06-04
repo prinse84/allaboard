@@ -1,0 +1,32 @@
+<div class="row">
+	<div class="span12">
+		<span class="lead"><strong>Boards</strong></span>
+	</div>
+</div>
+
+<div class="row">	
+	<div class="span12">
+		<%= will_paginate %>
+	</div>
+</div>
+<div class="row">
+	<div class="span6">
+		<% @boards.each do |board| %>
+			<div><strong><%= link_to board.name, board_reviews_path(board) %></strong>  <small>( <%= pluralize(board.reviews.size, 'review') %> )</small></div>
+			<div class="star" data-score='<%= board.get_average_rating %>'></div>
+			<div>&nbsp;</div>
+		<% end %>
+	</div>
+</div>
+
+<script>
+
+$('.star').raty({ score: function() {
+    						return $(this).attr('data-score');
+  							},
+	      		halfScore: true,
+				readOnly: true,
+				hints: ['Very Dissatisfied', 'Dissatisfied', 'Neutral "OK"', 'Satisfied', 'Very Satisfied'],
+				path: '/assets'
+				});
+</script>

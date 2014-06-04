@@ -1,0 +1,31 @@
+<div class="row">
+	<div class="span6">
+		<blockquote>
+				<p><%= @review.title %></p>
+				<div class="star" data-score='<%= @review.rating %>'></div>
+				<small><%= @review.reviewer_type.name%>. Submitted <%= time_ago_in_words(@review.created_at) %> ago.</small>
+				<h5>Pros:</h5>
+				<p style="font-size:14px"><%= @review.pros %></p>
+				<h5>Cons:</h5>	
+				<p style="font-size:14px"><%= @review.cons %></p>
+		</blockquote>
+	</div>
+</div>
+
+<div class="row">
+	<div class="span6">
+		<p>Check out more anonymous reviews for <%= link_to @board.name, board_reviews_path(@board) %></p>
+	</div>
+</div>
+
+<script>
+
+$('.star').raty({ score: function() {
+    						return $(this).attr('data-score');
+  							},
+	      		halfScore: true,
+				readOnly: true,
+				hints: ['Very Dissatisfied', 'Dissatisfied', 'Neutral "OK"', 'Satisfied', 'Very Satisfied'],
+				path: '/assets'
+				});
+</script>

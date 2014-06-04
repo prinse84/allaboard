@@ -1,7 +1,11 @@
 class StaticPagesController < ApplicationController
   def home
     @reviews = Review.all
-    @boards = Board.all.limit(5).order('created_at DESC')
+    
+    #Get 5 random boards
+    ids = Board.pluck(:id).shuffle[0..4]
+    @boards = Board.where(id: ids)
+    
   end
 
   def help

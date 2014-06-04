@@ -2,12 +2,16 @@ class ReviewsController < ApplicationController
  
   def index
     @board = Board.find(params[:board_id])
-    @reviews = @board.reviews.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
+    @reviews = @board.reviews.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
   end
   
+  def show
+    @board = Board.find(params[:board_id])
+    @review = Review.find(params[:id])
+  end
   
   def new
-     @review = Review.new
+     @review = Review.new(:board_id =>params[:board_id])
      #@boards = Board.all
   end
   
