@@ -1,6 +1,6 @@
 class Board < ActiveRecord::Base
     validates :name, presence: true
-    has_many :reviews
+    has_many :reviews, dependent: :destroy
     
     def get_random_rating
       reviews = self.reviews
