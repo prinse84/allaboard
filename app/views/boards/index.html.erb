@@ -1,6 +1,11 @@
 <div class="row">
 	<div class="span12">
-		<span class="lead"><strong>Boards</strong></span>
+		<span class="lead"><strong>Boards Directory</strong></span>
+	</div>
+</div>
+<div class="row">
+	<div class="span8">
+		This is a community driven directory of Associate Boards curated by the A-Board Alliance. If you do not see a board that you are looking for, tell us about it.
 	</div>
 </div>
 
@@ -11,10 +16,15 @@
 </div>
 <div class="row">
 	<div class="span6">
-		<% @boards.each do |board| %>
-			<div><strong><%= link_to board.name, board_reviews_path(board) %></strong>  <small>( <%= pluralize(board.reviews.size, 'review') %> )</small></div>
-			<div class="star" data-score='<%= board.get_average_rating %>'></div>
-			<div>&nbsp;</div>
+		<% if !@boards.blank? %>
+			<% @boards.each do |board| %>
+				<div><strong><%= link_to board.name, board_reviews_path(board) %></strong>  <small>( <%= pluralize(board.reviews.size, 'review') %> )</small></div>
+				<div class="star" data-score='<%= board.get_average_rating %>'></div>
+				<div>&nbsp;</div>
+			<% end %>
+		<% else %>
+			<p>There aren't any boards in this directory.</p>
+			<%= link_to 'Add a board', new_board_path %>
 		<% end %>
 	</div>
 </div>

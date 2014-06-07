@@ -7,34 +7,39 @@
 
   <%= link_to "Write a Review!", new_review_path, class: "btn btn-large btn-primary" %>
 </div>
+
+
 <div class="span6">
-	<h4>Associate Board Reviews</h4>
-	<% @boards.each do |board| %>
-	<% review = board.get_random_rating %>
-	<strong><%= link_to board.name, board_reviews_path(board) %></strong> <small>( <%=  pluralize(board.reviews.size, 'review') %> )</small>
-	<div class="star" data-score='<%= board.get_average_rating %>'></div>	
-			<div>&nbsp;</div>	
-	<blockquote>
-			<p><%= link_to review.title, board_review_path(board, review)  %></p>
-			<small><%= review.reviewer_type.name%>. Submitted <%= time_ago_in_words(review.created_at) %> ago.</small>
-			<h5>Pros:</h5>
-			<p style="font-size:14px"><%= review.pros.truncate(80, separator:' ') %> <%= link_to 'more', board_review_path(board, review)  %></p>
-	</blockquote>
-<% end %>
+	<% if !@boards.blank? %>
+		<h4>Associate Board Reviews</h4>
+		<% @boards.each do |board| %>
+			<% if board.reviews.any? %>
+				<% review = board.get_random_review %>
+				<strong><%= link_to board.name, board_reviews_path(board) %></strong> <small>( <%=  pluralize(board.reviews.size, 'review') %> )</small>
+				<div class="star" data-score='<%= board.get_average_rating %>'></div>	
+				<div>&nbsp;</div>	
+				<blockquote>
+					<p><%= link_to review.title, board_review_path(board, review)  %></p>
+					<small><%= review.reviewer_type.name%>. Submitted <%= time_ago_in_words(review.created_at) %> ago.</small>
+					<h5>Pros:</h5>
+					<p style="font-size:14px"><%= review.pros.truncate(80, separator:' ') %> <%= link_to 'more', board_review_path(board, review)  %></p>
+				</blockquote>
+			<% end %>
+		<% end %>
+	<% end %>
 </div>
+
+
 <div class="span4">
 	<div class='row'>
 		<%= content_tag "div", id: "flippy", data: {size: @reviews.size.to_s.length, value: @reviews.size } do %>
 		<% end %>
 	</div>
-	<div class='row'>
-		<strong>Anonymous reviews and counting...</strong>
-	</div>
 </div>
 
 <script>
 // call the flippyNum function
-flippyNum(document.getElementById('flippy'), {
+/*flippyNum(document.getElementById('flippy'), {
 									startNumber: $('#flippy').data('value'),
 									endNumber:  $('#flippy').data('value'),
 									digits: $('#flippy').data('size'),
@@ -43,7 +48,7 @@ flippyNum(document.getElementById('flippy'), {
 										height: 40
 										}
 									);
-
+*/
 $('.star').raty({ score: function() {
     						return $(this).attr('data-score');
   							},

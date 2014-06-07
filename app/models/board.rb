@@ -2,7 +2,7 @@ class Board < ActiveRecord::Base
     validates :name, presence: true
     has_many :reviews, dependent: :destroy
     
-    def get_random_rating
+    def get_random_review
       reviews = self.reviews
       max = reviews.count
       index = [*0..max-1].sample

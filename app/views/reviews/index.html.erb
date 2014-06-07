@@ -7,32 +7,42 @@
 
 <div class="row">	
 	<div class="span6">
-		<%= will_paginate %>
+		<%= will_paginate @reviews %>
 	</div>
 </div>
 
 <div class="row">	
 	<div class="span7">
-		<% @reviews.each do |review| %>
+		<% if !@reviews.blank? %>
+			<% @reviews.each do |review| %>
+				<div class="row">
+					<div class="span6">
+						<blockquote>
+								<p><%= review.title %></p>
+								<div class="star" data-score='<%= review.rating %>'></div>
+								<small><%= review.reviewer_type.name%>. Submitted <%= time_ago_in_words(review.created_at) %> ago.</small>
+								<h5>Pros:</h5>
+								<p style="font-size:14px"><%= review.pros %></p>
+								<h5>Cons:</h5>	
+								<p style="font-size:14px"><%= review.cons %></p>
+						</blockquote>					
+					</div>
+				</div>
+			<% end %>
+		<% else %>
 			<div class="row">
 				<div class="span6">
-					<blockquote>
-							<p><%= review.title %></p>
-							<div class="star" data-score='<%= review.rating %>'></div>
-							<small><%= review.reviewer_type.name%>. Submitted <%= time_ago_in_words(review.created_at) %> ago.</small>
-							<h5>Pros:</h5>
-							<p style="font-size:14px"><%= review.pros %></p>
-							<h5>Cons:</h5>	
-							<p style="font-size:14px"><%= review.cons %></p>
-					</blockquote>					
+					<p>No Reviews yet. Get the ball rolling, <%= link_to "write a review", new_board_review_path %>.</p>
 				</div>
 			</div>
 		<% end %>
 	</div>	
-	<div class="span4 alert alert-success">
-		<p class='text-center'>Volunteered for this Associate Board? Contribute to the Community!</p>
-  	  <p class='text-center'><%= link_to "Write a Review!", new_board_review_path, class: "btn btn-primary" %></p>
-	</div>
+	<% if !@reviews.blank? %>
+		<div class="span4 alert alert-success">
+			<p class='text-center'>Volunteered for this Associate Board? Contribute to the Community!</p>
+  	  		<p class='text-center'><%= link_to "Write a Review!", new_board_review_path, class: "btn btn-primary" %></p>
+		</div>
+	<% end %>
 	
 	
 </div>
