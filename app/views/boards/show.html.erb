@@ -1,0 +1,21 @@
+<div class="row">
+	<div class="span8">
+		<span class="lead"><strong><%= @board.name %></strong></span>
+		<p class="text-info">
+		  <small>Are you a point of contact for this board? Claim this board.</small>
+		</p>
+		<div class="star" data-score='<%= @board.get_average_rating %>'></div>	
+	</div>
+</div>
+
+<script>
+
+$('.star').raty({ score: function() {
+    						return $(this).attr('data-score');
+  							},
+	      		halfScore: true,
+				readOnly: true,
+				hints: ['Very Dissatisfied', 'Dissatisfied', 'Neutral "OK"', 'Satisfied', 'Very Satisfied'],
+				path: '/assets'
+				});
+</script>

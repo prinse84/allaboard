@@ -4,6 +4,10 @@ class BoardsController < ApplicationController
     @boards = Board.all.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
   end
   
+  def show
+    @board = Board.find(params[:id])
+  end
+  
   def new
     @board = Board.new
   end
