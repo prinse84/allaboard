@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require jquery.raty.min.js
 //= require jquery.raty.js
+//= require bootstrap-dropdown
 //= require flippyNum.js
 //= require flippyNum.min.js
 //= require_tree .

@@ -2,7 +2,7 @@
 	<div class="span8">
 		<span class="lead"><strong><%= @board.name %></strong></span>
 		<p class="text-info">
-		  <small>Are you a point of contact for this board? Claim this board.</small>
+		  <small>Are you a point of contact for this board? <%= link_to 'Claim this board', board_claim_path(@board) %>.</small>
 		</p>
 		<div class="star" data-score='<%= @board.get_average_rating %>'></div>	
 	</div>
