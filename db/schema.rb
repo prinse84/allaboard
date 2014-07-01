@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140701155913) do
+ActiveRecord::Schema.define(version: 20140701211724) do
 
   create_table "boards", force: true do |t|
     t.string   "name"
@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(version: 20140701155913) do
 
   create_table "reviews", force: true do |t|
     t.string   "title"
-    t.string   "pros"
-    t.string   "cons"
+    t.text     "pros"
+    t.text     "cons"
     t.float    "rating"
     t.datetime "created_at"
     t.datetime "updated_at"
