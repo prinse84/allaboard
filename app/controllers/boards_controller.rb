@@ -42,12 +42,27 @@ class BoardsController < ApplicationController
     end
   end
   
-  def suggest
+  def suggestion
+    @suggestion = Suggestion.new
+  end
+  
+  def suggestion_create
+    @suggestion = Suggestion.new(suggestion_params)
+    if @suggestion.save
+      flash[:success] = "Thank you for your submission."
+      redirect_to boards_path
+    else
+      render 'suggestion'
+    end
   end
   
   private
     def board_params
       params.require(:board).permit(:name)
+    end
+    
+    def suggestion_params
+      params.require(:suggestion).permit(:suggested_board_name, :suggester_email)
     end
 
 end

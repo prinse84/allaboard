@@ -2,7 +2,8 @@ Allaboard::Application.routes.draw do
 
   root  'static_pages#home'
   
-  get 'boards/suggest', to: 'boards#suggest'
+  get 'boards/suggest', to: 'boards#suggestion'
+  post 'boards/suggestion/create', to: 'boards#suggestion_create'
   devise_for :users
   match '/help',  to: 'static_pages#help', via: 'get'
 

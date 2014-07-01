@@ -1,0 +1,40 @@
+
+<div class="row">
+	<div class="span12">
+		<span class="lead">Suggest a Board to add to our directory.</span>
+	</div>
+</div>
+
+<div class="row">
+	<div class="span8">
+		Thank you for helping us grow the list of boards in our directory. Please submit the form below and you will be notified via email when this board has been validated and added.
+	</div>
+</div>
+
+<div class="row">
+	<div class="span8">
+		<%= form_for @suggestion, :url => boards_suggestion_create_path do |f| %>
+			<div class="form-group">
+				<div class="row">
+					<div class="span6"><%= f.label :suggested_board_name, 'Board Name'%></div>
+				</div>
+	
+				<div class="row">		
+					<div class="span6"><%= f.text_field :suggested_board_name, :placeholder=>"Board Name" %></div>
+				</div>
+				
+				<div class="row">
+					<div class="span6"><%= f.label :suggester_email, 'Your email address'%></div>
+				</div>
+
+				<div class="row">		
+					<div class="span6"><%= f.text_field :suggester_email, :placeholder=>"you@example.com" %></div>
+				</div>				
+			
+			<div class="row">	
+				<div class="span6"><%= f.submit "Submit Board", class: "btn btn-primary" %></div>
+			</div>
+		</div>
+		<% end %>
+	</div>
+</div>
