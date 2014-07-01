@@ -16,8 +16,7 @@
 //= require jquery.raty.min.js
 //= require jquery.raty.js
 //= require bootstrap-dropdown
-//= require flippyNum.js
-//= require flippyNum.min.js
+//= require bootstrap-alert
 //= require_tree .
 
 

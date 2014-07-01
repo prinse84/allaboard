@@ -35,10 +35,14 @@ class BoardsController < ApplicationController
     @board = Board.find(params[:board_id])
     @board.update_attribute(:user_id, current_user.id)
     if @board.save
+      flash[:success] = "Congratulations, you are now the administrator of this board."
       redirect_to boards_path
     else
       render 'claim'
     end
+  end
+  
+  def suggest
   end
   
   private

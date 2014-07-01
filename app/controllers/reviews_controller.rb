@@ -12,14 +12,13 @@ class ReviewsController < ApplicationController
   
   def new
      @review = Review.new(:board_id =>params[:board_id])
-     #@boards = Board.all
   end
   
   def create
      @review = Review.new(review_params)
      @review.rating = params[:score]
      if @review.save
-       flash[:success] = "Review Saved"  
+       flash[:success] = "Review Saved."  
        redirect_to board_reviews_path(@review.board)
      else
        render 'new'
