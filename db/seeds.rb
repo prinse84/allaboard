@@ -9,4 +9,4 @@
 ReviewerType.create(name:'Current member')
 ReviewerType.create(name:'Former member')
 ReviewerType.create(name:'Staff Liaison')
-ReviewerType.create(name:'Not Affliated')
+ReviewerType.create(name:'Volunteer')
