@@ -19,7 +19,7 @@
 		<% if !@boards.blank? %>
 			<% @boards.each do |board| %>
 				<div><strong><%= link_to board.name, board_reviews_path(board) %></strong>  <small>( <%= pluralize(board.reviews.size, 'review') %> )</small></div>
-				<div class="star" data-score='<%= board.get_average_rating %>'></div>
+				<div class="star" data-score='<%= board.get_average_rating %>' ></div>
 				<div>&nbsp;</div>
 			<% end %>
 		<% else %>
@@ -36,6 +36,6 @@ $('.star').raty({ score: function() {
   							},
 	      		halfScore: true,
 				readOnly: true,
-				hints: ['Very Dissatisfied', 'Dissatisfied', 'Neutral "OK"', 'Satisfied', 'Very Satisfied']
+				hints: ['Very Dissatisfied', 'Dissatisfied', 'Neutral "OK"','Satisfied', 'Very Satisfied']
 				});
 </script>
