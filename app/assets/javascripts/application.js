@@ -13,8 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require jquery.raty.min.js
-//= require jquery.raty.js
+//= require jquery.raty
 //= require bootstrap-dropdown
 //= require bootstrap-alert
 //= require_tree .
