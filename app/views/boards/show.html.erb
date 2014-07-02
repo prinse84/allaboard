@@ -31,17 +31,12 @@
 			</div>
 			<div class="row">
 				<div class="span7">
-					<dl class="dl-horizontal">
-					
-				  	  <dt>Parent Organization</dt>
-					  <dd><%= @board.parent_company %></dd>						
-
-				  	  <dt>Url</dt>
-					  <dd><%= link_to @board.url, '#' %></dd>
-										
-					  <dt>Description</dt>
-					  <dd><%= @board.description %></dd>
-					</dl>
+					<div class="row">
+						<div class="span7">
+							<p><strong>Board Description</strong></p>
+							<p><%= @board.description %></p>
+						</div>
+					</div>
 				</div>
 			</div>
 	    </div>
@@ -75,7 +70,7 @@
 					<% else %>
 						<div class="row">
 							<div class="span6">
-								<p>No Reviews yet. Get the ball rolling, <%= link_to "write a review", new_board_review_path %>.</p>
+								<p>No Reviews yet. Get the ball rolling, <%= link_to "write a review", new_board_review_path(@board) %>.</p>
 							</div>
 						</div>
 					<% end %>

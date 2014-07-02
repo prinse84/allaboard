@@ -25,7 +25,7 @@
 				    <tr>
 				      <td><%= link_to board.name, board_path(board) %>
 					  </td>
-				      <td><%= board.parent_company %> </td>
+				      <td><%= board.parent_company %></td>
 				      <td>
 					  <% if !board.board_claimed? %>
 						<%= link_to 'Claim board', board_claim_path(board) %>
