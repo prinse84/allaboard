@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="span7">
 				<p class="section-title">Board Description</p>
-				<% if !@board.description.empty? %>
+				<% if !@board.description.blank? %>
 					<p><%= simple_format(@board.description, class:"section-content") %></p>
 				<% else %>
 					<p>N/A</p>
@@ -79,7 +79,7 @@
 		</div>
 		<div class="row">
 			<span><strong>Parent Organization:</strong></span>
-			<% if !@board.parent_company.empty? %>
+			<% if !@board.parent_company.blank? %>
 				<p><small><%= @board.parent_company %></small></p>
 			<% else %>
 				<p><small>N/A</small></p>
@@ -88,7 +88,7 @@
 		
 		<div class="row">
 			<span><strong>Website URL:</strong></span>
-			<% if !@board.url.empty? %>
+			<% if !@board.url.blank? %>
 				<p><small><%= link_to @board.url, @board.url, :target => "_blank"  %></small></p>
 			<% else %>
 				<p><small>N/A</small></p>
