@@ -3,11 +3,12 @@ class BoardsController < ApplicationController
   before_action :authenticate_user!, :only => [:claim]
   
   def index
-    @boards = Board.all.paginate(:page => params[:page], :per_page => 10).order('name')
+    @boards = Board.all.paginate(:page => params[:page], :per_page => 20).order('name')
   end
   
   def show
     @board = Board.find(params[:id])
+    @reviews = @board.reviews.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
   end
   
   def new
@@ -36,7 +37,7 @@ class BoardsController < ApplicationController
     @board.update_attribute(:user_id, current_user.id)
     if @board.save
       flash[:success] = "Congratulations, you are now the administrator of this board."
-      redirect_to boards_path
+      redirect_to board_path(@board)
     else
       render 'claim'
     end

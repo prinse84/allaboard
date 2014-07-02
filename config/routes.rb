@@ -6,6 +6,7 @@ Allaboard::Application.routes.draw do
   post 'boards/suggestion/create', to: 'boards#suggestion_create'
   devise_for :users
   match '/help',  to: 'static_pages#help', via: 'get'
+  match '/about', to: 'static_pages#about', via: 'get'
 
   resources :users
   

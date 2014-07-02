@@ -5,27 +5,49 @@
 </div>
 <div class="row">
 	<div class="span8">
-		This is a community driven directory of Associate Boards curated by the All A-Board Alliance. It will become increasingly useful as more boards are added. If you do not see a board that you are looking for, or would like to see a board added, <%= link_to "tell us about it", boards_suggest_path %>.
+		<p>This is a community driven directory of Associate Boards curated by the All A-Board Alliance. It will become increasingly useful as more boards are added. If you do not see a board that you are looking for, or would like to see a board added, <%= link_to "tell us about it", boards_suggest_path %>.</p>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="span8">
+		<% if !@boards.blank? %>		
+		<table class="table table-hover">		
+			<thead>
+		    	<tr>
+		      		<th>Board Name</th>
+		      		<th>Parent Organization</th>
+		      		<th>Contact</th>		
+		    	</tr>
+				<tbody>
+					<% @boards.each do |board| %>
+				    <tr>
+				      <td><%= link_to board.name, board_path(board) %>
+					  </td>
+				      <td><%= board.parent_company %> </td>
+				      <td>
+					  <% if !board.board_claimed? %>
+						<%= link_to 'Claim board', board_claim_path(board) %>
+					  <% else %>
+						<%= board.user.get_name.titleize%>
+					  <% end %>
+					   </td>
+					</tr>
+					<% end %>
+				</tbody>
+		  </thead>
+		</table>
+		<% else %>
+			<p>There aren't any boards in this directory.</p>
+			<%= link_to 'Add a board', new_board_path %>
+		<% end %>
 	</div>
 </div>
 
 <div class="row">	
 	<div class="span12">
 		<%= will_paginate %>
-	</div>
-</div>
-<div class="row">
-	<div class="span6">
-		<% if !@boards.blank? %>
-			<% @boards.each do |board| %>
-				<div><strong><%= link_to board.name, board_reviews_path(board) %></strong>  <small>( <%= pluralize(board.reviews.size, 'review') %> )</small></div>
-				<div class="star" data-score='<%= board.get_average_rating %>' ></div>
-				<div>&nbsp;</div>
-			<% end %>
-		<% else %>
-			<p>There aren't any boards in this directory.</p>
-			<%= link_to 'Add a board', new_board_path %>
-		<% end %>
 	</div>
 </div>
 

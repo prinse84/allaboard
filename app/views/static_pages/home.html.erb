@@ -18,7 +18,7 @@
 			<% @boards.each do |board| %>
 				<% if board.reviews.any? %>
 					<% review = board.get_random_review %>
-					<strong><%= link_to board.name, board_reviews_path(board) %></strong> <small>( <%=  pluralize(board.reviews.size, 'review') %> )</small>
+					<strong><%= link_to board.name, board_path(board) %></strong> <small>( <%=  pluralize(board.reviews.size, 'review') %> )</small>
 					<div class="star" data-score='<%= board.get_average_rating %>'></div>	
 					<div>&nbsp;</div>	
 					<blockquote>

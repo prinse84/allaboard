@@ -2,10 +2,15 @@
 	<div class="span8">
 		<span class="lead"><strong><%= @board.name %></strong></span>
 		<div class="star" data-score='<%= @board.get_average_rating %>'></div>	
-		<p class="text-info">
-		  <small>Are you a point of contact for this board? <%= link_to 'Claim this board', '#' %>. [coming soon]</small>
-		</p>
-		
+		<% if !@board.board_claimed? %>
+			<p class="text-info">
+		  		<small>Are you a point of contact for this board? <%= link_to 'Claim this board', board_claim_path(@board) %>. </small>
+			</p>
+		<% else %>
+			<p class="text-info">
+		  		<small>This board profile is managed by <%= @board.user.get_name.titleize %> </small>
+			</p>
+		<% end %>
 	</div>
 </div>
 
