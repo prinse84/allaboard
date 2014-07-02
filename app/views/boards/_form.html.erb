@@ -1,0 +1,42 @@
+<%= form_for (@board) do |f| %>
+	<div class="form-group">
+		<%= render 'error_messages' %>
+
+		<div class="row">
+			<div class="span6"><%= f.label :name, 'Board Name'%></div>
+		</div>
+
+		<div class="row">		
+			<div class="span6"><%= f.text_field :name, :placeholder=>"Board Name" %></div>
+		</div>
+		
+		<div class="row">
+			<div class="span6"><%= f.label :description, 'Summary of Board Mission'%></div>
+		</div>
+
+		<div class="row">		
+			<div class="span6"><%= f.text_area :description, :placeholder=>"How would you describe the mission of your board?", :rows=>5, :class=>'input-block-level', :autofocus=> true %>
+			</div>
+		</div>		
+		
+		<div class="row">
+			<div class="span6"><%= f.label :url, 'URL to board home page'%></div>
+		</div>
+
+		<div class="row">		
+			<div class="span6"><%= f.text_field :url, :placeholder=>"http://example.com/board_name" %></div>
+		</div>
+		
+		<div class="row">
+			<div class="span6"><%= f.label :parent_company, 'Parent Organization'%></div>
+		</div>
+
+		<div class="row">		
+			<div class="span6"><%= f.text_field :parent_company, :placeholder=>"Parent Organization" %></div>
+		</div>
+						
+		<div class="row">	
+			<div class="span6"><%= f.submit "Save", class: "btn btn-primary" %></div>
+		</div>
+	</div>
+<% end %>

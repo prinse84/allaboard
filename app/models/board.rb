@@ -3,6 +3,8 @@ class Board < ActiveRecord::Base
     has_many :reviews, dependent: :destroy
     belongs_to :user
     
+    before_validation :smart_add_url_protocol
+    
     def get_random_review
       reviews = self.reviews
       max = reviews.count
@@ -19,6 +21,22 @@ class Board < ActiveRecord::Base
         false
       else 
         true
+      end
+    end
+    
+    def board_admin?(user)
+      if self.user_id == user.id
+        true
+      else 
+        false
+      end
+    end
+    
+    protected
+    
+    def smart_add_url_protocol
+      unless self.url[/\Ahttp:\/\//] || self.url[/\Ahttps:\/\//] || !self.url.nil?
+        self.url = "http://#{self.url}"
       end
     end
 end

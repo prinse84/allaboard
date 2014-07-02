@@ -1,100 +1,98 @@
 <div class="row">
-	<div class="span8">
-		<span class="lead"><strong><%= @board.name %></strong></span>
-		<div class="star" data-score='<%= @board.get_average_rating %>'></div>	
-		<p>&nbsp;</p>
-	</div>
-</div>
-
-
-<div class="tabbable">
-	<ul class="nav nav-tabs">
-  		<li class="active"><a href="#overview" data-toggle="tab">Overview</a></li>
-  		<li><a href="#events" data-toggle="tab">Events</a></li>
-  		<li><a href="#reviews" data-toggle="tab">Reviews (<%= @board.reviews.size %>)</a></li>
-	</ul>
-	
-	<div class="tab-content">
-	    <div class="tab-pane active" id="overview">
-			<div class="row">	
-				<div class="span7">
-					<% if !@board.board_claimed? %>
-						<p class="text-info">
-					  	Are you a point of contact for this board? <%= link_to 'Claim this board', board_claim_path(@board) %>.
-						</p>
-					<% else %>
-						<p>
-					  	This board profile is managed by <%= @board.user.get_name.titleize %>
-						</p>
-					<% end %>
-				</div>
+	<div class="span7 mycontent-left">	
+		<%= render 'board_page_header'%>
+		<div class="row">
+			<div class="span7">
+				<p class="section-title">Board Description</p>
+				<% if !@board.description.empty? %>
+					<p><%= simple_format(@board.description, class:"section-content") %></p>
+				<% else %>
+					<p>N/A</p>
+				<% end %>
 			</div>
-			<div class="row">
-				<div class="span7">
-					<div class="row">
-						<div class="span7">
-							<p><strong>Board Description</strong></p>
-							<p><%= @board.description %></p>
-						</div>
-					</div>
-				</div>
+		</div>
+		
+		<div class="row">
+			<div class="span7">
+				<p class="section-title">Events</p>
+				<p class="section-content text-info">Feature coming soon.</p>
 			</div>
-	    </div>
-	
-	
-	    <div class="tab-pane" id="events">
-	      <p>No Events</p>
-	    </div>
+		</div>
 		
-		
-		
-		<div class="tab-pane" id="reviews">
-			<div class="row">	
-				<div class="span7">
-					<% if !@reviews.blank? %>
-						<% @reviews.each do |review| %>
+		<div class="row">
+			<div class="span7">
+				<p class="section-title">Reviews (<%= @board.reviews.size %>)</p>
+				<div class="row">	
+					<div class="span7 section-content">
+						<% if !@reviews.blank? %>
+							<% @reviews.each do |review| %>
+								<div class="row">
+									<div class="span6">
+										<blockquote>
+												<p><%= review.title %></p>
+												<div class="star" data-score='<%= review.rating %>'></div>
+												<small><%= review.reviewer_type.name%>. Submitted <%= time_ago_in_words(review.created_at) %> ago.</small>
+												<h5>Pros:</h5>
+												<p style="font-size:14px"><%= review.pros %></p>
+												<h5>Cons:</h5>	
+												<p style="font-size:14px"><%= review.cons %></p>
+										</blockquote>					
+									</div>
+								</div>
+							<% end %>
+						<% else %>
 							<div class="row">
 								<div class="span6">
-									<blockquote>
-											<p><%= review.title %></p>
-											<div class="star" data-score='<%= review.rating %>'></div>
-											<small><%= review.reviewer_type.name%>. Submitted <%= time_ago_in_words(review.created_at) %> ago.</small>
-											<h5>Pros:</h5>
-											<p style="font-size:14px"><%= review.pros %></p>
-											<h5>Cons:</h5>	
-											<p style="font-size:14px"><%= review.cons %></p>
-									</blockquote>					
+									<p>No Reviews yet. Get the ball rolling, <%= link_to "write a review", new_board_review_path(@board) %>.</p>
 								</div>
 							</div>
 						<% end %>
-					<% else %>
-						<div class="row">
-							<div class="span6">
-								<p>No Reviews yet. Get the ball rolling, <%= link_to "write a review", new_board_review_path(@board) %>.</p>
-							</div>
-						</div>
-					<% end %>
+					</div>
 				</div>
-				<div class="span4 pull-right">
-					<p class='text-center'>Volunteered for this Associate Board? Contribute to the Community!</p>
-			  	  <p class='text-center'><%= link_to "Write a Review!", new_board_review_path(@board), class: "btn btn-primary" %></p>
+				<div class="row">	
+					<div class="span6">
+						<%= will_paginate @reviews %>
 				</div>
 			</div>
-			<div class="row">	
-				<div class="span6">
-					<%= will_paginate @reviews %>
-			</div>
+		</div>
+	</div>	
+</div>
+	<div class="span4">
+		<div class="row">
+			<p><span class='lead'>Quick Board Details</span><br />
+			<% if !@board.board_claimed? %>
+				<span class="text-info">
+			  	<small>Are you a point of contact for this board? <br /><%= link_to 'Claim this board', board_claim_path(@board) %>.</small>
+				</span>
+			<% else %>
+				<span class="text-info">
+		  		<small>This board profile is managed by <%= @board.user.get_name.titleize %></small>
+				</span>
+			<% end %>
+			</p>
+			<span><strong>Primary Contact:</strong></span>
+			<% if @board.board_claimed? %>
+				<p><small><%= @board.user.get_name.titleize %></small></p>
+			<% else %>
+				<p><small>N/A</small></p>
+			<% end %>
+		</div>
+		<div class="row">
+			<span><strong>Parent Organization:</strong></span>
+			<% if !@board.parent_company.empty? %>
+				<p><small><%= @board.parent_company %></small></p>
+			<% else %>
+				<p><small>N/A</small></p>
+			<% end %>
+		</div>
+		
+		<div class="row">
+			<span><strong>Website URL:</strong></span>
+			<% if !@board.url.empty? %>
+				<p><small><%= link_to @board.url, @board.url, :target => "_blank"  %></small></p>
+			<% else %>
+				<p><small>N/A</small></p>
+			<% end %>
 		</div>
 	</div>
 </div>
-
-
-<script>
-
-$('.star').raty({ score: function() {
-    						return $(this).attr('data-score');
-  							},
-	      		halfScore: true,
-				readOnly: true
-				});
-</script>

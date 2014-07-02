@@ -1,10 +1,17 @@
 <div class="span12">
 	<footer class="footer">
-		<small><%= link_to 'About Us', about_path %></small>
-		<span class="pull-right">
-			<small>
-   				An app by <%= link_to "Adeyemi", "http://about.me/raymondking", :target => "_blank" %>
-  			</small>
+		
+		<nav class="pull-left">
+			<ul>
+				<li><%= link_to 'About Us', about_path %></li>
+				<li><%= link_to 'Contact Us', '#' %></li>
+			</ul>
+		</nav>
+		
+		<nav class="pull-right">
+			<ul>
+   				<li>An app by <%= link_to "Adeyemi", "http://about.me/raymondking", :target => "_blank" %></li>
+  			</ul>
 		</span>
 	</footer>
 </div>

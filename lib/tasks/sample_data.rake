@@ -5,7 +5,7 @@ namespace :db do
     #Board.create!(name: "Example Board")
     50.times do |n|
       name  = Faker::Company.name
-      description = Faker::Lorem.sentences.to_s
+      description = Faker::Lorem.paragraphs.to_s
       parent_company = Faker::Company.name
       url = Faker::Internet.url
       b = Board.create!(name: name, 

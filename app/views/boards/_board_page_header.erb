@@ -1,0 +1,19 @@
+<div class="content-header">
+	<span class="lead"><strong><%= @board.name %></strong></span>
+	<div class="star" data-score='<%= @board.get_average_rating %>'></div>	
+	<% if current_user && @board.board_admin?(current_user) %>
+		<p><%= link_to 'Edit board details', edit_board_path(@board) %></p>
+	<% end %>
+
+</div>
+
+
+<script>
+
+$('.star').raty({ score: function() {
+    						return $(this).attr('data-score');
+  							},
+	      		halfScore: true,
+				readOnly: true
+				});
+</script>

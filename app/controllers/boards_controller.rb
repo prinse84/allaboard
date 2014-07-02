@@ -1,6 +1,6 @@
 class BoardsController < ApplicationController
   
-  before_action :authenticate_user!, :only => [:claim]
+  before_action :authenticate_user!, :only => [:claim, :edit]
   
   def index
     @boards = Board.all.paginate(:page => params[:page], :per_page => 20).order('name')
@@ -15,6 +15,14 @@ class BoardsController < ApplicationController
     @board = Board.new
   end
   
+  def edit
+    @board = Board.find(params[:id])
+    if !@board.board_admin?(current_user) 
+      flash[:notice] = "You are not the admin of this board. Therefore, you cannot edit details."
+      redirect_to board_path(@board)
+    end
+  end
+  
   def create
     @board = Board.new(board_params)
     if @board.save
@@ -26,6 +34,13 @@ class BoardsController < ApplicationController
   end
   
   def update
+    @board = Board.find(params[:id])
+    if @board.update_attributes(board_params)
+      flash[:success] = "Board details updated."
+      redirect_to board_path(@board)
+    else
+      render "edit"
+    end
   end
   
   def claim
@@ -59,7 +74,7 @@ class BoardsController < ApplicationController
   
   private
     def board_params
-      params.require(:board).permit(:name)
+      params.require(:board).permit(:name, :description, :parent_company, :url)
     end
     
     def suggestion_params
