@@ -19,7 +19,7 @@ class ReviewsController < ApplicationController
      @review.rating = params[:score]
      if @review.save
        flash[:success] = "Review Saved."  
-       redirect_to board_reviews_path(@review.board)
+       redirect_to board_path(@review.board)
      else
        render 'new'
      end
