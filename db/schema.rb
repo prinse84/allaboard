@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140702023525) do
+ActiveRecord::Schema.define(version: 20140706234411) do
 
   create_table "boards", force: true do |t|
     t.string   "name"
@@ -21,6 +21,20 @@ ActiveRecord::Schema.define(version: 20140702023525) do
     t.text     "description"
     t.string   "parent_company"
     t.string   "url"
+  end
+
+  create_table "events", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.date     "date"
+    t.time     "start_time"
+    t.time     "end_time"
+    t.string   "location"
+    t.string   "location_address"
+    t.string   "event_url"
+    t.integer  "board_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "reviewer_types", force: true do |t|
