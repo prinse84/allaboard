@@ -13,6 +13,7 @@ Allaboard::Application.routes.draw do
   resources :reviews, only: [:new, :create]
   resources :boards do
     resources :reviews, only: [:index, :show, :new]
+    resources :events
     get 'claim'
     post 'assign'
   end

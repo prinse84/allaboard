@@ -14,8 +14,19 @@
 		
 		<div class="row">
 			<div class="span7">
-				<p class="section-title">Events</p>
-				<p class="section-content text-info">Feature coming soon.</p>
+				<p class="section-title">Events (<%= @board.events.size %>)</p>
+				<% if !@events.blank? %>
+					<% @events.each do |event| %>
+						<div class="row">
+							<div class="span6 section-content">
+								<p><strong><%= link_to event.name, event.event_url %></strong></p>
+								<p><small><%= event.description.truncate(160, separator:' ')%></small></p>						
+								<p>Where: <%= event.location%></p>
+									<p><%= event.date.strftime("%d %B")%> <%= event.start_time.strftime("%I:%M%p")%></p>				
+							</div>
+						</div>
+					<% end %>
+				<% end %>
 			</div>
 		</div>
 		
