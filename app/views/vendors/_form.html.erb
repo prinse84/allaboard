@@ -1,0 +1,50 @@
+<%= form_for (@vendor) do |f| %>
+	<div class="form-group">
+		<%= render 'error_messages' %>
+
+		<div class="row">
+			<div class="span6"><%= f.label :name, 'Vendor Name'%></div>
+		</div>
+
+		<div class="row">		
+			<div class="span6"><%= f.text_field :name, :placeholder=>"Vendor Name" %></div>
+		</div>
+		
+		<div class="row">
+			<div class="span6"><%= f.label :address, 'Address'%></div>
+		</div>
+
+		<div class="row">		
+			<div class="span6"><%= f.text_area :address, :rows=>5, :class=>'input-block-level', :autofocus=> true %>
+			</div>
+		</div>		
+		
+		<div class="row">
+			<div class="span6"><%= f.label :phone, 'Phone number'%></div>
+		</div>
+
+		<div class="row">		
+			<div class="span6"><%= f.text_field :phone %></div>
+		</div>
+		
+		<div class="row">
+			<div class="span6"><%= f.label :email, 'Email Address'%></div>
+		</div>
+
+		<div class="row">		
+			<div class="span6"><%= f.text_field :email %></div>
+		</div>
+
+		<div class="row">
+			<div class="span6"><%= f.label :contact, 'Contact Person'%></div>
+		</div>
+
+		<div class="row">		
+			<div class="span6"><%= f.text_field :contact %></div>
+		</div>
+
+		<div class="row">	
+			<div class="span6"><%= f.submit "Save", class: "btn btn-primary" %></div>
+		</div>
+	</div>
+<% end %>

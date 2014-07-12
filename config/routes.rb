@@ -16,5 +16,6 @@ Allaboard::Application.routes.draw do
     get 'claim'
     post 'assign'
   end
+  resources :vendors
     
 end
