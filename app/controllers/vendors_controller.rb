@@ -1,6 +1,8 @@
 class VendorsController < ApplicationController
   
   before_action :authenticate_user!, :only => [:create, :update, :destroy]
+  before_action :user_owns_board, :only => [:new, :create, :edit, :update, :destroy]
+  before_action :user_owns_this_vendor, :only => [:edit, :update, :destroy]
   
   def index
     @vendors = Vendor.all.paginate(:page => params[:page], :per_page => 20).order('name')
@@ -11,6 +13,7 @@ class VendorsController < ApplicationController
   end
   
   def new
+    @users_boards = current_user.boards.all
     @vendor = Vendor.new
   end
   
@@ -51,6 +54,21 @@ class VendorsController < ApplicationController
     
     def suggestion_params
       params.require(:suggestion).permit(:suggested_vendor_name, :suggester_email)
+    end
+
+    def user_owns_board
+      if current_user.boards.blank?
+        flash[:failure] = "You can only do that if you manage a board."
+        redirect_to vendors_path
+      end
+    end
+
+    def user_owns_this_vendor
+      @board = current_user.boards.find(params[:board_id])
+      if @board.nil?
+        flash[:failure] = "You can only do that if you own this vendor."
+        redirect_to vendors_path
+      end
     end
 
 end
