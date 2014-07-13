@@ -13,7 +13,6 @@ class VendorsController < ApplicationController
   end
   
   def new
-    @users_boards = current_user.boards.all
     @vendor = Vendor.new
   end
   

@@ -43,6 +43,14 @@
 			<div class="span6"><%= f.text_field :contact %></div>
 		</div>
 
+		<div class="row">
+			<div class="span6"><%= f.label :board_id, 'Board'%></div>
+		</div>
+
+		<div class="row">		
+			<div class="span6"><%= f.select :board_id, current_user.boards.collect {|b| [ b.name, b.id] } %></div>
+		</div>
+
 		<div class="row">	
 			<div class="span6"><%= f.submit "Save", class: "btn btn-primary" %></div>
 		</div>
