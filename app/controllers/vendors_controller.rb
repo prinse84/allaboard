@@ -10,6 +10,7 @@ class VendorsController < ApplicationController
   
   def show
     @vendor = Vendor.find(params[:id])
+    @board = Board.find(@vendor.board_id)
   end
   
   def new
@@ -63,7 +64,8 @@ class VendorsController < ApplicationController
     end
 
     def user_owns_this_vendor
-      @board = current_user.boards.find(params[:board_id])
+      @vendor = Vendor.find(params[:id])
+      @board = current_user.boards.find(@vendor.board_id)
       if @board.nil?
         flash[:failure] = "You can only do that if you own this vendor."
         redirect_to vendors_path
