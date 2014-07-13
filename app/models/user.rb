@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   validates :last_name, presence: true
   
   has_many :boards
+  has_many :vendors
   
   def get_name
     self.first_name + ' ' + self.last_name
