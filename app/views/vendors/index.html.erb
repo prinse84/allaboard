@@ -5,7 +5,26 @@
 </div>
 <div class="row">
   <div class="span9">
-    <%= render @vendors %>
+    <% if !@vendors.nil? %>
+      <table class="table table-hoever">
+        <thead>
+          <tr>
+            <th>Vendor Name</th>
+            <th>Reviewing Board</th>
+          </tr>
+        </thead>
+        <tbody>
+        <!--<%= render @vendors %>-->
+          <% @vendors.each do |vendor| %>
+            <% @board = Board.find(vendor.board_id) %>
+            <tr>
+              <td><%= link_to vendor.name, vendor_path(vendor) %></td>
+              <td><%= link_to @board.name, board_path(@board) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
     <%= link_to 'Add a vendor', new_vendor_path %>
   </div>
 </div>
