@@ -1,7 +1,7 @@
 class VendorsController < ApplicationController
   
-  before_action :authenticate_user!, :only => [:create, :update, :destroy]
-  before_action :user_owns_board, :only => [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
+  before_action :user_owns_board, :only => [:new, :create]
   before_action :user_owns_this_vendor, :only => [:edit, :update, :destroy]
   
   def index
