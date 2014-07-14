@@ -1,14 +1,32 @@
 <div class="row">
-  <h1><%= @vendor.name %></h1>
-  <div class="span9">
-    <p><%= @vendor.address %></p>
-    <p><%= @vendor.phone %></p>
-    <p><%= @vendor.email %></p>
-    <p><%= @vendor.contact %></p>
-    <p><%= @board.name %></p>
+  <div class="span7 mycontent-left">
+    <h1><%= @vendor.name %></h1>
+  </div>
+</div>
+  <div class="span4">
+    <div class="row">
     <% if User.find(@board.user_id) == current_user %>
       <p><%= link_to "Edit this vendor", edit_vendor_path(@vendor) %></p>
       <p><%= link_to "Delete this vendor", vendor_path(@vendor), method: :delete, data: { confirm: "Are you should you want to delete this vendor?" } %></p>
     <% end %>
+    <% if !@vendor.address.blank? %>
+      <strong>Address</strong>
+      <p><%= @vendor.address %></p>
+    <% end %>
+    <% if !@vendor.phone.blank? %>
+      <strong>Phone number</strong>
+      <p><%= @vendor.phone %></p>
+    <% end %>
+    <% if !@vendor.contact.blank? %>
+      <strong>Vendor contact name</strong>
+      <p><%= @vendor.contact %></p>
+    <% end %>
+    <% if !@vendor.email.blank? %>
+      <strong>Vendor contact email</strong>
+      <p><%= @vendor.email %></p>
+    <% end %>
+    <strong>Board who added this vendor</strong>
+    <p><%= link_to @board.name, board_path(@board) %></p>
+    </div>
   </div>
 </div>

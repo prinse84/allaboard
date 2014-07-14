@@ -21,6 +21,16 @@ namespace :db do
                           reviewer_type_id: [*1..4].sample
                           )
       end
+      #for each board created, create 3 random vendors
+      3.times do |v|
+        Vendor.create!(name: Faker::Company.name,
+                          address: Faker::Address.street_address + '\r\n' + Faker::Address.city + ', ' + Faker::Address.state_abbr + ' ' + Faker::Address::zip_code,
+                          phone: Faker::PhoneNumber.cell_phone.to_i,
+                          email: Faker::Internet.email,
+                          contact: Faker::Name.name,
+                          board_id: b.id
+                          )
+      end
     end
   end
 end
