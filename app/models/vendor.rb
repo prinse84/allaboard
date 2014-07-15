@@ -12,6 +12,6 @@ class Vendor < ActiveRecord::Base
   end
 
   def get_average_rating
-    self.vendor_reviews.sum(:rating)/self.reviews.size
+    self.vendor_reviews.sum(:rating)/self.vendor_reviews.size
   end
 end
