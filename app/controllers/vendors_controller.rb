@@ -11,6 +11,7 @@ class VendorsController < ApplicationController
   def show
     @vendor = Vendor.find(params[:id])
     @board = Board.find(@vendor.board_id)
+    @reviews = @vendor.vendor_reviews.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
   end
   
   def new

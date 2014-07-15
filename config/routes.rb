@@ -17,5 +17,6 @@ Allaboard::Application.routes.draw do
     post 'assign'
   end
   resources :vendors
+  resources :vendor_reviews, only: [:new, :create]
     
 end

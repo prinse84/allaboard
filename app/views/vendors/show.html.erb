@@ -23,6 +23,27 @@
     <% end %>
     <strong>Board who added this vendor</strong>
     <p><%= link_to @board.name, board_path(@board) %></p>
+
+    <p class="section-title">Reviews (<%= @vendor.vendor_reviews.size %>) <span class='text-info'><small>Got thoughts on this vendor? <%= link_to "Write a review", new_vendor_review_path(@vendor) %>. </small></span> </p>
+    <div class="row">
+      <% if !@reviews.blank? %>
+        <% @reviews.each do |review| %>
+          <div class="row">
+            <div class="span6">
+              <blockquote>
+                <p><%= review.title %></p>
+                <div class="star" data-score='<%= review.rating %>'></div>
+                <small>Subbmitted <%= time_ago_in_words(reivew.created_at) %> ago.</small>
+                <h5>Pros:</h5>
+                <p style="font-size:14px"><%= review.pros %></p>
+                <h5>Cons:</h5>
+                <p style="font-size:14px"><%= review.cons %></p>
+              </blockquote>
+              <%= will_paginate @reviews %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>
