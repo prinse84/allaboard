@@ -33,7 +33,7 @@
               <blockquote>
                 <p><%= review.title %></p>
                 <div class="star" data-score='<%= review.rating %>'></div>
-                <small>Subbmitted <%= time_ago_in_words(reivew.created_at) %> ago.</small>
+                <small>Submitted <%= time_ago_in_words(review.created_at) %> ago.</small>
                 <h5>Pros:</h5>
                 <p style="font-size:14px"><%= review.pros %></p>
                 <h5>Cons:</h5>
