@@ -44,6 +44,38 @@
 		</div>
 
 		<div class="row">
+			<div class="span6"><%= f.label :indoor, 'This vendor does indoor events:' %> <%= f.check_box :indoor %></div>
+		</div>
+
+		<div class="row">
+			<div class="span6"><%= f.label :outdoor, 'This vendor does outdoor events:' %> <%= f.check_box :outdoor %></div>
+		</div>
+
+		<div class="row">
+			<div class="span6"><%= f.label :capacity, 'What is the vendor\'s capcity?'%></div>
+		</div>
+
+		<div class="row">		
+			<div class="span6"><%= f.number_field :capacity %></div>
+		</div>
+
+		<div class="row">
+			<div class="span6"><%= f.label :cost, 'How much did it cost your board to hire this vendor?'%></div>
+		</div>
+
+		<div class="row">		
+			<div class="span6"><%= f.number_field :cost %></div>
+		</div>
+
+		<div class="row">
+			<div class="span6"><%= f.label :food, 'Does this vendor allow food at their venue?' %> <%= f.check_box :food %></div>
+		</div>
+
+		<div class="row">
+			<div class="span6"><%= f.label :catering, 'Does this vendor allow outside catering?' %> <%= f.check_box :catering %></div>
+		</div>
+
+		<div class="row">
 			<div class="span6"><%= f.label :board_id, 'Board'%></div>
 		</div>
 

@@ -50,7 +50,7 @@ class VendorsController < ApplicationController
   
   private
     def vendor_params
-      params.require(:vendor).permit(:name, :address, :phone, :email, :contact, :board_id)
+      params.require(:vendor).permit(:name, :address, :phone, :email, :contact, :board_id, :outdoor, :indoor, :capacity, :cost, :food, :catering)
     end
     
     def suggestion_params

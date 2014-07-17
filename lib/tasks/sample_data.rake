@@ -23,13 +23,26 @@ namespace :db do
       end
       #for each board created, create 3 random vendors
       3.times do |v|
-        Vendor.create!(name: Faker::Company.name,
+        v = Vendor.create!(name: Faker::Company.name,
                           address: Faker::Address.street_address + '\r\n' + Faker::Address.city + ', ' + Faker::Address.state_abbr + ' ' + Faker::Address::zip_code,
                           phone: Faker::PhoneNumber.cell_phone.to_i,
                           email: Faker::Internet.email,
                           contact: Faker::Name.name,
-                          board_id: b.id
+                          board_id: b.id,
+                          outdoor: [true,false].sample,
+                          indoor: [true,false].sample,
+                          capacity: [*100..10000].sample,
+                          cost: [*100..10000].sample,
+                          food: [true,false].sample,
+                          catering: [true,false].sample
                           )
+        2.times do |vr|
+          v.vendor_reviews.create!(title: Faker::Lorem.sentence.to_s,
+                               rating: [*1..5].sample,
+                               pros: Faker::Lorem.sentences.to_s,
+                               cons: Faker::Lorem.sentences.to_s
+                               )
+        end
       end
     end
   end

@@ -3,6 +3,7 @@ class Vendor < ActiveRecord::Base
   validates :board_id, presence: true
   belongs_to :user
   has_many :vendor_reviews
+  before_save :default_values
 
   def get_random_review
     reviews = self.vendor_reviews
@@ -14,4 +15,11 @@ class Vendor < ActiveRecord::Base
   def get_average_rating
     self.vendor_reviews.sum(:rating)/self.vendor_reviews.size
   end
+
+  private
+    
+    def default_values
+      self.capacity ||= 0
+      self.cost ||= 0
+    end
 end

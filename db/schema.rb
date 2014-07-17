@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140715002202) do
+ActiveRecord::Schema.define(version: 20140717001601) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,12 @@ ActiveRecord::Schema.define(version: 20140715002202) do
     t.integer  "board_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "outdoor"
+    t.boolean  "indoor"
+    t.integer  "capacity"
+    t.integer  "cost"
+    t.boolean  "food"
+    t.boolean  "catering"
   end
 
 end
