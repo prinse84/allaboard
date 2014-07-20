@@ -1,0 +1,73 @@
+<%= form_for [@board, @event] do |f| %>
+	<div class="form-group">
+		<%= render 'error_messages' %>
+
+		<div class="row">
+			<div class="span6"><%= f.label :name, 'Event Title'%></div>
+		</div>
+
+		<div class="row">		
+			<div class="span6"><%= f.text_field :name, :placeholder=>"Ex: A-Board Launch Party" %></div>
+		</div>
+		
+		<div class="row">
+			<div class="span6"><%= f.label :description, 'Summary of event'%></div>
+		</div>
+
+		<div class="row">		
+			<div class="span6"><%= f.text_area :description, :placeholder=>"Descriptive summary of your event. Tell us about the event.", :rows=>5, :class=>'input-block-level', :autofocus=> true %>
+			</div>
+		</div>		
+		
+		<div class="row">
+			<div class="span6"><%= f.label :date, 'Event date' %></div>
+		</div>
+		
+		<div class="row">
+			<div class="span6"><%= f.text_field :date, class: "datepicker" %></div>
+		</div>
+
+		<div class="row">
+			<div class="span6"><%= f.label :location, 'Location'%></div>
+		</div>
+
+		<div class="row">		
+			<div class="span6"><%= f.text_field :location, :placeholder=>"ACME Ballroom" %></div>
+		</div>
+
+		<div class="row">
+			<div class="span6"><%= f.label :event_url, 'URL to event page'%></div>
+		</div>
+
+		<div class="row">		
+			<div class="span6"><%= f.text_field :event_url, :placeholder=>"http://example.com/board_name" %></div>
+		</div>
+		
+		<div class="row">
+			<div class="span6"><%= f.label :start_time, 'Start Time'%></div>
+		</div>
+
+		<div class="row">		
+			<div class="span6"><%= f.text_field :start_time, :placeholder=>"5PM" %></div>
+		</div>
+		
+		<div class="row">
+			<div class="span6"><%= f.label :end_time, 'End Time'%></div>
+		</div>
+
+		<div class="row">		
+			<div class="span6"><%= f.text_field :end_time, :placeholder=>"8PM" %></div>
+		</div>
+		
+						
+		<div class="row">	
+			<div class="span6"><%= f.submit "Save", class: "btn btn-primary" %></div>
+		</div>
+	</div>
+<% end %>
+
+<script>
+  $(function() {
+    $( ".datepicker" ).datepicker({ minDate: 0,autoSize: true, dateFormat: "yy-mm-dd"});
+  });
+  </script>

@@ -14,18 +14,33 @@
 		
 		<div class="row">
 			<div class="span7">
-				<p class="section-title">Events (<%= @board.events.size %>)</p>
+				<p class="section-title">Events (<%= @board.events.size %>)
+					<% if current_user && @board.board_admin?(current_user) %>
+						<span class='text-info'><small><%= link_to 'Add Event', new_board_event_path(@board) %></small></span>
+					<% end %>
+					</p>
 				<% if !@events.blank? %>
 					<% @events.each do |event| %>
 						<div class="row">
 							<div class="span6 section-content">
-								<p><strong><%= link_to event.name, event.event_url %></strong></p>
-								<p><small><%= event.description.truncate(160, separator:' ')%></small></p>						
-								<p>Where: <%= event.location%></p>
-									<p><%= event.date.strftime("%d %B")%> <%= event.start_time.strftime("%I:%M%p")%></p>				
+								<div class="event-block">
+									<p><strong><%= link_to event.name, event.event_url %></strong></p>
+									<p><small><%= event.description.truncate(160, separator:' ')%></small></p>						
+									<p>Where: <%= event.location%></p>
+									<p><%= event.date.strftime("%d %B")%> <%= event.start_time.strftime("%I:%M%p")%></p>
+									
+								<% if current_user && @board.board_admin?(current_user) %>
+									<span class='text-info'><small><%= link_to "Edit", edit_board_event_path(@board, event) %></small></span>
+								<% end %>					
+								</div>
 							</div>
 						</div>
 					<% end %>
+					<div class="row">	
+						<div class="span6">
+							<%= will_paginate @events %>
+						</div>
+					</div>
 				<% end %>
 			</div>
 		</div>
@@ -57,11 +72,11 @@
 				<div class="row">	
 					<div class="span6">
 						<%= will_paginate @reviews %>
+					</div>
 				</div>
 			</div>
-		</div>
-	</div>	
-</div>
+		</div>	
+	</div>
 	<div class="span4">
 		<div class="row">
 			<p><span class='lead'>Quick Board Details</span><br />
