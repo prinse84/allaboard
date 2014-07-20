@@ -16,6 +16,7 @@ class VendorsController < ApplicationController
   
   def new
     @vendor = Vendor.new
+    @all_boards = Board.all
   end
   
   def create
@@ -30,6 +31,7 @@ class VendorsController < ApplicationController
 
   def edit
     @vendor = Vendor.find(params[:id])
+    @all_boards = Board.all
   end
 
   def update
