@@ -34,9 +34,9 @@
       <p>No</p>
     <% end %>
     <strong>Capacity</strong>
-    <p><%= @vendor.capacity %></p>
+    <p><%= number_with_delimiter(@vendor.capacity) %></p>
     <strong>Cost estimate for using this vendor</strong>
-    <p><%= @vendor.cost %></p>
+    <p><%= number_to_currency(@vendor.cost) %></p>
     <strong>Provides food</strong>
     <% if @vendor.food %>
       <p>Yes</p>
