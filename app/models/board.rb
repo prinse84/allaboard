@@ -29,7 +29,7 @@ class Board < ActiveRecord::Base
       if self.user_id == user.id
         true
       else 
-        false
+        return user.admin
       end
     end
     
