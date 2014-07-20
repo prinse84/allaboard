@@ -1,0 +1,6 @@
+<tr>
+  <td><%= link_to vendor.name, vendor_path(vendor) %></td>
+  <td><%= link_to vendor.board_id, vendor_path(vendor) %></td>
+  <td><%= link_to 'Edit', edit_vendor_path(vendor) %></td>
+  <td><%= link_to 'Delete', vendor_path(vendor), method: :delete, data: { confirm: "Are you should you want to delete this vendor?" } %></td>
+</tr>

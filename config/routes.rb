@@ -17,5 +17,7 @@ Allaboard::Application.routes.draw do
     get 'claim'
     post 'assign'
   end
+  resources :vendors
+  resources :vendor_reviews, only: [:new, :create]
     
 end

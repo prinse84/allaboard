@@ -1,0 +1,36 @@
+<div class="row">
+	<div class="span12">
+		<span class="lead"><strong>Vendors Directory</strong></span>
+	</div>
+</div>
+<div class="row">
+  <div class="span9">
+    <% if !@vendors.nil? %>
+      <table class="table table-hoever">
+        <thead>
+          <tr>
+            <th>Vendor Name</th>
+            <th>Reviewing Board</th>
+          </tr>
+        </thead>
+        <tbody>
+        <!--<%= render @vendors %>-->
+          <% @vendors.each do |vendor| %>
+            <% @board = Board.find(vendor.board_id) %>
+            <tr>
+              <td><%= link_to vendor.name, vendor_path(vendor) %><div class="star" data-score='<%= vendor.get_average_rating %>'></div></td>
+              <td><%= link_to @board.name, board_path(@board) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+    <%= link_to 'Add a vendor', new_vendor_path %>
+  </div>
+</div>
+
+<div class="row">	
+	<div class="span12">
+		<%= will_paginate %>
+	</div>
+</div>

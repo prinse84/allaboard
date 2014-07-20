@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  rating: 1.5
+  pros: MyString
+  cons: MyString
+  vendor_id: 1
+
+two:
+  title: MyString
+  rating: 1.5
+  pros: MyString
+  cons: MyString
+  vendor_id: 1
