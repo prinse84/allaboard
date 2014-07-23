@@ -1,0 +1,50 @@
+<%= form_for (@review) do |f| %>
+<div class="form-group">
+  <%= render 'error_messages' %>
+  <div class="row">		
+    <%= f.label :vendor_id, 'Select a vendor'%>
+  </div>
+                          
+  <div class="row">	
+    <%= f.collection_select :vendor_id, Vendor.all, :id, :name, prompt: true %>
+  </div>
+
+  <div class="row">				
+
+    <div class="row">
+      <div class="span6"><%= f.label "How would you rate this vendor?" %> </div>
+    </div>
+
+    <div class="row">
+      <div id="star" class="span2 radio"></div>	
+    </div>
+
+    <div class="row">
+      <div class="span6"><%= f.label :title, 'Review Summary'%></div>
+    </div>
+
+    <div class="row">		
+      <div class="span6"><%= f.text_area :title, :placeholder=>"In one sentence, describe your experience.", :rows=>2, :class=>'input-block-level', :autofocus=> true %></div>
+    </div>
+
+    <div class="row">		
+      <div class="span6"><%= f.label :pros, 'Pros' %></div>
+    </div>
+
+    <div class="row">		
+      <div class="span6"><%= f.text_area :pros, :placeholder=>"What are the best reasons to use this vendor? Describe things like you are talking to a friend.", :rows=>4, :class=>'input-block-level', :autofocus=> true %></div>
+    </div>
+
+    <div class="row">		
+      <div class="span6"><%= f.label :cons, 'Cons' %></div>
+    </div>
+  
+    <div class="row">		
+      <div class="span6"><%= f.text_area :cons, :placeholder=>"What are some of the challenges of using this vendor?", :rows=>4, :class=>'input-block-level', :autofocus=> true %></div>
+    </div>
+
+    <div class="row">	
+      <div class="span6"><%= f.submit "Submit Review", class: "btn btn-primary" %></div>
+    </div>
+  </div>
+<% end %>
