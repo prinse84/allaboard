@@ -10,7 +10,7 @@ Allaboard::Application.routes.draw do
 
   resources :users
   
-  resources :reviews, only: [:new, :create]
+  resources :reviews
   resources :boards do
     resources :reviews, only: [:index, :show, :new]
     resources :events
