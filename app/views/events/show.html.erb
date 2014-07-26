@@ -1,0 +1,35 @@
+<div class="row">
+	<div class="span7 mycontent-left">
+		
+		<div class="row">
+			<div class="span7 content-header">
+				<span class="lead"><strong><%= @event.name %></strong></span> <br />
+				<small>Organized by <%= link_to @event.board.name, board_path(@event.board)%></small>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="span7">
+				<p class="section-title">Event Details</p>
+				<h5>Description</h5>
+				<% if !@event.description.blank? %>
+					<p><%= simple_format(@event.description, class:"section-content") %></p>
+				<% else %>
+					<p>N/A</p>
+				<% end %>
+				
+				<h5>Date & Time</h5>
+					<p><%= @event.formatted_date %><p>
+				<h5>Location</h5>
+					<p><%= @event.location %></p>
+				<h5>Website</h5>		
+					<p><%= link_to @event.event_url, @event.event_url, :target => "_blank" %></p>				
+			</div>
+		</div>
+	</div>
+	<div class="span4">
+		<div class="row">
+			<h5>Other events by this board</h5>
+		</div>
+	</div>
+</div>

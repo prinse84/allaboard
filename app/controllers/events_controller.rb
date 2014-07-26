@@ -1,5 +1,13 @@
 class EventsController < ApplicationController
   
+
+  def index
+    
+  end
+
+  def show
+    @event = Event.find(params[:id])
+  end
   
   def new
     @board = Board.find(params[:board_id])

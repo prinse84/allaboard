@@ -1,6 +1,5 @@
 Allaboard::Application.routes.draw do
 
-  get "events/new"
   root  'static_pages#home'
   
   get 'boards/suggest', to: 'boards#suggestion'
@@ -12,7 +11,7 @@ Allaboard::Application.routes.draw do
   resources :users
   
   resources :reviews, only: [:new, :create]
-  #resources :events, only: [:new, :create]  
+  resources :events, only: [:index, :show]  
 
   resources :reviews
   

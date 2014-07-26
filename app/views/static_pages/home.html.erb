@@ -5,14 +5,13 @@
   </h2>
 </div>
 
-<div class="span12">
-	<div class="span8 pull-left">
-		<div class='row'>
-		    
-		</div>
+
+<div class="row">
+	<div class="span7 mycontent-left">
+	
 	</div>
 
-	<div class="span4 pull-right">
+	<div class="span4">
 		<h4 class="text-center">Associate Board Reviews</h4>
 		<% if !@boards.blank? %>
 			<% @boards.each do |board| %>
@@ -35,6 +34,39 @@
 		<% end %>
 	</div>
 </div>
+
+<div class ="row">
+	<div class="span12 row-separator"></div>
+	<div class='span12'>
+		<div class='row'>
+			<div class="span7 pull-left">
+				<h4>Upcoming Events</h4>
+			</div>
+		</div>
+		<div class="row">
+			<div class="span12">
+				
+				<% if !@events.blank? %>
+					<table class="table">
+						<tbody>
+							<% @events.each do |event| %>
+							<tr>
+								<td width="50%"><strong><%= link_to event.name, event_path(event) %></strong></td>
+								<td width="15%"><%= event.date.strftime("%B %d, %Y") %></td>
+								<td width="35%"><%= link_to event.board.name, board_path(event.board) %></td>  
+							</tr>
+							<% end %>
+						</tbody>
+					</table>
+				<% else %>
+					<p>There are no currently no planned events. </p>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+
+
 <script>
 // call the flippyNum function
 /*flippyNum(document.getElementById('flippy'), {

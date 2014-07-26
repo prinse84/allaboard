@@ -24,7 +24,7 @@
 						<div class="row">
 							<div class="span6 section-content">
 								<div class="event-block">
-									<p><strong><%= link_to event.name, event.event_url %></strong></p>
+									<p><strong><%= link_to event.name, event.event_url, :target => "_blank"  %></strong></p>
 									<p><small><%= event.description.truncate(160, separator:' ')%></small></p>						
 									<p>Where: <%= event.location%></p>
 									<p><%= event.date.strftime("%d %B")%> <%= event.start_time.strftime("%I:%M%p")%></p>
