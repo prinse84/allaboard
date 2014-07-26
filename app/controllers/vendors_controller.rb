@@ -16,6 +16,7 @@ class VendorsController < ApplicationController
   
   def new
     @vendor = Vendor.new
+    @all_boards = Board.all
   end
   
   def create
@@ -30,6 +31,7 @@ class VendorsController < ApplicationController
 
   def edit
     @vendor = Vendor.find(params[:id])
+    @all_boards = Board.all
   end
 
   def update
@@ -58,6 +60,9 @@ class VendorsController < ApplicationController
     end
 
     def user_owns_board
+      if current_user.admin
+        return
+      end
       if current_user.boards.blank?
         flash[:failure] = "You can only do that if you manage a board."
         redirect_to vendors_path
@@ -65,6 +70,9 @@ class VendorsController < ApplicationController
     end
 
     def user_owns_this_vendor
+      if current_user.admin
+        return
+      end
       @vendor = Vendor.find(params[:id])
       @board = current_user.boards.find(@vendor.board_id)
       if @board.nil?

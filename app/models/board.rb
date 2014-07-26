@@ -2,6 +2,7 @@ class Board < ActiveRecord::Base
     validates :name, presence: true
     has_many :reviews, dependent: :destroy
     has_many :events, dependent: :destroy
+    has_many :vendors, dependent: :destroy
     belongs_to :user
     
     before_validation :smart_add_url_protocol
@@ -29,7 +30,7 @@ class Board < ActiveRecord::Base
       if self.user_id == user.id
         true
       else 
-        false
+        return user.admin
       end
     end
     

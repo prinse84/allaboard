@@ -13,6 +13,8 @@ Allaboard::Application.routes.draw do
   
   resources :reviews, only: [:new, :create]
   #resources :events, only: [:new, :create]  
+
+  resources :reviews
   
   resources :boards do
     resources :reviews, only: [:index, :show, :new]
@@ -22,6 +24,6 @@ Allaboard::Application.routes.draw do
   end
   
   resources :vendors
-  resources :vendor_reviews, only: [:new, :create]
+  resources :vendor_reviews
     
 end
