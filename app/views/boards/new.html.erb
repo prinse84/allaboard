@@ -10,6 +10,12 @@
 
 <div class="row">
 	<div class="span6">
-		<%= render 'form'%>
+		
+		
+        <% if site_admin_logged_in? %>
+			<%= render 'form'%>
+		<% else %>
+		<p>Sorry, only the All A-Board Alliance administrators can add a board. This is how we can maintain a carefully curated list of boards.<br /> If you would like to suggest a board to add, please <%= link_to "tell us about it", boards_suggest_path %>.</p>
+		<% end %>
 	</div>
 </div>

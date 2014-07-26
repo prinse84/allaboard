@@ -1,6 +1,6 @@
 class BoardsController < ApplicationController
   
-  before_action :authenticate_user!, :only => [:claim, :edit, :destroy]
+  before_action :authenticate_user!, :only => [:claim, :new, :edit, :destroy]
   
   def index
     @boards = Board.all.paginate(:page => params[:page], :per_page => 20).order('name')

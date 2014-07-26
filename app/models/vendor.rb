@@ -2,7 +2,7 @@ class Vendor < ActiveRecord::Base
   validates :name, presence: true
   validates :board_id, presence: true
   belongs_to :board
-  has_many :vendor_reviews
+  has_many :vendor_reviews, dependent: :destroy
   before_save :default_values
 
   def get_random_review
