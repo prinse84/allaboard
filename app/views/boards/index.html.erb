@@ -20,7 +20,8 @@
 		      		<th>Parent Organization</th>
 		      		<th>Contact</th>		
 		    	</tr>
-				<tbody>
+			</thead>
+			<tbody>
 					<% @boards.each do |board| %>
 				    <tr>
 				      <td><%= link_to board.name, board_path(board) %><div class="star" data-score='<%= board.get_average_rating %>'></div>
@@ -35,8 +36,7 @@
 					   </td>
 					</tr>
 					<% end %>
-				</tbody>
-		  </thead>
+			</tbody>
 		</table>
 		<% else %>
 			<p>There aren't any boards in this directory.</p>

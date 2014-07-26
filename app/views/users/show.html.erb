@@ -1,0 +1,42 @@
+<div class="row">
+	<div class="span7">	
+		<div class="content-header">
+			<span class="lead"><strong><%= @user.get_name %></strong></span>
+		</div>
+		
+		<div class="row">
+			<div class="span7">
+				<p class="section-title">Your Boards</p>
+				<div class="row">
+					<div class="span7">
+						<p>The list below shows the boards that you currently manage. </p>
+					</div>
+					<div class="span7">
+					<% if !@boards.blank? %>		
+						<table class="table table-hover">		
+							<thead>
+					    		<tr>
+					      			<th>Board Name</th>
+					      			<th>Parent Organization</th>
+					    		</tr>
+						  	</thead>
+							<tbody>
+								<% @boards.each do |board| %>
+							    <tr>
+							      <td><%= link_to board.name, board_path(board) %>
+								  </td>
+							      <td><%= board.parent_company %></td>
+								</tr>
+								<% end %>
+							</tbody>
+						</table>
+					<% else %>
+						<p>There aren't any boards in this directory.</p>
+						<%= link_to 'Add a board', new_board_path %>
+					<% end %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
