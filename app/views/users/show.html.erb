@@ -1,7 +1,8 @@
 <div class="row">
-	<div class="span7">	
+	<div class="span7  mycontent-left">	
 		<div class="content-header">
-			<span class="lead"><strong><%= @user.get_name %></strong></span>
+			<span class="lead"><strong><%= @user.get_name %></strong></span><br />
+			<small class="text-info">Member since: <%= @user.created_at.strftime("%B %d, %Y")%></small>
 		</div>
 		
 		<div class="row">
@@ -11,6 +12,7 @@
 					<div class="span7">
 						<p>The list below shows the boards that you currently manage. </p>
 					</div>
+					
 					<div class="span7">
 					<% if !@boards.blank? %>		
 						<table class="table table-hover">		
@@ -26,17 +28,31 @@
 							      <td><%= link_to board.name, board_path(board) %>
 								  </td>
 							      <td><%= board.parent_company %></td>
+								  <td>
+								  	<% if board.board_admin?(@user) %>
+										<%= link_to 'Unclaim board', board_unclaim_path(board) %>
+								  	<% end %>
+								   </td>
 								</tr>
 								<% end %>
 							</tbody>
 						</table>
 					<% else %>
-						<p>There aren't any boards in this directory.</p>
-						<%= link_to 'Add a board', new_board_path %>
+						<p>You have not claimed any boards. Checkout the Boards directory page to find the board that you responsible for.</p>
 					<% end %>
 					</div>
 				</div>
 			</div>
+		</div>
+	</div>
+	<div class="span4">
+		<div class="row">
+			<p><span class='lead'>Manage your Account</span></p>
+		</div>
+		<div class="row">
+			<p><small><%= link_to "Update your account information", "#" %> </small><br />
+				<small><%= link_to "Change your password", "#" %></small></p>
+				
 		</div>
 	</div>
 </div>

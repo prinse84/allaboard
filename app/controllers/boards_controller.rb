@@ -54,6 +54,10 @@ class BoardsController < ApplicationController
     @board = Board.find(params[:board_id])
   end
   
+  def unclaim
+    @board = Board.find(params[:board_id])
+  end
+  
   def assign
     @board = Board.find(params[:board_id])
     @board.update_attribute(:user_id, current_user.id)
@@ -62,6 +66,17 @@ class BoardsController < ApplicationController
       redirect_to board_path(@board)
     else
       render 'claim'
+    end
+  end
+  
+  def unassign
+    @board = Board.find(params[:board_id])
+    @board.update_attribute(:user_id, nil)
+    if @board.save
+      flash[:success] = "You have been removed as the administrator of " + @board.name
+      redirect_to user_path(current_user)
+    else
+      render 'unclaim'
     end
   end
   

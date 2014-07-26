@@ -20,7 +20,9 @@ Allaboard::Application.routes.draw do
     resources :reviews, only: [:index, :show, :new]
     resources :events
     get 'claim'
+    get 'unclaim'
     post 'assign'
+    post 'unassign'
   end
   
   resources :vendors
