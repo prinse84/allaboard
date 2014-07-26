@@ -1,0 +1,66 @@
+		<%= form_for (@review) do |f| %>
+			<div class="form-group">
+				<%= render 'error_messages' %>
+				<div class="row">		
+					<div class="span6"><%= f.label :board_id, 'Select a board'%></div>
+				</div>
+				
+				<div class="row">	
+					<div class="span6"><%= f.collection_select :board_id, Board.all, :id, :name, prompt: true %></div>
+					<div class="span6"><small><%= link_to "Don't see your board, let us know.", boards_suggest_path %></small></div>
+				</div>
+				
+				<div class="row">				
+					 <div class="span6"><%= f.label "What is your affiliation with this Associate Board?" %> </div>
+						<% for review_type in ReviewerType.all %>
+							<div class="row">
+								<div class="span1"></div>
+								<div class="span5 radio"><%= f.radio_button :reviewer_type_id, review_type.id %><%= review_type.name  %>  </div>
+							</div>	
+						<% end %>
+				</div>
+			
+				<div class="row">
+  					<div class="span6"><%= f.label "How would you rate this Associate Board?" %> </div>
+				</div>
+		
+				<div class="row">
+					<div id="star" class="span2 radio"></div>	
+				</div>
+				
+				<div class="row">
+					<div class="span6"><%= f.label :title, 'Review Summary'%></div>
+				</div>
+		
+				<div class="row">		
+  					<div class="span6"><%= f.text_area :title, :placeholder=>"In one sentence, describe your experience.", :rows=>2, :class=>'input-block-level', :autofocus=> true %></div>
+				</div>
+		
+				<div class="row">		
+  					<div class="span6"><%= f.label :pros, 'Pros' %></div>
+				</div>
+		
+				<div class="row">		
+  					<div class="span6"><%= f.text_area :pros, :placeholder=>"What are the best reasons to volunteer here? Describe things like you are talking to a friend.", :rows=>4, :class=>'input-block-level', :autofocus=> true %></div>
+				</div>
+
+				<div class="row">		
+  					<div class="span6"><%= f.label :cons, 'Cons' %></div>
+				</div>
+		
+				<div class="row">		
+  					<div class="span6"><%= f.text_area :cons, :placeholder=>"What are some of the challenges of volunteering here?", :rows=>4, :class=>'input-block-level', :autofocus=> true %></div>
+				</div>
+		
+				<div class="row">	
+					<div class="span6"><%= f.submit "Submit Review", class: "btn btn-primary" %></div>
+				</div>
+			</div>
+		<% end %>
+<script>
+$('#star').raty({ score: 3,
+	      		halfScore: true
+				});
+</script>
+
+

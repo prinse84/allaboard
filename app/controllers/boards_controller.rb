@@ -1,6 +1,6 @@
 class BoardsController < ApplicationController
   
-  before_action :authenticate_user!, :only => [:claim, :edit]
+  before_action :authenticate_user!, :only => [:claim, :edit, :destroy]
   
   def index
     @boards = Board.all.paginate(:page => params[:page], :per_page => 20).order('name')
@@ -42,6 +42,12 @@ class BoardsController < ApplicationController
     else
       render "edit"
     end
+  end
+
+  def destroy
+    Board.find(params[:id]).destroy
+    flash[:success] = "The board has been deleted."
+    redirect_to boards_path
   end
   
   def claim

@@ -80,7 +80,13 @@
 		</div>
 
 		<div class="row">		
-			<div class="span6"><%= f.select :board_id, current_user.boards.collect {|b| [ b.name, b.id] } %></div>
+			<div class="span6"><%= f.select :board_id,
+                          if current_user.admin
+                            @all_boards.collect {|b| [ b.name, b.id] }
+                          else
+                            current_user.boards.collect {|b| [ b.name, b.id] }
+                          end
+                          %></div>
 		</div>
 
 		<div class="row">	
