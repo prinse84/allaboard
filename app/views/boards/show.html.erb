@@ -44,6 +44,37 @@
 				<% end %>
 			</div>
 		</div>
+
+		<div class="row">
+			<div class="span7">
+				<p class="section-title">Vendors (<%= @board.vendors.size %>)
+					<% if current_user && @board.board_admin?(current_user) %>
+						<span class='text-info'><small><%= link_to 'Add Vendor', new_vendor_path %></small></span>
+					<% end %>
+					</p>
+				<% if !@vendors.blank? %>
+					<% @vendors.each do |vendor| %>
+						<div class="row">
+							<div class="span6 section-content">
+								<div class="event-block">
+									<p><strong><%= link_to vendor.name, vendor_path(vendor)  %></strong></p>
+									<p><div class="star" data-score='<%= vendor.get_average_rating %>'></div></p>
+									
+								<% if current_user && @board.board_admin?(current_user) %>
+									<span class='text-info'><small><%= link_to "Edit Vendor", edit_vendor_path(vendor) %></small></span>
+								<% end %>					
+								</div>
+							</div>
+						</div>
+					<% end %>
+					<div class="row">	
+						<div class="span6">
+							<%= will_paginate @events %>
+						</div>
+					</div>
+				<% end %>
+			</div>
+		</div>
 		
 		<div class="row">
 			<div class="span7">

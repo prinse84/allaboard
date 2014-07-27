@@ -10,6 +10,7 @@ class BoardsController < ApplicationController
     @board = Board.find(params[:id])
     @reviews = @board.reviews.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
     @events = @board.events.where("date >= ?", Time.now).paginate(:page => params[:page], :per_page => 3).order('date')
+    @vendors = @board.vendors.paginate(:page => params[:page], :per_page => 2).order('name')
   end
   
   def new
