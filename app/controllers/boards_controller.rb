@@ -14,10 +14,12 @@ class BoardsController < ApplicationController
   
   def new
     @board = Board.new
+    @all_users = User.all
   end
   
   def edit
     @board = Board.find(params[:id])
+    @all_users = User.all
     if !@board.board_admin?(current_user) 
       flash[:notice] = "You are not the admin of this board. Therefore, you cannot edit details."
       redirect_to board_path(@board)
@@ -96,7 +98,7 @@ class BoardsController < ApplicationController
   
   private
     def board_params
-      params.require(:board).permit(:name, :description, :parent_company, :url)
+      params.require(:board).permit(:name, :description, :parent_company, :url, :user_id)
     end
     
     def suggestion_params
