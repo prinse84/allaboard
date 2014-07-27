@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
-  before_action :admin_user, :only => [:edit, :update, :destroy]
+  include ApplicationHelper
+  before_action :site_admin_logged_in?, :only => [:edit, :update, :destroy]
  
   def index
     @board = Board.find(params[:board_id])
@@ -54,8 +55,4 @@ class ReviewsController < ApplicationController
       params.require(:review).permit(:title, :pros, :cons, :board_id, :reviewer_type_id)
     end
 
-    def admin_user
-      return current_user.admin
-    end
-  
 end

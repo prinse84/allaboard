@@ -1,5 +1,6 @@
 class VendorReviewsController < ApplicationController
-  before_action :admin_user, :only => [:edit, :update, :destroy]
+  include ApplicationHelpder
+  before_action :site_admin_logged_in?, :only => [:edit, :update, :destroy]
 
   def new
     @review = VendorReview.new(:vendor_id =>params[:vendor_id])
@@ -43,10 +44,6 @@ class VendorReviewsController < ApplicationController
 
     def review_params
       params.require(:vendor_review).permit(:title, :pros, :cons, :vendor_id)
-    end
-
-    def admin_user
-      return current_user.admin
     end
 
 end

@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+
+  def index
+    @users = User.all.paginate(:page => params[:page], :per_page => 20).order('first_name, last_name')
+  end
   
   def show
      if params[:id].to_i == current_user.id
