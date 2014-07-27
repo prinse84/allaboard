@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
+  include ApplicationHelper
   before_action :authenticate_user!
+  before_action :site_admin_logged_in?, :only => [:update]
   before_action :check_user_before_destroy, :only => [:destroy]
 
   def index
@@ -15,6 +17,16 @@ class UsersController < ApplicationController
      end
   end
 
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      flash[:success] = "User admin status updated."
+    else
+      flash[:failure] = "User admin status not updated."
+    end
+    redirect_to user_path(@user)
+  end
+
   def destroy
     @user = User.find(params[:id])
     for board in @user.boards.all
@@ -26,6 +38,10 @@ class UsersController < ApplicationController
   end
 
   private
+
+    def user_params
+      params.require(:user).permit(:admin)
+    end
 
     def check_user_before_destroy
       if current_user && params[:id] != current_user.id && current_user.admin
