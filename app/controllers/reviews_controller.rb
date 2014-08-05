@@ -8,7 +8,7 @@ class ReviewsController < ApplicationController
   end
   
   def show
-    @board = Board.find(params[:board_id])
+    @board = Board.find_by(slug: params[:board_slug])
     @review = Review.find(params[:id])
   end
   

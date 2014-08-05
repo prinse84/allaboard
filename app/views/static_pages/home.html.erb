@@ -17,14 +17,14 @@
 			<% @boards.each do |board| %>
 				<% if board.reviews.any? %>
 					<% review = board.get_random_review %>
-					<strong><%= link_to board.name, board_path(board) %></strong> <small>( <%=  pluralize(board.reviews.size, 'review') %> )</small>
+					<strong><%= link_to board.name, board_path(board.slug) %></strong> <small>( <%=  pluralize(board.reviews.size, 'review') %> )</small>
 					<div class="star" data-score='<%= board.get_average_rating %>'></div>	
 					<div>&nbsp;</div>	
 					<blockquote>
-						<p><%= link_to review.title, board_review_path(board, review)  %></p>
+						<p><%= link_to review.title, board_review_path(board.slug, review)  %></p>
 						<small><%= review.reviewer_type.name%>. Submitted <%= time_ago_in_words(review.created_at) %> ago.</small>
 						<h5>Pros:</h5>
-						<p style="font-size:14px"><%= review.pros.truncate(80, separator:' ') %> <%= link_to 'more', board_review_path(board, review)  %></p>
+						<p style="font-size:14px"><%= review.pros.truncate(80, separator:' ') %> <%= link_to 'more', board_review_path(board.slug, review)  %></p>
 					</blockquote>
 				<% end %>
 			<% end %>
@@ -53,7 +53,7 @@
 							<tr>
 								<td width="50%"><strong><%= link_to event.name, event_path(event) %></strong></td>
 								<td width="15%"><%= event.date.strftime("%B %d, %Y") %></td>
-								<td width="35%"><%= link_to event.board.name, board_path(event.board) %></td>  
+								<td width="35%"><%= link_to event.board.name, board_path(event.board.slug) %></td>  
 							</tr>
 							<% end %>
 						</tbody>

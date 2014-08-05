@@ -24,12 +24,12 @@
 			<tbody>
 					<% @boards.each do |board| %>
 				    <tr>
-				      <td><%= link_to board.name, board_path(board) %><div class="star" data-score='<%= board.get_average_rating %>'></div>
+				      <td><%= link_to board.name, board_path(board.slug) %><div class="star" data-score='<%= board.get_average_rating %>'></div>
 					  </td>
 				      <td><%= board.parent_company %></td>
 				      <td>
 					  <% if !board.board_claimed? %>
-						<%= link_to 'Claim board', board_claim_path(board) %>
+						<%= link_to 'Claim board', board_claim_path(board.slug) %>
 					  <% else %>
 						<%= board.user.get_name.titleize%>
 					  <% end %>

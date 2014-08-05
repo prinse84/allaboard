@@ -15,7 +15,7 @@ Allaboard::Application.routes.draw do
 
   resources :reviews
   
-  resources :boards do
+  resources :boards, param: :slug do
     resources :reviews, only: [:index, :show, :new]
     resources :events
     get 'claim'

@@ -1,11 +1,12 @@
 class Board < ActiveRecord::Base
     validates :name, presence: true
+    validates :slug, presence: true, uniqueness: { case_sensitive: false }
     has_many :reviews, dependent: :destroy
     has_many :events, dependent: :destroy
     has_many :vendors, dependent: :destroy
     belongs_to :user
     
-    before_validation :smart_add_url_protocol
+    before_validation :smart_add_url_protocol, :create_slug
     
     def get_random_review
       reviews = self.reviews
@@ -34,8 +35,12 @@ class Board < ActiveRecord::Base
       end
     end
     
-    protected
+    private
+    def create_slug
+      self.slug = name.parameterize
+    end
     
+    protected
     def smart_add_url_protocol
       unless self.url[/\Ahttp:\/\//] || self.url[/\Ahttps:\/\//] || !self.url.blank?
         self.url = "http://#{self.url}"

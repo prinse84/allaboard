@@ -7,7 +7,7 @@ class BoardsController < ApplicationController
   end
   
   def show
-    @board = Board.find(params[:id])
+    @board = Board.find_by(slug: params[:slug])
     @reviews = @board.reviews.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
     @events = @board.events.where("date >= ?", Time.now).paginate(:page => params[:page], :per_page => 3).order('date')
     @vendors = @board.vendors.paginate(:page => params[:page], :per_page => 2).order('name')
@@ -19,7 +19,7 @@ class BoardsController < ApplicationController
   end
   
   def edit
-    @board = Board.find(params[:id])
+    @board = Board.find_by(slug: params[:slug])
     @all_users = User.all
     if !@board.board_admin?(current_user) 
       flash[:notice] = "You are not the admin of this board. Therefore, you cannot edit details."
@@ -38,7 +38,7 @@ class BoardsController < ApplicationController
   end
   
   def update
-    @board = Board.find(params[:id])
+    @board = Board.find_by(slug: params[:slug])
     if @board.update_attributes(board_params)
       flash[:success] = "Board details updated."
       redirect_to board_path(@board)
@@ -54,7 +54,7 @@ class BoardsController < ApplicationController
   end
   
   def claim
-    @board = Board.find(params[:board_id])
+    @board = Board.find_by(slug: params[:board_slug])
   end
   
   def unclaim

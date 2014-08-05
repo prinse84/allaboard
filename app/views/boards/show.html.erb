@@ -16,7 +16,7 @@
 			<div class="span7">
 				<p class="section-title">Events (<%= @board.events.size %>)
 					<% if current_user && @board.board_admin?(current_user) %>
-						<span class='text-info'><small><%= link_to 'Add Event', new_board_event_path(@board) %></small></span>
+						<span class='text-info'><small><%= link_to 'Add Event', new_board_event_path(@board.slug) %></small></span>
 					<% end %>
 					</p>
 				<% if !@events.blank? %>
