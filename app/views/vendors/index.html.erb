@@ -4,8 +4,14 @@
 	</div>
 </div>
 <div class="row">
+	<div class="span9">
+		<p>As with everything on this site, the list of vendors is a community driven directory of vendors that have been used or referred to by other board members. This list will become increasingly useful as more vendors are added. If you have previously used a vendor for an event, please use our link below to submit this vendor to our directory.</p>
+	</div>
+</div>
+
+<div class="row">
   <div class="span9">
-    <% if !@vendors.nil? %>
+    <% if !@vendors.blank? %>
       <table class="table table-hoever">
         <thead>
           <tr>
@@ -25,7 +31,8 @@
         </tbody>
       </table>
     <% end %>
-    <%= link_to 'Add a vendor', new_vendor_path %>
+    <p><%= link_to 'Add a vendor', new_vendor_path %></p>
+<span class="text-info"><small>Note that you have to a board owner to submit a vendor to this list.</span> </small>
   </div>
 </div>
 
