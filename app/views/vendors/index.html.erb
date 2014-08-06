@@ -19,7 +19,7 @@
             <% @board = Board.find(vendor.board_id) %>
             <tr>
               <td><%= link_to vendor.name, vendor_path(vendor) %><div class="star" data-score='<%= vendor.get_average_rating %>'></div></td>
-              <td><%= link_to @board.name, board_path(@board) %></td>
+              <td><%= link_to @board.name, board_path(@board.slug) %></td>
             </tr>
           <% end %>
         </tbody>

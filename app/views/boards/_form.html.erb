@@ -38,13 +38,13 @@
                 <% if site_admin_logged_in? %>
 
                   <div class="row">
-                    <div class="span6"><%= f.label :user_id, 'Primary Contact'%></div>
+                    <div class="span6"><%=  f.label :user_id, 'Primary Contact' %></div>
                   </div>
 
                   <div class="row">
-                    <div class="span6"><%= f.select :user_id,
-                        @all_users.collect {|u| [ u.first_name + ' ' + u.last_name, u.id] }
-                    %></div>
+                    <div class="span6">
+						<%= f.collection_select :user_id, User.all, :id, :get_name, prompt: true %>
+					</div>
                   </div>
                  
                 <% end %>

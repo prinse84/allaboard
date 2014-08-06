@@ -50,9 +50,9 @@
       <p>No</p>
     <% end %>
     <strong>Board who added this vendor</strong>
-    <p><%= link_to @board.name, board_path(@board) %></p>
+    <p><%= link_to @board.name, board_path(@board.slug) %></p>
 
-    <p class="section-title">Reviews (<%= @vendor.vendor_reviews.size %>) <span class='text-info'><small>Got thoughts on this vendor? <%= link_to "Write a review", new_vendor_review_path(@vendor) %>. </small></span> </p>
+    <p class="section-title">Reviews (<%= @vendor.vendor_reviews.size %>) <span class='text-info'><small>Got thoughts on this vendor? <%= link_to "Write a review", new_vendor_review_path(:vendor_id => @vendor.id) %>. </small></span> </p>
     <div class="row">
       <% if !@reviews.blank? %>
         <% @reviews.each do |review| %>

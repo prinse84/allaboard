@@ -23,12 +23,12 @@
 	
 	<div class="span4 alert alert-success">
 		<p class='text-center'>Volunteered for this Associate Board? Contribute to the Community!</p>
-  	  <p class='text-center'><%= link_to "Write a Review!", new_board_review_path, class: "btn btn-primary" %></p>
+  	  <p class='text-center'><%= link_to "Write a Review!", new_board_review_path(:board_id => @board.id), class: "btn btn-primary" %></p>
 	</div>
 </div>
 
 <div class="row">
 	<div class="span6">
-		<p>Check out more anonymous reviews for <%= link_to @board.name, board_path(@board) %></p>
+		<p>Check out more anonymous reviews for <%= link_to @board.name, board_path(@board.slug) %></p>
 	</div>
 </div>

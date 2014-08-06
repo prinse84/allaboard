@@ -1,5 +1,6 @@
 class VendorReviewsController < ApplicationController
-  include ApplicationHelpder
+  include ApplicationHelper
+  
   before_action :site_admin_logged_in?, :only => [:edit, :update, :destroy]
 
   def new

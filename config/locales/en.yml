@@ -21,3 +21,7 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+      attributes:
+          board:
+              slug: "Board Name"

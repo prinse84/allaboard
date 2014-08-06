@@ -31,7 +31,7 @@ class BoardsController < ApplicationController
     @board = Board.new(board_params)
     if @board.save
       flash[:success] = "Board added to directory."
-      redirect_to board_reviews_path(@board)
+      redirect_to board_path(@board.slug)
     else
       render 'new'
     end
@@ -48,7 +48,7 @@ class BoardsController < ApplicationController
   end
 
   def destroy
-    Board.find(params[:id]).destroy
+    Board.find_by(slug: params[:slug]).destroy
     flash[:success] = "The board has been deleted."
     redirect_to boards_path
   end
@@ -58,22 +58,22 @@ class BoardsController < ApplicationController
   end
   
   def unclaim
-    @board = Board.find(params[:board_id])
+    @board = Board.find_by(slug: params[:board_slug])
   end
   
   def assign
-    @board = Board.find(params[:board_id])
+    @board = Board.find_by(slug: params[:board_slug])
     @board.update_attribute(:user_id, current_user.id)
     if @board.save
       flash[:success] = "Congratulations, you are now the administrator of this board."
-      redirect_to board_path(@board)
+      redirect_to board_path(@board.slug)
     else
       render 'claim'
     end
   end
   
   def unassign
-    @board = Board.find(params[:board_id])
+    @board = Board.find_by(slug: params[:board_slug])
     @board.update_attribute(:user_id, nil)
     if @board.save
       flash[:success] = "You have been removed as the administrator of " + @board.name

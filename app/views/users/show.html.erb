@@ -33,12 +33,12 @@
 							<tbody>
 								<% @boards.each do |board| %>
 							    <tr>
-							      <td><%= link_to board.name, board_path(board) %>
+							      <td><%= link_to board.name, board_path(board.slug) %>
 								  </td>
 							      <td><%= board.parent_company %></td>
 								  <td>
 								  	<% if board.board_admin?(@user) %>
-										<%= link_to 'Unclaim board', board_unclaim_path(board) %>
+										<%= link_to 'Unclaim board', board_unclaim_path(board.slug) %>
 								  	<% end %>
 								   </td>
 								</tr>
