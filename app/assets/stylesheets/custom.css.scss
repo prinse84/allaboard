@@ -59,8 +59,8 @@ h2 {
 }
 
 p {
-  font-size: 1.1em;
-  line-height: 1.7em;
+  #font-size: 1.1em;
+  #line-height: 1.7em;
 }
 
 label{
@@ -160,6 +160,12 @@ footer ul li {
   margin-right: 20px;
   padding-right: 10px;
 }
+
+.mycontent-left-no-border {
+  margin-right: 20px;
+  padding-right: 10px;
+}
+
 .content-header {
   margin-bottom: 50px;
 }
