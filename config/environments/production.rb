@@ -77,4 +77,18 @@ Allaboard::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+  
+  #Mandrill Setup
+  config.action_mailer.smtp_settings = {
+    :user_name => ENV['MANDRILL_USERNAME'],
+    :password => ENV['MANDRILL_USERNAME'],
+    :domain => "heroku.com",
+    :address => "smtp.mandrillapp.com",
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
+  #config.action_mailer.default_url_options = { :host => 'polar-plains-8723.herokuapp.com' }
+  config.action_mailer.delivery_method = :smtp
+  
 end
