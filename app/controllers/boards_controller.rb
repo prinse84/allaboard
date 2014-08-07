@@ -38,10 +38,10 @@ class BoardsController < ApplicationController
   end
   
   def update
-    @board = Board.find_by(slug: params[:slug])
+    @board = Board.find(params[:slug])
     if @board.update_attributes(board_params)
       flash[:success] = "Board details updated."
-      redirect_to board_path(@board)
+      redirect_to board_path(@board.slug)
     else
       render "edit"
     end
