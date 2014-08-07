@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <p>Somebody has submitted an anonymous review for <%= @review.board.name %> </p>
+	<p>Check out the <%= link_to 'review', board_review_url(@review.board.slug, @review.id) %>.</p>
+   
+	<p>&nbsp;</p>
+	<p>Thanks, <br />
+	<p>Your awesome website admin!</p>
+	
+	<p>&nbsp;</p>
+	<p>P.S. Have you left a review lately?<p>
+	
+
+  </body>
+</html>

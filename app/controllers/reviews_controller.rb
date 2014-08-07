@@ -20,8 +20,16 @@ class ReviewsController < ApplicationController
      @review = Review.new(review_params)
      @review.rating = params[:score]
      if @review.save
-       flash[:success] = "Review Saved."  
-       redirect_to board_path(@review.board)
+       # Tell the ReviewMailer to send a notification of the review to admins over email after save
+       ReviewMailer.new_review_email(@review, 'allaboardalliance@gmail.com').deliver   
+       
+       #Send notification email to board owner as well
+       if @review.board.board_claimed?
+         ReviewMailer.new_review_email(@review, @review.board.user.email).deliver
+       end
+       
+       flash[:success] = "Thanks! Your review has been submitted."  
+       redirect_to board_path(@review.board.slug)
      else
        render 'new'
      end
@@ -36,7 +44,7 @@ class ReviewsController < ApplicationController
      @review.rating = params[:score]
      if @review.update_attributes(review_params)
       flash[:success] = "Review updated"
-      redirect_to board_path(@review.board)
+      redirect_to board_path(@review.board.slug)
      else
       render 'edit'
      end
@@ -47,7 +55,7 @@ class ReviewsController < ApplicationController
     @board = @review.board
     @review.destroy
     flash[:success] = "The review has been deleted."
-    redirect_to board_path(@board)
+    redirect_to board_path(@board.slug)
   end
   
   private

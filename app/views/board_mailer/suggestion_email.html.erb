@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <p>Woohoo! New board suggestion from the website!</p>
+    <p><b>Board Name:</b> <%= @suggestion.suggested_board_name %> <br />
+    <b>Sent By:</b> <%= @suggestion.suggester_email %> </p>
+	
+	<p>Please follow up on this.</p> 
+	<p>&nbsp;</p>
+	<p>If you would like to add this Board to the directory, you can do via the following link: <%= link_to 'Add new board', new_board_url %>. Remember, you have to log in to do so!</p>
+	<p>&nbsp;</p>
+	<p>Oh, and don't forget to get back to the suggester. I'm sure we'll like for him/her to leave a review :) </p>
+	
+	
+	<p>&nbsp;</p>
+	<p>Thanks, <br />
+	<p>Your awesome website admin!</p>
+
+  </body>
+</html>
