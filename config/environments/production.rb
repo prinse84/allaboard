@@ -88,7 +88,7 @@ Allaboard::Application.configure do
     :authentication => :plain,
     :enable_starttls_auto => true
   }
-  #config.action_mailer.default_url_options = { :host => 'polar-plains-8723.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'allaboard-beta.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp
   
 end
