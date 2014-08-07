@@ -81,7 +81,7 @@ Allaboard::Application.configure do
   #Mandrill Setup
   config.action_mailer.smtp_settings = {
     :user_name => ENV['MANDRILL_USERNAME'],
-    :password => ENV['MANDRILL_USERNAME'],
+    :password => ENV['MANDRILL_APIKEY'],
     :domain => "heroku.com",
     :address => "smtp.mandrillapp.com",
     :port => 587,
