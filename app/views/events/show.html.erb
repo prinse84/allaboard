@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="span7 content-header">
 				<span class="lead"><strong><%= @event.name %></strong></span> <br />
-				<small>Organized by <%= link_to @event.board.name, board_path(@event.board)%></small>
+				<small>Organized by <%= link_to @event.board.name, board_path(@event.board.slug)%></small>
 			</div>
 		</div>
 		
