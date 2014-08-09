@@ -24,7 +24,7 @@
         <tbody>
           <% @users.each do |user| %>
             <tr>
-              <td><%= link_to user.first_name + ' ' + user.last_name, user_path(user) %></td>
+              <td><%= link_to user.get_name, user_path(user) %></td>
               <td><%= user.boards.count %></td>
               <td>
                 <% if user.admin %>
