@@ -14,8 +14,8 @@ Allaboard::Application.routes.draw do
   
   resources :reviews, only: [:new, :create]
   resources :events, only: [:index, :show]  
-
   resources :reviews
+  resources :articles, param: :slug
   
   resources :boards, param: :slug do
     resources :reviews, only: [:index, :show, :new]

@@ -1,0 +1,30 @@
+<%= form_for @article do |f| %>
+	<div class="form-group">
+		<%= render 'error_messages' %>
+		
+		<div class="row">
+			<div class="span6"><%= f.label :title, 'Article Title'%></div>
+		</div>
+
+		<div class="row">		
+			<div class="span6"><%= f.text_field :title, :placeholder=>"Clever title for your article." %></div>
+		</div>
+		
+		<div class="row">
+			<div class="span6"><%= f.label :body, 'Article Body'%></div>
+		</div>
+  		
+		<div class="row">
+    		<div class="span9"><%= f.cktext_area :body, rows: 10, :class=>'input-block-level', :placeholder=>"Go nuts!" %></div>
+		</div>
+
+		<div class="row">
+			<div class="span6"><p>&nbsp;</p></div>
+		</div>
+		
+		<div class="row">	
+			<div class="span6"><%= f.submit "Save", class: "btn btn-primary" %></div>
+		</div>
+		
+	</div>
+<% end %>

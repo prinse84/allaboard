@@ -1,0 +1,18 @@
+<div class="row">
+	<div class="span7 mycontent-left">
+		<div class="row">
+			<div class="span7 content-header">
+				<span class="lead"><strong><%= @article.title.html_safe %></strong></span> <br />
+				<small><span class="text-info">Published: <%= time_ago_in_words(@article.created_at) %> ago.</span></small>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="span7">
+				<%= @article.body.html_safe %>
+				</div>
+		</div>
+	</div>
+	
+	<%= link_to "Edit Article", edit_article_path(@article.slug) %>
+</div>
