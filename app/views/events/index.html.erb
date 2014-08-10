@@ -1,0 +1,45 @@
+<div class="row">
+	<div class="span12">
+		<span class="lead"><strong>Events</strong></span>
+	</div>
+</div>
+
+<div class="row">
+	<div class="span9">
+		<p>This is a listing of of upcoming events as entered by members of the All A-Board Alliance. </p>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="span9">
+		<% if !@events.blank? %>
+			<table class="table">
+				<thead>
+			    	<tr>
+			      		<th>Event Name</th>
+			      		<th>Date</th>
+			      		<th>Board</th>		
+			    	</tr>
+				</thead>
+				<tbody>
+					<% @events.each do |event| %>
+						<tr>
+							<td width="45%"><strong><%= link_to event.name, event_path(event) %></strong></td>
+							<td width="20%"><%= event.date.strftime("%B %d, %Y") %></td>
+							<td width="35%"><%= link_to event.board.name, board_path(event.board.slug) %></td>  
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		<% else %>
+			<p>There are no currently no planned events. </p>
+		<% end %>
+	</div>
+</div>
+
+<div class="row">	
+	<div class="span12">
+		<%= will_paginate %>
+	</div>
+</div>

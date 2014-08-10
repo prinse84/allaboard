@@ -1,11 +1,13 @@
 class EventsController < ApplicationController
   
   def index
-    
+    @events = Event.all.paginate(:page => params[:page], :per_page => 20).order('date')
   end
 
   def show
     @event = Event.find(params[:id])
+    @board = @event.board
+    @other_events = @board.events.where.not(id: @event.id).order('date')
   end
   
   def new

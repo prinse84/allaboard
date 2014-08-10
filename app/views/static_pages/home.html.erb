@@ -19,7 +19,7 @@
 			</li>
 			<li><strong>Collaborating:</strong> Resource sharing is an important tool for enhancing the outcomes of work done by associate boards.  Why re-create the wheel each time you do an event? We are working to create a library that houses “How to” guides as well as reviews of local vendors and venues that have been used by members.</li>			
 		</ul>
-		<p>Looking for something fun to do that also gives back to the community- check out our events page.</p>
+		<p>Looking for something fun to do that also gives back to the community- check out our <%= link_to 'events page', events_path %>.</p>
 		<p>For community members interested in joining a board, check out our <%= link_to 'directory list', boards_path %>. <small><span class="text-info">Look for boards with the asterisks—that means they are currently recruiting new members.</span></small></p>
 	</div>
 
@@ -63,8 +63,8 @@
 						<tbody>
 							<% @events.each do |event| %>
 							<tr>
-								<td width="50%"><strong><%= link_to event.name, event_path(event) %></strong></td>
-								<td width="15%"><%= event.date.strftime("%B %d, %Y") %></td>
+								<td width="45%"><strong><%= link_to event.name, board_event_path(event.board.slug, event) %></strong></td>
+								<td width="20%"><%= event.date.strftime("%B %d, %Y") %></td>
 								<td width="35%"><%= link_to event.board.name, board_path(event.board.slug) %></td>  
 							</tr>
 							<% end %>
