@@ -3,7 +3,8 @@ class Article < ActiveRecord::Base
   validates :body, presence: true
   validates :slug, presence: true, uniqueness: { case_sensitive: false }
   
-    
+  belongs_to :user
+  
   before_validation :create_slug
   
   

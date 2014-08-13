@@ -17,6 +17,7 @@
         <thead>
           <tr>
             <th>Name</th>
+            <th>Email</th>
             <th>Boards Owned</th>
             <th>Administrator Status</th>
           </tr>
@@ -25,6 +26,7 @@
           <% @users.each do |user| %>
             <tr>
               <td><%= link_to user.get_name, user_path(user) %></td>
+              <td><%= user.email %></td>
               <td><%= user.boards.count %></td>
               <td>
                 <% if user.admin %>

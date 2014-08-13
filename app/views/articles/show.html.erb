@@ -1,9 +1,10 @@
 <div class="row">
 	<div class="span7 mycontent-left">
+		
 		<div class="row">
 			<div class="span7 content-header">
 				<span class="lead"><strong><%= @article.title.html_safe %></strong></span> <br />
-				<small><span class="text-info">Published: <%= time_ago_in_words(@article.created_at) %> ago.</span></small>
+				<small><span class="text-info">Published: <%= time_ago_in_words(@article.created_at) %> ago by <%= @article.user.get_name %>.</span></small>
 			</div>
 		</div>
 		
@@ -13,6 +14,12 @@
 				</div>
 		</div>
 	</div>
-	
-	<%= link_to "Edit Article", edit_article_path(@article.slug) %>
+	<div class="span4">
+		<div class="row">
+			<% if site_admin_logged_in? %>
+				<p><span class='lead'>Admin Options</span></p>
+				<small><%= link_to "Edit Article", edit_article_path(@article.slug) %></small>
+			<% end %>
+		</div>
+	</div>
 </div>

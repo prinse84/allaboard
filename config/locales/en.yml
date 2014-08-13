@@ -20,8 +20,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
   activerecord:
       attributes:
           board:
               slug: "Board Name"
+          review: 
+              title: "Review Summary"

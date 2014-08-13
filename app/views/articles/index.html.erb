@@ -1,24 +1,36 @@
 <div class="row">
-	<div class="span12 content-header">
-		<span class="lead"><strong>Knowledge Base (KB) Articles</strong></span>
-		<p>This is a listing of resources and articles that we have collected from the community.</p><%= link_to "New Article", new_article_path %>
-	</div>
-</div>
+	<div class="span7 mycontent-left">
+		
+		<div class="row">
+			<div class="span12 content-header">
+				<span class="lead"><strong>Knowledge Base (KB) Articles</strong></span>
+				<p>This is a listing of resources and articles that we have collected from the community.</p>
+			</div>
+		</div>
 
 
-<div class="row">
-	<div class="span7">
-		<% if !@articles.blank? %>
-			<% @articles.each do |article| %>
-  				<p><strong><%= link_to article.title.html_safe, article_path(article.slug) %></strong><br />
-				<small><span class="text-info">Published: <%= time_ago_in_words(article.created_at) %> ago.</span></small></p>
-  				<p><%= article.body.truncate(500, separator:' ').html_safe %><br />
+		<div class="row">
+			<div class="span7">
+				<% if !@articles.blank? %>
+					<% @articles.each do |article| %>
+  						<p><strong><%= link_to article.title.html_safe, article_path(article.slug) %></strong><br />	
+						<small><span class="text-info">Published: <%= time_ago_in_words(article.created_at) %> ago by <%= article.user.get_name %>.</span></small></p>
+  						<p><%= article.body.truncate(500, separator:' ').html_safe %><br />
 <p><%= link_to 'more', article_path(article.slug)  %></p>
-  				<% if article != @articles.last %>
-  					<hr />
-  				<% end %>
+  						<% if article != @articles.last %>
+  							<hr />
+  						<% end %>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+	<div class="span4">
+		<div class="row">
+			<% if site_admin_logged_in? %>
+				<p><span class='lead'>Admin Options</span></p>
+				<%= link_to "Post new article", new_article_path %>
 			<% end %>
-		<% end %>
+		</div>
 	</div>
 </div>
-

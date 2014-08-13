@@ -5,12 +5,10 @@
 			<nav>
 		   		<ul class="nav pull-left">
 		    		<li><%= link_to "Boards", boards_path %></li>
-		    		<li><%= link_to "Vendors", vendors_path %></li>
-		    		<li><%= link_to "Resources", articles_path %></li>		
+		    		<li><%= link_to "Resources", articles_path %></li>
+		    		<li><%= link_to "Vendors", vendors_path %></li>	
                     
-					<% if site_admin_logged_in? %>
-		    			<li><%= link_to "Users", users_path %></li>
-                    <% end %>
+				
 
 				</ul>
 				<ul class="nav pull-right nav-pills">
@@ -19,6 +17,10 @@
 							<%= link_to current_user.get_name.titleize, "#", "data-toggle" => "dropdown", :class=>"dropdown-toggle"%>			
 							<ul class="dropdown-menu">
 								<li><%= link_to "My Account", user_path(current_user.id)%></li>
+									<% if site_admin_logged_in? %>
+										<li class="divider"></li>
+										<li><%= link_to "Manage Users", users_path%></li>
+				                    <% end %>				
 								<li class="divider"></li>
 								<li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
 							</ul>
