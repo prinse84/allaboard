@@ -16,6 +16,7 @@ Allaboard::Application.routes.draw do
   resources :events, only: [:index, :show]  
   resources :reviews
   resources :articles, param: :slug
+  resources :categories
   
   resources :boards, param: :slug do
     resources :reviews, only: [:index, :show, :new]

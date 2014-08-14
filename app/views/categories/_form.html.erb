@@ -1,0 +1,31 @@
+<%= form_for @category do |f| %>
+	<div class="form-group">
+		<%= render 'error_messages' %>
+		
+		<div class="row">
+			<div class="span6"><%= f.label :name, 'Category Name'%></div>
+		</div>
+
+		<div class="row">		
+			<div class="span6"><%= f.text_field :name %></div>
+		</div>
+		
+		<div class="row">
+			<div class="span6"><%= f.label :for, 'Category For'%></div>
+		</div>
+  		
+		<div class="row">
+    		<div class="span9"><%= f.select :for, @list, :prompt => 'Select One' %></div>
+		</div>
+
+		<div class="row">
+			<div class="span6"><p>&nbsp;</p></div>
+		</div>
+		
+		<div class="row">	
+			<div class="span6"><%= f.submit "Save", class: "btn btn-primary" %></div>
+		</div>
+		
+	</div>
+	
+<% end %>

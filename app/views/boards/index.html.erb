@@ -50,3 +50,11 @@
 		<%= will_paginate %>
 	</div>
 </div>
+
+<div class="span4">
+	<div class="row">
+		<% if site_admin_logged_in? %>
+			<%= link_to "Add a Board", new_board_path %>
+		<% end %>
+	</div>
+</div>

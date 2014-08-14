@@ -1,0 +1,35 @@
+<div class="row">
+	<div class="span12 content-header">
+		<span class="lead"><strong>Categories</strong></span>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="span6">
+		<% if !@categories.blank? %>
+			<table class="table table-hover">		
+				<thead>
+    				<tr>
+      					<th>Category Name</th>
+						<th>Category for</th>
+    				</tr>
+				</thead>
+				<tbody>
+					<% @categories.each do |category| %>
+		    			<tr>
+		      				<td><%= link_to category.name, edit_category_path(category) %></td>
+		      				<td><%= category.for %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		<% else %>
+			<p>There aren't any categories defined yet. Please add one using the link below.</p>
+		<% end %>
+	</div>
+</div>
+
+
+
+<p><%= link_to "Add new category", new_category_path %></p>

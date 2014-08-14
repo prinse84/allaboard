@@ -1,6 +1,7 @@
 class Event < ActiveRecord::Base
     validates_presence_of :name, :description, :date, :start_time, :location
-    belongs_to :board
+    belongs_to :board    
+    has_and_belongs_to_many :categories
     
     before_validation :smart_add_url_protocol
     

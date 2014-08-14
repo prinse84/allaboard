@@ -7,7 +7,15 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @board = @event.board
-    @other_events = @board.events.where.not(id: @event.id).order('date')
+    @categories = @event.categories    
+    @other_events_by_board = @board.events.where.not(id: @event.id).order('date')
+    @other_events_by_categories = []
+    if !@categories.blank?
+      @categories.each do |category|
+        @other_events_by_categories = category.events.where.not(id: @event.id).order('date')            
+      end
+    end
+
   end
   
   def new

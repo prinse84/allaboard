@@ -5,6 +5,8 @@ class Board < ActiveRecord::Base
     has_many :events, dependent: :destroy
     has_many :vendors, dependent: :destroy
     belongs_to :user
+
+    has_and_belongs_to_many :categories
     
     before_validation :smart_add_url_protocol, :create_slug
     

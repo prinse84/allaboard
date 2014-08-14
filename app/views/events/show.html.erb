@@ -4,7 +4,18 @@
 		<div class="row">
 			<div class="span7 content-header">
 				<span class="lead"><strong><%= @event.name %></strong></span> <br />
-				<small>Organized by <%= link_to @event.board.name, board_path(@event.board.slug)%></small>
+				<small>Organized by <%= link_to @event.board.name, board_path(@event.board.slug)%></small><br />
+				
+					<% if !@categories.blank? %>
+						<small>Categories:
+						<% @categories.each do |category| %>
+							<%= category.name %>
+							<% if category != @categories.last %>
+								|
+							<% end %>
+						<% end %>
+						</small>
+					<% end %>
 			</div>
 		</div>
 		
@@ -30,12 +41,22 @@
 	<div class="span4">
 		<div class="row">
 			<h5>Other events by this board</h5>
-			<% if !@other_events.blank? %>
-				<% @other_events.each do |other_event| %>
-			 		<p><%= link_to other_event.name, board_event_path(other_event.board.slug, other_event) %></p>
+			<% if !@other_events_by_board.blank? %>
+				<% @other_events_by_board.each do |other_event_by_board| %>
+			 		<p><%= link_to other_event_by_board.name, board_event_path(other_event_by_board.board.slug, other_event_by_board) %></p>
 				<% end %>
 			<% else %>
 				<p>There are currently no other planned events by this board.</p>
+			<% end %>
+		</div>
+		<div class="row">
+			<h5>Other events like this</h5>
+			<% if !@other_events_by_categories.blank? %>
+				<% @other_events_by_categories.each do |other_event_by_categories| %>
+			 		<p><%= link_to other_event_by_categories.name, board_event_path(other_event_by_categories.board.slug, other_event_by_categories) %></p>
+				<% end %>
+			<% else %>
+				<p>There are currently no other planned events like this one.</p>
 			<% end %>
 		</div>
 	</div>
