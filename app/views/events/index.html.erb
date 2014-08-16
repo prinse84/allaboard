@@ -28,9 +28,7 @@
 								<td width="20%"><small>
 									<% if !event.categories.blank? %>
 										<% event.categories.each do |category| %>
-											<%= category.name %>
-											<% if category != event.categories.last %>
-												,
+											<%= category.name %><% if category != event.categories.last %>,
 											<% end %>
 										<% end %>
 									<% else %>
@@ -58,9 +56,7 @@
 			<p><strong>Filter Results</strong></p>
 			<p>Select Tag:<br />
 				<% @categories.each do |category| %>
-					<small><%= link_to category.name, events_path(:tag => category.name) %> 
-					<% if category != @categories.last %>
-						,
+					<small><%= link_to category.name, events_path(:tag => category.name) %><% if category != @categories.last %>,
 					<% end %>
 					</small>
 				<% end %>

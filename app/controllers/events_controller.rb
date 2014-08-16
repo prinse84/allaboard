@@ -11,7 +11,7 @@ class EventsController < ApplicationController
     else
       @events = Event.all.paginate(:page => params[:page], :per_page => 20).order('date')
     end 
-    @categories = Category.where(:for => 'Event')    
+    @categories = Category.where(:for => 'Event').order('name')   
   end
 
   def show
@@ -31,7 +31,7 @@ class EventsController < ApplicationController
   def new
     @board = Board.find_by(slug: params[:board_slug])
     @event = Event.new(:board_id => @board.id)
-    @categories = Category.where(:for => 'Event')
+    @categories = Category.where(:for => 'Event').order('name')
   end
   
   def create
@@ -49,7 +49,7 @@ class EventsController < ApplicationController
   def edit
     @board = Board.find_by(slug: params[:board_slug])
     @event = Event.find(params[:id])
-    @categories = Category.where(:for => 'Event')
+    @categories = Category.where(:for => 'Event').order('name')
   end
   
   def update
