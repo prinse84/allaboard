@@ -1,13 +1,23 @@
 class EventsController < ApplicationController
   
   def index
-    @events = Event.all.paginate(:page => params[:page], :per_page => 20).order('date')
+    if params[:tag]
+      category = Category.find_by(name: params[:tag])
+      if !category.blank?
+        @events = category.events.paginate(:page => params[:page], :per_page => 20).order('date')
+      else 
+        @events = Event.all.paginate(:page => params[:page], :per_page => 20).order('date')
+      end  
+    else
+      @events = Event.all.paginate(:page => params[:page], :per_page => 20).order('date')
+    end 
+    @categories = Category.where(:for => 'Event')    
   end
 
   def show
     @event = Event.find(params[:id])
     @board = @event.board
-    @categories = @event.categories    
+    @categories = @event.categories.order('name')   
     @other_events_by_board = @board.events.where.not(id: @event.id).order('date')
     @other_events_by_categories = []
     if !@categories.blank?
@@ -21,12 +31,14 @@ class EventsController < ApplicationController
   def new
     @board = Board.find_by(slug: params[:board_slug])
     @event = Event.new(:board_id => @board.id)
+    @categories = Category.where(:for => 'Event')
   end
   
   def create
     @board = Board.find(params[:board_slug])
     @event = @board.events.new(event_params)
     if @event.save
+      @event.category_ids = event_params[:category_ids]
       flash[:success] = "New Event added Saved."  
       redirect_to board_path(@board.slug)
     else
@@ -37,12 +49,14 @@ class EventsController < ApplicationController
   def edit
     @board = Board.find_by(slug: params[:board_slug])
     @event = Event.find(params[:id])
+    @categories = Category.where(:for => 'Event')
   end
   
   def update
     @event = Event.find(params[:id])
     @board = Board.find(params[:board_slug])
     if @event.update_attributes(event_params)
+      @event.category_ids = event_params[:category_ids]      
       flash[:success] = "Event details updated."
       redirect_to board_path(@board.slug)
     else
@@ -53,6 +67,6 @@ class EventsController < ApplicationController
   
   private
      def event_params
-       params.require(:event).permit(:name, :description, :date, :start_time, :end_time, :location, :event_url)
+       params.require(:event).permit(:name, :description, :date, :start_time, :end_time, :location, :event_url, {category_ids: []})
      end
 end

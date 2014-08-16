@@ -5,17 +5,18 @@
 			<div class="span7 content-header">
 				<span class="lead"><strong><%= @event.name %></strong></span> <br />
 				<small>Organized by <%= link_to @event.board.name, board_path(@event.board.slug)%></small><br />
-				
+				<small>Tags:				
 					<% if !@categories.blank? %>
-						<small>Categories:
 						<% @categories.each do |category| %>
 							<%= category.name %>
 							<% if category != @categories.last %>
-								|
+								,
 							<% end %>
 						<% end %>
-						</small>
+					<% else %>
+					 None
 					<% end %>
+				</small>	
 			</div>
 		</div>
 		

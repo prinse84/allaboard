@@ -59,7 +59,18 @@
 			<div class="span6"><%= f.text_field :end_time, :placeholder=>"8PM" %></div>
 		</div>
 		
-						
+		<div class="row">
+			<div class="span6"><%= f.label 'Select categories for this event'%></div>
+				<% @categories.each do |category| %>
+					<div class="span5 radio"><%= check_box_tag "event[category_ids][]", category.id, @event.categories.include?(category) %> <%= category.name %></div>
+				<% end %>
+			</div>
+		<div>
+
+		<div class="row">
+			<div class="span6">&nbsp;</div>
+		</div>			
+
 		<div class="row">	
 			<div class="span6"><%= f.submit "Save", class: "btn btn-primary" %>&nbsp;<%= link_to 'Cancel', events_path %></div>
 		</div>
