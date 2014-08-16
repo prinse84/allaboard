@@ -55,7 +55,7 @@
 		        <%= f.hidden_field :nickname, :hint => 'Leave this field blank!' %>
 		
 			<div class="row">	
-				<div class="span6"><%= f.submit "Send", class: "btn btn-primary" %></div>
+				<div class="span6"><%= f.submit "Send", class: "btn btn-primary" %>&nbsp;<%= link_to 'Cancel', root_path %></div>
 			</div>
 		</div>
 		<% end %>
