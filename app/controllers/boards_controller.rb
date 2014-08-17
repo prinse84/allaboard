@@ -3,7 +3,17 @@ class BoardsController < ApplicationController
   before_action :authenticate_user!, :only => [:claim, :new, :edit, :destroy]
   
   def index
-    @boards = Board.all.paginate(:page => params[:page], :per_page => 20).order('name')
+    if params[:tag]
+      category = Category.find_by(name: params[:tag])
+        if !category.blank?
+          @boards = category.boards.paginate(:page => params[:page], :per_page => 20).order('name')
+        else 
+          @boards = Board.all.paginate(:page => params[:page], :per_page => 20).order('name')
+        end  
+    else  
+      @boards = Board.all.paginate(:page => params[:page], :per_page => 20).order('name')
+    end 
+    @categories = Category.where(:for => 'Board').order('name')   
   end
   
   def show
@@ -15,12 +25,14 @@ class BoardsController < ApplicationController
   
   def new
     @board = Board.new
-    @all_users = User.all
+    @all_users = User.all    
+    @categories = Category.where(:for => 'Board').order('name')
   end
   
   def edit
     @board = Board.find_by(slug: params[:slug])
     @all_users = User.all
+    @categories = Category.where(:for => 'Board').order('name')    
     if !@board.board_admin?(current_user) 
       flash[:notice] = "You are not the admin of this board. Therefore, you cannot edit details."
       redirect_to board_path(@board)
@@ -30,6 +42,7 @@ class BoardsController < ApplicationController
   def create
     @board = Board.new(board_params)
     if @board.save
+      @board.category_ids = board_params[:category_ids]
       flash[:success] = "Board added to directory."
       redirect_to board_path(@board.slug)
     else
@@ -40,6 +53,7 @@ class BoardsController < ApplicationController
   def update
     @board = Board.find(params[:slug])
     if @board.update_attributes(board_params)
+      @board.category_ids = board_params[:category_ids]
       flash[:success] = "Board details updated."
       redirect_to board_path(@board.slug)
     else
@@ -101,7 +115,7 @@ class BoardsController < ApplicationController
   
   private
     def board_params
-      params.require(:board).permit(:name, :description, :parent_company, :url, :user_id)
+      params.require(:board).permit(:name, :description, :parent_company, :url, :user_id, {category_ids: []})
     end
     
     def suggestion_params

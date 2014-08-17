@@ -1,58 +1,75 @@
 <% provide(:title, "Chicago's Associate Boards Directory:") %>
 
 <div class="row">
-	<div class="span8 content-header">
-		<span class="lead"><strong>Associate Boards Directory</strong></span>
-		<p>This is intended to be <strong>a community driven directory of Associate Boards across Chicago</strong>. This directory is curated by the All A-Board Alliance steering committee. This directory will become increasingly useful as more associate boards are added. So, if you are know of (or are part of) an associate board, or any other sort of non-governing board and would like to see your board added, please <%= link_to "tell us about it", boards_suggest_path %>.</p>
+	<div class="span8 mycontent-left">
+		<div class="row">
+			<div class="span8 content-header">
+				<span class="lead"><strong>Associate Boards Directory</strong></span>
+				<p>This is intended to be <strong>a community driven directory of Associate Boards across Chicago</strong>. This directory is curated by the All A-Board Alliance steering committee. This directory will become increasingly useful as more associate boards are added. So, if you are know of (or are part of) an associate board, or any other sort of non-governing board and would like to see your board added, please <%= link_to "tell us about it", boards_suggest_path %>.</p>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="span8">
+				<% if !@boards.blank? %>		
+					<table class="table table-hover">		
+						<thead>
+		    				<tr>
+		      					<th>Board Name</th>
+		      					<th>Contact</th>
+								<th>Tags</th>		
+		    				</tr>
+						</thead>
+						<tbody>
+							<% @boards.each do |board| %>
+				    			<tr>
+				      				<td width="50%"><%= link_to board.name, board_path(board.slug) %><div class="star" data-score='<%= board.get_average_rating %>'></div></td>
+				      				<td width="30%">
+					  					<% if !board.board_claimed? %>
+											<%= link_to 'Claim board', board_claim_path(board.slug) %>
+				  						<% else %>
+											<%= board.user.get_name.titleize%>
+					  					<% end %>
+					   				</td>
+									<td width="20%"><small>
+										<% if !board.categories.blank? %>
+											<% board.categories.each do |category| %>
+												<%= category.name %><% if category != board.categories.last %>,
+												<% end %>
+											<% end %>
+										<% else %>
+									 		None
+										<% end %>
+									</small></td>
+								</tr>
+							<% end %>
+						</tbody>
+					</table>
+				<% else %>
+					<p>There aren't any boards in this directory.</p>
+				<% end %>
+			</div>
+		</div>
+		
+		<div class="row">	
+			<div class="span8">
+				<%= will_paginate %>
+			</div>
+		</div>
+	</div>
+	<div class="span3">
+		<div class="row">
+			<p><strong>Filter Results</strong></p>
+			<p>Select Tag:<br />
+				<% @categories.each do |category| %>
+					<small><%= link_to category.name, boards_path(:tag => category.name) %><% if category != @categories.last %>,
+						<% end %>
+					</small>
+				<% end %>
+			</p>
+			<% if site_admin_logged_in? %>
+				<%= button_to "Add a Board", new_board_path, class: "btn btn-primary", method: 'get' %>
+			<% end %>
+		</div>
 	</div>
 </div>
 
-
-<div class="row">
-	<div class="span8">
-		<% if !@boards.blank? %>		
-		<table class="table table-hover">		
-			<thead>
-		    	<tr>
-		      		<th>Board Name</th>
-		      		<th>Parent Organization</th>
-		      		<th>Contact</th>		
-		    	</tr>
-			</thead>
-			<tbody>
-					<% @boards.each do |board| %>
-				    <tr>
-				      <td><%= link_to board.name, board_path(board.slug) %><div class="star" data-score='<%= board.get_average_rating %>'></div>
-					  </td>
-				      <td><%= board.parent_company %></td>
-				      <td>
-					  <% if !board.board_claimed? %>
-						<%= link_to 'Claim board', board_claim_path(board.slug) %>
-					  <% else %>
-						<%= board.user.get_name.titleize%>
-					  <% end %>
-					   </td>
-					</tr>
-					<% end %>
-			</tbody>
-		</table>
-		<% else %>
-			<p>There aren't any boards in this directory.</p>
-			<%= link_to 'Add a board', new_board_path %>
-		<% end %>
-	</div>
-</div>
-
-<div class="row">	
-	<div class="span8">
-		<%= will_paginate %>
-	</div>
-</div>
-
-<div class="span4">
-	<div class="row">
-		<% if site_admin_logged_in? %>
-			<%= link_to "Add a Board", new_board_path %>
-		<% end %>
-	</div>
-</div>

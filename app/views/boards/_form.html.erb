@@ -34,6 +34,14 @@
 		<div class="row">		
 			<div class="span6"><%= f.text_field :parent_company, :placeholder=>"Parent Organization" %></div>
 		</div>
+		
+		<div class="row">
+			<div class="span6"><%= f.label 'Select categories for this board'%></div>
+				<% @categories.each do |category| %>
+					<div class="span5 radio"><%= check_box_tag "board[category_ids][]", category.id, @board.categories.include?(category) %> <%= category.name %></div>
+				<% end %>
+			</div>
+		<div>
 
                 <% if site_admin_logged_in? %>
 
