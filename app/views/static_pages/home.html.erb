@@ -1,80 +1,94 @@
+<% provide(:title, "Chicago's Associate Boards:") %>
+
 <div class="center hero-unit">
-  <h1>Welcome to Chicago's Associate Board community. </h1>
-  <h2>
-    See what goes on around Chicago's Non-Governing Boards.
-  </h2>
+  <h1>Welcome to Chicago's Associate Board community.</h1>
 </div>
+
+<div class="row">
+	<div class="span12">
+		<p class="lead text-center">We are creating a community to strengthen the impact of Associate Boards around Chicago.</p>
+	</div>
+<div>
 
 
 <div class="row">
-	<div class="span7 mycontent-left-no-border">
-		<h4>Creating a community to strengthen board impact...</h4>
-		<ul>
-		  	<li><strong>Connecting:</strong> The directory offers a list of local boards, along with a description of the board mission and the mission of the parent organization. When we have a way to contact one another, then partnerships can start to develop.</li>
-			<li><strong>Communicating:</strong>
-				<ul>
-					<li>Up-to-date listing of events among all boards. (We can borrow ideas from one another and also plan strategically.)</li>
-					<li>Confidential reviews allow for boards to gain honest feedback about their performance.</li>
-				</ul>
-			</li>
-			<li><strong>Collaborating:</strong> Resource sharing is an important tool for enhancing the outcomes of work done by associate boards.  Why re-create the wheel each time you do an event? We are working to create a library that houses “How to” guides as well as reviews of local vendors and venues that have been used by members.</li>			
-		</ul>
-		<p>Looking for something fun to do that also gives back to the community- check out our <%= link_to 'events page', events_path %>.</p>
-		<p>For community members interested in joining a board, check out our <%= link_to 'directory list', boards_path %>. <small><span class="text-info">Look for boards with the asterisks—that means they are currently recruiting new members.</span></small></p>
-	</div>
-
-	<div class="span4">
-		<h4 class="text-center">Associate Board Reviews</h4>
-		<% if !@boards.blank? %>
-			<% @boards.each do |board| %>
-				<% if board.reviews.any? %>
-					<% review = board.get_random_review %>
-					<strong><%= link_to board.name, board_path(board.slug) %></strong> <small>( <%=  pluralize(board.reviews.size, 'review') %> )</small>
-					<div class="star" data-score='<%= board.get_average_rating %>'></div>	
-					<div>&nbsp;</div>	
-					<blockquote>
-						<p><%= link_to review.title, board_review_path(board.slug, review)  %></p>
-						<small><%= review.reviewer_type.name%>. Submitted <%= time_ago_in_words(review.created_at) %> ago.</small>
-						<h5>Pros:</h5>
-						<p style="font-size:14px"><%= review.pros.truncate(80, separator:' ') %> <%= link_to 'more', board_review_path(board.slug, review)  %></p>
-					</blockquote>
-				<% end %>
-			<% end %>
-		<% else %>
-		 <p class="text-center">No reviews yet, Be the first!
-		 <%= link_to "Write a Review!", new_review_path, class: "btn btn-primary" %></p>
-		<% end %>
+	<div class="span12">
+		<div class="span7 mycontent-left-no-border">
+			<h4>Connect</h4>
+			<p>Check out our curated list of <%= link_to 'Associate Boards', boards_path %>. This directory offers a list of associate boards around Chicago, along with a description of their mission. Enabling us to find each other.<blockquote><em>When we have a better way to connect with one another, then partnerships can start to develop.</em></blockquote></p>		
+			<h4>Communicate</h4>
+			<p>Let's borrow ideas from one another and also plan strategically. Browse through our up-to-date <%= link_to 'listing of events', events_path %> among all boards. Get ideas for your next event or partner up to make your event have a bigger impact.</p>
+			<p><em>Have thoughts and feedback for a board?</em> <%= link_to 'Leave confidential reviews', new_review_path %> for boards to gain honest feedback about their performance.</p>
+			<h4>Collaborate</h4> 
+			<p>Resource sharing is an important tool for enhancing the outcomes of work done by associate boards.  <em>Why re-create the wheel each time you do an event?</em> Look through our <%= link_to 'resources library', articles_path %> for “How to” guides as well as reviews of local vendors and venues that have been used by our members.</p>
+		</div>
+		<div class="span4 pull-right">
+			<div class="row">
+				<div>&nbsp;</div>
+			</div>
+			<div class="row">
+				<div class="focus-box">
+					<h1>An Associate Board Review</h1>
+						<% if !@boards.blank? %>
+							<% @boards.each do |board| %>
+								<% if board.reviews.any? %>
+									<% review = board.get_random_review %>
+									<%= link_to board.name, board_path(board.slug) %> <small>( <%=  pluralize(board.reviews.size, 'review') %> )</small>
+									<div class="star" data-score='<%= board.get_average_rating %>'></div>	
+									<div>&nbsp;</div>	
+									<blockquote>
+										<p><%= link_to review.title, board_review_path(board.slug, review)  %></p>
+										<small><%= review.reviewer_type.name%>. Submitted <%= time_ago_in_words(review.created_at) %> ago.</small>
+										<h5>Pros:</h5>
+										<p style="font-size:14px"><%= review.pros.truncate(80, separator:' ') %> <%= link_to 'more', board_review_path(board.slug, review)  %></p>
+										<h5>Cons:</h5>
+										<p style="font-size:14px"><%= review.cons.truncate(80, separator:' ') %> <%= link_to 'more', board_review_path(board.slug, review)  %></p>
+									</blockquote>
+									<div> <p class="text-center">Like this review? Contribute to the Community. <br />
+										<%= link_to "Write a Review!", new_review_path, class: "btn btn-primary" %></p>
+									</div>
+								<% end %>
+							<% end %>
+						<% else %>
+		 					<p class="text-center">No reviews yet, Be the first! <%= link_to "Write a Review!", new_review_path, class: "btn btn-primary" %></p>
+						<% end %>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 
-<div class ="row">
-	<div class="span12 row-separator"></div>
-	<div class='span12'>
-		<div class='row'>
-			<div class="span7 pull-left">
-				<h4>Upcoming Events</h4>
-			</div>
+<div class="row">
+	<div class="span12 row-separator pull-right">
+	</div>
+</div>
+<div class='row'>
+	<div class="span12">
+		<div class="span8 pull-left">
+			<h4>Upcoming Events</h4>
 		</div>
-		<div class="row">
-			<div class="span12">
-				
-				<% if !@events.blank? %>
-					<table class="table">
-						<tbody>
-							<% @events.each do |event| %>
-							<tr>
-								<td width="45%"><strong><%= link_to event.name, board_event_path(event.board.slug, event) %></strong></td>
-								<td width="20%"><%= event.date.strftime("%B %d, %Y") %></td>
-								<td width="35%"><%= link_to event.board.name, board_path(event.board.slug) %></td>  
-							</tr>
-							<% end %>
-						</tbody>
-					</table>
-				<% else %>
-					<p>There are no currently no planned events. </p>
-				<% end %>
-			</div>
+		<div class="span3 pull-right">
+			<h4 class="text-right"><%= button_to 'See All Events', events_path, class: "btn btn-link", method: 'get' %> </h4>
 		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="span12 pull-right">
+		<% if !@events.blank? %>
+			<table class="table">
+				<tbody>
+					<% @events.each do |event| %>
+						<tr>
+							<td width="45%"><strong><%= link_to event.name, board_event_path(event.board.slug, event) %></strong></td>
+							<td width="20%"><%= event.date.strftime("%B %d, %Y") %></td>
+							<td width="35%"><%= link_to event.board.name, board_path(event.board.slug) %></td>  
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		<% else %>
+			<p>There are no currently no planned events. </p>
+		<% end %>
 	</div>
 </div>
 

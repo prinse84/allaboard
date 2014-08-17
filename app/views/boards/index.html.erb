@@ -1,17 +1,15 @@
+<% provide(:title, "Chicago's Associate Boards Directory:") %>
+
 <div class="row">
-	<div class="span12">
-		<span class="lead"><strong>Boards Directory</strong></span>
-	</div>
-</div>
-<div class="row">
-	<div class="span9">
-		<p>This is a community driven directory of Associate Boards curated by the All A-Board Alliance. It will become increasingly useful as more boards are added. If you do not see a board that you are looking for, or would like to see a board added, <%= link_to "tell us about it", boards_suggest_path %>.</p>
+	<div class="span8 content-header">
+		<span class="lead"><strong>Associate Boards Directory</strong></span>
+		<p>This is intended to be <strong>a community driven directory of Associate Boards across Chicago</strong>. This directory is curated by the All A-Board Alliance steering committee. This directory will become increasingly useful as more associate boards are added. So, if you are know of (or are part of) an associate board, or any other sort of non-governing board and would like to see your board added, please <%= link_to "tell us about it", boards_suggest_path %>.</p>
 	</div>
 </div>
 
 
 <div class="row">
-	<div class="span9">
+	<div class="span8">
 		<% if !@boards.blank? %>		
 		<table class="table table-hover">		
 			<thead>
@@ -46,7 +44,7 @@
 </div>
 
 <div class="row">	
-	<div class="span12">
+	<div class="span8">
 		<%= will_paginate %>
 	</div>
 </div>
