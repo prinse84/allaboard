@@ -1,9 +1,10 @@
 class Event < ActiveRecord::Base
     validates_presence_of :name, :description, :date, :start_time, :location
+    validates :slug, presence: true, uniqueness: { case_sensitive: false }
     belongs_to :board    
     has_and_belongs_to_many :categories
     
-    before_validation :smart_add_url_protocol
+    before_validation :smart_add_url_protocol, :create_slug
     
     
     def formatted_date
@@ -14,6 +15,11 @@ class Event < ActiveRecord::Base
       else
         return self.date.strftime("%B %d, %Y")
       end 
+    end
+    
+    private
+    def create_slug
+      self.slug = name.parameterize
     end
     
     protected

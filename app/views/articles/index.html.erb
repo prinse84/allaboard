@@ -29,9 +29,16 @@
 	</div>
 	<div class="span4">
 		<div class="row">
+			<p><span class='lead'>More Resources</span><br />
+				<%= link_to 'Vendors Directory', vendors_path %>
+			</p>			
+		</div>
+		
+		<div class="row">
 			<% if site_admin_logged_in? %>
-				<p><span class='lead'>Admin Options</span></p>
-				<%= link_to "Post new article", new_article_path %>
+				<p><span class='lead'>Admin Options</span><br />
+					<%= link_to "Post new article", new_article_path %>
+				</p>
 			<% end %>
 		</div>
 	</div>

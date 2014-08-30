@@ -18,12 +18,17 @@ class BoardsController < ApplicationController
   
   def show
     @board = Board.find_by(slug: params[:slug])
-    @reviews = @board.reviews.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
-    @events = @board.events.where("date >= ?", Time.now).paginate(:page => params[:page], :per_page => 3).order('date')
-    @total_upcoming_events = @board.events.where("date >= ?", Time.now)
-    #@vendors = @board.vendors.paginate(:page => params[:page], :per_page => 2).order('name')
-    @vendors = @board.vendors.order('name')
-    @total_vendors = @board.vendors
+    if !@board.blank?
+      @reviews = @board.reviews.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
+      @events = @board.events.where("date >= ?", Time.now).paginate(:page => params[:page], :per_page => 5).order('date')
+      @total_upcoming_events = @board.events.where("date >= ?", Time.now)
+      #@vendors = @board.vendors.paginate(:page => params[:page], :per_page => 2).order('name')
+      @vendors = @board.vendors.order('name')
+      @total_vendors = @board.vendors
+    else
+      flash[:warning] = "The board you are looking for does not exist"
+      redirect_to boards_path
+    end
   end
   
   def new
@@ -34,11 +39,16 @@ class BoardsController < ApplicationController
   
   def edit
     @board = Board.find_by(slug: params[:slug])
-    @all_users = User.all
-    @categories = Category.where(:for => 'Board').order('name')    
-    if !@board.board_admin?(current_user) 
-      flash[:notice] = "You are not the admin of this board. Therefore, you cannot edit details."
-      redirect_to board_path(@board)
+    if !@board.blank?
+      @all_users = User.all
+      @categories = Category.where(:for => 'Board').order('name')    
+      if !@board.board_admin?(current_user) 
+        flash[:notice] = "You are not the admin of this board. Therefore, you cannot edit details."
+        redirect_to board_path(@board)
+      end
+    else 
+      flash[:warning] = "The board you are looking for does not exist"
+      redirect_to boards_path
     end
   end
   
@@ -66,37 +76,61 @@ class BoardsController < ApplicationController
 
   def destroy
     Board.find_by(slug: params[:slug]).destroy
-    flash[:success] = "The board has been deleted."
-    redirect_to boards_path
+    if !@board.blank?
+      flash[:success] = "The board has been deleted."
+      redirect_to boards_path
+    else
+      flash[:warning] = "The board you are looking for does not exist"
+      redirect_to boards_path
+    end
+    
   end
   
   def claim
     @board = Board.find_by(slug: params[:board_slug])
+    if @board.blank?   
+      flash[:warning] = "The board you are looking for does not exist"
+      redirect_to boards_path
+    end     
   end
   
   def unclaim
     @board = Board.find_by(slug: params[:board_slug])
+    if @board.blank?   
+      flash[:warning] = "The board you are looking for does not exist"
+      redirect_to boards_path
+    end    
   end
   
   def assign
-    @board = Board.find_by(slug: params[:board_slug])
-    @board.update_attribute(:user_id, current_user.id)
-    if @board.save
-      flash[:success] = "Congratulations, you are now the administrator of this board."
-      redirect_to board_path(@board.slug)
+    @board = Board.find_by(slug: params[:board_slug])    
+    if !@board.blank?    
+      @board.update_attribute(:user_id, current_user.id)
+      if @board.save
+        flash[:success] = "Congratulations, you are now the administrator of this board."
+        redirect_to board_path(@board.slug)
+      else
+        render 'claim'
+      end
     else
-      render 'claim'
+      flash[:warning] = "The board you are looking for does not exist"
+      redirect_to boards_path
     end
   end
   
   def unassign
     @board = Board.find_by(slug: params[:board_slug])
-    @board.update_attribute(:user_id, nil)
-    if @board.save
-      flash[:success] = "You have been removed as the administrator of " + @board.name
-      redirect_to user_path(current_user)
+    if !@board.blank?     
+      @board.update_attribute(:user_id, nil)
+      if @board.save
+        flash[:success] = "You have been removed as the administrator of " + @board.name
+        redirect_to user_path(current_user)
+      else
+        render 'unclaim'
+      end
     else
-      render 'unclaim'
+      flash[:warning] = "The board you are looking for does not exist"
+      redirect_to boards_path
     end
   end
   

@@ -16,7 +16,11 @@
 					<% else %>
 					 None
 					<% end %>
-				</small>	
+				</small><br />
+				<% if current_user && @board.board_admin?(current_user) %>
+					<span class='text-info'><small><%= link_to "Edit", edit_board_event_path(@board.slug, @event.slug) %> | <%= link_to 'Delete', board_event_path(@board.slug, @event.slug), method: :delete, data: { confirm: "Do you want to delete this event?" } %> </small>
+					</span>
+				<% end %>	
 			</div>
 		</div>
 		
@@ -44,7 +48,7 @@
 			<h5>Other events by this board</h5>
 			<% if !@other_events_by_board.blank? %>
 				<% @other_events_by_board.each do |other_event_by_board| %>
-			 		<p><%= link_to other_event_by_board.name, board_event_path(other_event_by_board.board.slug, other_event_by_board) %></p>
+			 		<p><%= link_to other_event_by_board.name, event_path(other_event_by_board.slug) %></p>
 				<% end %>
 			<% else %>
 				<p>There are currently no other planned events by this board.</p>
@@ -54,7 +58,7 @@
 			<h5>Other events like this</h5>
 			<% if !@other_events_by_categories.blank? %>
 				<% @other_events_by_categories.each do |other_event_by_categories| %>
-			 		<p><%= link_to other_event_by_categories.name, board_event_path(other_event_by_categories.board.slug, other_event_by_categories) %></p>
+			 		<p><%= link_to other_event_by_categories.name, event_path(other_event_by_categories.slug) %></p>
 				<% end %>
 			<% else %>
 				<p>There are currently no other planned events like this one.</p>

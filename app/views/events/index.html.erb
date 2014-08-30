@@ -24,7 +24,7 @@
 							<% @events.each do |event| %>
 							<tr>
 								<td width="20%"><%= event.date.strftime("%b %d, %Y") %></td>							
-								<td width="60%"><strong><%= link_to event.name, event_path(event) %></strong><br / >
+								<td width="60%"><strong><%= link_to event.name, event_path(event.slug) %></strong><br / >
 									<small>Submitted by <%= link_to event.board.name, board_path(event.board.slug) %></small>
 								</td>
 								<td width="20%"><small>
@@ -59,10 +59,17 @@
 			<p>Select Tag:<br />
 				<% @categories.each do |category| %>
 					<small><%= link_to category.name, events_path(:tag => category.name) %><% if category != @categories.last %>,
-					<% end %>
-					</small>
-				<% end %>
+					<% end %></small>
+				<% end %>	
+					<small><%= link_to '[Show all]', events_path %></small>
 			</p>
+			
+			<p>Show Past Events:<br />
+				<small><%= link_to 'Last Month', events_path(:past => '30days') %><br />
+				<%= link_to '[Show all]', events_path %></small>
+			</p>
+			
+			
 		</div>
 	</div>
 </div>

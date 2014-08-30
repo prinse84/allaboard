@@ -13,14 +13,14 @@ Allaboard::Application.routes.draw do
   resources :users
   
   resources :reviews, only: [:new, :create]
-  resources :events, only: [:index, :show]  
+  resources :events, only: [:index, :show], param: :slug 
   resources :reviews
   resources :articles, param: :slug
   resources :categories
   
   resources :boards, param: :slug do
     resources :reviews, only: [:index, :show, :new]
-    resources :events
+    resources :events, param: :slug
     get 'claim'
     get 'unclaim'
     post 'assign'
