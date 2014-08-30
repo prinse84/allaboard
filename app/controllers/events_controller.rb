@@ -29,8 +29,12 @@ class EventsController < ApplicationController
       @other_events_by_categories = []
       if !@categories.blank?
         @categories.each do |category|
-          @other_events_by_categories = category.events.where.not(id: @event.id).order('date')            
+          events = category.events.where.not(id: @event.id).order('date')
+          events.each do |event|
+            @other_events_by_categories << event
+          end         
         end
+        @other_events_by_categories = @other_events_by_categories.uniq
       end
     else
       flash[:warning] = "The event you are looking for does not exist"
