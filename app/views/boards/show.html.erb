@@ -14,7 +14,7 @@
 		
 		<div class="row">
 			<div class="span7">
-				<p class="section-title">Events (<%= @board.events.size %>)
+				<p class="section-title">Upcoming Events (<%= @total_upcoming_events.size %>)
 					<% if current_user && @board.board_admin?(current_user) %>
 						<span class='text-info'><small><%= link_to 'Add Event', new_board_event_path(@board.slug) %></small></span>
 					<% end %>
@@ -22,19 +22,26 @@
 				<% if !@events.blank? %>
 					<% @events.each do |event| %>
 						<div class="row">
-							<div class="span6 section-content">
-								<div class="event-block">
-									<p><strong><%= link_to event.name, event.event_url, :target => "_blank"  %></strong></p>
-									<p><small><%= event.description.truncate(160, separator:' ')%></small></p>						
-									<p>Where: <%= event.location%></p>
-									<p><%= event.date.strftime("%d %B")%> <%= event.start_time.strftime("%I:%M%p")%></p>
-									
-								<% if current_user && @board.board_admin?(current_user) %>
-									<span class='text-info'><small><%= link_to "Edit", edit_board_event_path(@board.slug, event) %></small></span>
-								<% end %>					
+							<div class="span1">
+								<div class="date">
+									<p><%= event.date.strftime("%d")%> <span><%= event.date.strftime("%^b")%></span></p>
 								</div>
 							</div>
+							<div class="span6">
+									<h5><%= link_to event.name, event_path(event) %></h5>
+									<p><%= event.description.truncate(200, separator:' ')%></p>
+									<p><strong>Where:</strong> <%= event.location%></p>
+									
+									<% if current_user && @board.board_admin?(current_user) %>
+										<span class='text-info'>
+											<%= link_to "Edit", edit_board_event_path(@board.slug, event) %>
+										</span>
+									<% end %>
+							</div>
 						</div>
+						<% if event != @events.last %>
+  								<hr />
+  						<% end %>
 					<% end %>
 					<div class="row">	
 						<div class="span6">
@@ -44,41 +51,10 @@
 				<% end %>
 			</div>
 		</div>
-
-		<div class="row">
-			<div class="span7">
-				<p class="section-title">Vendors (<%= @board.vendors.size %>)
-					<% if current_user && @board.board_admin?(current_user) %>
-						<span class='text-info'><small><%= link_to 'Add Vendor', new_vendor_path %></small></span>
-					<% end %>
-					</p>
-				<% if !@vendors.blank? %>
-					<% @vendors.each do |vendor| %>
-						<div class="row">
-							<div class="span6 section-content">
-								<div class="event-block">
-									<p><strong><%= link_to vendor.name, vendor_path(vendor)  %></strong></p>
-									<p><div class="star" data-score='<%= vendor.get_average_rating %>'></div></p>
-									
-								<% if current_user && @board.board_admin?(current_user) %>
-									<span class='text-info'><small><%= link_to "Edit Vendor", edit_vendor_path(vendor) %></small></span>
-								<% end %>					
-								</div>
-							</div>
-						</div>
-					<% end %>
-					<div class="row">	
-						<div class="span6">
-							<%= will_paginate @vendors %>
-						</div>
-					</div>
-				<% end %>
-			</div>
-		</div>
 		
 		<div class="row">
 			<div class="span7">
-				<p class="section-title">Reviews (<%= @board.reviews.size %>) <span class='text-info'><small>Got thoughts on this board? <%= link_to "Write a review", new_board_review_path(:board_slug => @board.slug, :board_id => @board.id) %>. </small></span> </p>
+				<p class="section-title">Public Reviews of this Board (<%= @board.reviews.size %>) <span class='text-info'><small>Got thoughts on this board? <%= link_to "Write a review", new_board_review_path(:board_slug => @board.slug, :board_id => @board.id) %>. </small></span> </p>
 				<div class="row">	
 					<div class="span7 section-content">
 						<% if !@reviews.blank? %>
@@ -127,6 +103,7 @@
 				</span>
 			<% end %>
 			</p>
+			
 			<span><strong>Primary Contact:</strong></span>
 			<% if @board.board_claimed? %>
 				<p><small><%= @board.user.get_name.titleize %></small></p>
@@ -149,6 +126,28 @@
 				<p><small><%= link_to @board.url, @board.url, :target => "_blank"  %></small></p>
 			<% else %>
 				<p><small>N/A</small></p>
+			<% end %>
+		</div>
+		
+		<div class="row">
+			<h5>Vendors used by this Board:</h5>
+			<% if current_user && @board.board_admin?(current_user) %>
+				<span class='text-info'><small><%= link_to 'Add Vendor', new_vendor_path %></small></span>
+			<% end %>
+			
+			<% if !@vendors.blank? %>
+				<% @vendors.each do |vendor| %>
+					<div class="row">
+						<div class="span4 section-content">
+							<p><%= link_to vendor.name, vendor_path(vendor) %></p>
+							<% if current_user && @board.board_admin?(current_user) %>
+								<span class='text-info'><small><%= link_to "Edit Vendor", edit_vendor_path(vendor) %></small></span>
+							<% end %>					
+						</div>
+					</div>
+				<% end %>
+			<% else %>
+				<p>This board has not submitted any vendors.</p>
 			<% end %>
 		</div>
 	</div>
