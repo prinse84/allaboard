@@ -12,6 +12,7 @@ gem 'bootstrap-will_paginate', '0.0.9'
 gem 'devise'
 gem 'mail_form'
 gem 'ckeditor'
+gem 'actionview-encoded_mail_to'
 
 group :development do 
   # Use sqlite3 as the database for Active Record

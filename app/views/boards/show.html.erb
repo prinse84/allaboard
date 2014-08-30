@@ -114,7 +114,7 @@
 			
 			<span><strong>Primary Contact:</strong></span>
 			<% if @board.board_claimed? %>
-				<p><small><%= @board.user.get_name.titleize %></small></p>
+				<p><small><%= @board.user.get_name.titleize %> (<%= mail_to @board.user.email, "Send email", encode: "hex" %>)</small></p>
 			<% else %>
 				<p><small>N/A</small></p>
 			<% end %>
