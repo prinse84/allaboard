@@ -154,6 +154,10 @@ footer ul li {
   margin-top: 50px;
 }
 
+.clear-separator{
+  margin-bottom: 25px;
+}
+
 
 .mycontent-left {
   border-right: 1px solid #eaeaea;
@@ -227,6 +231,7 @@ footer ul li {
 	box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
 	-moz-box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
 	-webkit-box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
+	margin: 10px 0 0 0;
 }
 
 .date p {
