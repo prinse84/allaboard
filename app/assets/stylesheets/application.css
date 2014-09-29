@@ -10,5 +10,7 @@
  *
  *= require_self
  *= require jquery-ui
+ *= require bootstrap
+ *= require bootstrap-responsive
  *= require_tree .
  */

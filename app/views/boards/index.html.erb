@@ -58,6 +58,9 @@
 	</div>
 	<div class="span3">
 		<div class="row">
+			
+			<%= image_tag 'AAA_Logo.png' %>
+			<p>&nbsp;</p>
 			<p><strong>Filter Results</strong></p>
 			<p>Select Tag:<br />
 				<% @categories.each do |category| %>
@@ -70,6 +73,8 @@
 				<%= button_to "Add a Board", new_board_path, class: "btn btn-primary", method: 'get' %>
 			<% end %>
 		</div>
+		
+		<div class="row">
+		</div>
 	</div>
 </div>
-

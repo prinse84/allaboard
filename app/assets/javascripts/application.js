@@ -17,6 +17,8 @@
 //= require bootstrap-dropdown
 //= require bootstrap-alert
 //= require bootstrap-tab
+//= require bootstrap-carousel
+//= reqiure bootstrap-transition
 //= require ckeditor/init
 //= require_tree .
 

@@ -1,10 +1,10 @@
 <% provide(:title, "Resources for Chicago's Associate Boards:") %>
 
 <div class="row">
-	<div class="span7 mycontent-left">
+	<div class="span8 mycontent-left">
 		
 		<div class="row">
-			<div class="span12 content-header">
+			<div class="span8 content-header">
 				<span class="lead"><strong>Knowledge Base (KB) Articles</strong></span>
 				<p>This is a listing of resources and articles that we have collected from the community.</p>
 			</div>
@@ -12,7 +12,7 @@
 
 
 		<div class="row">
-			<div class="span7">
+			<div class="span8">
 				<% if !@articles.blank? %>
 					<% @articles.each do |article| %>
   						<p><strong><%= link_to article.title.html_safe, article_path(article.slug) %></strong><br />	
@@ -27,9 +27,12 @@
 			</div>
 		</div>
 	</div>
-	<div class="span4">
+	<div class="span3">
 		<div class="row">
-			<p><span class='lead'>More Resources</span><br />
+			
+			<%= image_tag 'AAA_Logo.png' %>
+			<p>&nbsp;</p>
+			<p><strong>More Resources</strong><br />
 				<%= link_to 'Vendors Directory', vendors_path %>
 			</p>			
 		</div>

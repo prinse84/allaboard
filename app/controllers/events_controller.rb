@@ -58,7 +58,7 @@ class EventsController < ApplicationController
     @event = @board.events.new(event_params)
     if @event.save
       @event.category_ids = event_params[:category_ids]
-      flash[:success] = "New Event added Saved."  
+      flash[:success] = "New Event added."  
       redirect_to board_path(@board.slug)
     else
       render 'new'

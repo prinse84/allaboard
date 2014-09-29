@@ -1,13 +1,19 @@
 class StaticPagesController < ApplicationController
+  layout "home"
+  
   def home
-    @reviews = Review.all
-    ids = Review.pluck(:board_id).shuffle[0]
-    @boards = Board.where(id: ids)
-    @events = Event.where("date >= ?", Time.now).order('date').limit(7)
+    @events = Event.where("date >= ?", Time.now).order('date').limit(5)
+    @announcements = Announcement.where("created_at >= ?",Time.now.last_month).order('created_at DESC').limit(5)
   end
   
   def contact
     @contact = Contact.new
+  end
+  
+  def existing_members
+  end
+  
+  def interested_member
   end
   
   def send_contact_message

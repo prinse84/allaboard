@@ -11,6 +11,39 @@
 				<% end %>
 			</div>
 		</div>
+
+			<div class="row">
+				<div class="span7 clear-separator">
+				</div>
+			</div>
+		
+		<div class="row">
+			<div class="span7">
+				<p class="section-title">Announcements (<%= @announcements.size %>)
+				<% if current_user && @board.board_admin?(current_user) %>
+					<span class='text-info'><small><%= link_to 'Add Announcement', new_board_announcement_path(@board.slug) %></small></span>
+				<% end %>
+				</p>
+				<% if !@announcements.blank? %>
+					<% @announcements.each do |announcement| %>
+						<p><%= simple_format(announcement.text, class:"section-content") %></p>
+						
+						<% if current_user && @board.board_admin?(current_user) %>
+							<span class='text-info'><small><%= link_to "Edit", edit_board_announcement_path(@board.slug, announcement.id) %> | <%= link_to 'Delete', board_announcement_path(@board.slug, announcement.id), method: :delete, data: { confirm: "Do you want to delete this announcement?" } %> </small>
+							</span>
+						<% end %>
+						
+						
+						<% if announcement != @announcements.last %>
+							<hr />
+						<% end %>
+					<% end %>
+				<% else %>
+					<p>There are no current announcements for this board.</p>
+				<% end %>
+			</div>
+		</div>
+		
 		
 		<div class="row">
 			<div class="span7 clear-separator">

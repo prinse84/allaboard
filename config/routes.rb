@@ -9,6 +9,8 @@ Allaboard::Application.routes.draw do
   match '/about', to: 'static_pages#about', via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
   post '/contact/send', to: 'static_pages#send_contact_message'
+  match '/existing', to: 'static_pages#existing_members', via: 'get'
+  match '/interested', to: 'static_pages#interested_member', via: 'get'  
 
   resources :users
   
@@ -17,10 +19,12 @@ Allaboard::Application.routes.draw do
   resources :reviews
   resources :articles, param: :slug
   resources :categories
+  resources :announcements, only: [:index]
   
   resources :boards, param: :slug do
     resources :reviews, only: [:index, :show, :new]
     resources :events, param: :slug
+    resources :announcements
     get 'claim'
     get 'unclaim'
     post 'assign'

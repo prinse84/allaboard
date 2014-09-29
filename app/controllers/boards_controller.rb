@@ -12,7 +12,10 @@ class BoardsController < ApplicationController
         end  
     else  
       @boards = Board.all.paginate(:page => params[:page], :per_page => 20).order('name')
-    end 
+    end
+    @reviews = Review.all
+    ids = Review.pluck(:board_id).shuffle[0]
+    @board_reviews = Board.where(id: ids) 
     @categories = Category.where(:for => 'Board').order('name')   
   end
   
@@ -25,6 +28,7 @@ class BoardsController < ApplicationController
       #@vendors = @board.vendors.paginate(:page => params[:page], :per_page => 2).order('name')
       @vendors = @board.vendors.order('name')
       @total_vendors = @board.vendors
+      @announcements = @board.announcements.where("created_at >= ?", Time.now.last_month).order('created_at DESC')
     else
       flash[:warning] = "The board you are looking for does not exist"
       redirect_to boards_path

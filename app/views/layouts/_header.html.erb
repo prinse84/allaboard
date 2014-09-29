@@ -1,36 +1,35 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-	<div class="navbar-inner">
-    	<div class="container">
-        	<%= link_to "All A-Board Alliance", root_path, id: "logo" %>
-			<nav>
-		   		<ul class="nav pull-left">
-		    		<li><%= link_to "Boards", boards_path %></li>
-		    		<li><%= link_to "Events", events_path %></li>
-		    		<li><%= link_to "Resources", articles_path %></li>
-                    
-				
-
-				</ul>
-				<ul class="nav pull-right nav-pills">
-					<% if user_signed_in? %>
-						<li class="dropdown">
-							<%= link_to current_user.get_name.titleize, "#", "data-toggle" => "dropdown", :class=>"dropdown-toggle"%>			
-							<ul class="dropdown-menu">
-								<li><%= link_to "My Account", user_path(current_user.id)%></li>
+<div class= "navbar-wrapper">
+	<header class="navbar navbar-fixed-top navbar-inverse">		
+		<div class="navbar-inner">
+			<div class="container">
+        		<%= link_to "All A-Board Alliance", root_path, :class => "logo" %>
+				<nav>
+		   			<ul class="nav pull-left">
+		    			<li><%= link_to "Boards", boards_path %></li>
+		    			<li><%= link_to "Events", events_path %></li>
+		    			<li><%= link_to "Resources", articles_path %></li>
+					</ul>
+					<ul class="nav pull-right nav-pills">
+						<% if user_signed_in? %>
+							<li class="dropdown">
+								<%= link_to current_user.get_name.titleize, "#", "data-toggle" => "dropdown", :class=>"dropdown-toggle"%>			
+								<ul class="dropdown-menu">
+									<li><%= link_to "My Account", user_path(current_user.id)%></li>
 									<% if site_admin_logged_in? %>
 										<li class="divider"></li>
 										<li><%= link_to "Manage Categories", categories_path%></li>										
 										<li><%= link_to "Manage Users", users_path%></li>
 				                    <% end %>				
-								<li class="divider"></li>
-								<li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
-							</ul>
-						</li>
-					<% else %>				
-						<li><%= link_to "Sign in", new_user_session_path %></li>
-					<% end %>
-				</ul>
-			</nav>
-  		</div>
-	</div>
-</header>
+									<li class="divider"></li>
+									<li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+								</ul>
+							</li>
+						<% else %>				
+							<li><%= link_to "Sign in", new_user_session_path %></li>
+						<% end %>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</header>
+</div>

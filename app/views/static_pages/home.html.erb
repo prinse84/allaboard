@@ -1,97 +1,114 @@
 <% provide(:title, "Chicago's Associate Boards:") %>
 
-<div class="center hero-unit">
-  <h1>Welcome to Chicago's Associate Board community.</h1>
+<div id="myCarousel" class="carousel slide">
+	<!-- Carousel items -->
+  	<div class="carousel-inner">
+    	<div class="active item">
+			<%= image_tag "slide-01.jpg" %>
+			<div class="container">
+				<div class="carousel-caption">
+		    		<h1>Welcome to Chicago's Associate Board community.</h1>
+					<p class="lead">We are creating a community to strengthen the impact of Associate Boards around Chicago.</p>
+		   		</div>
+			</div>
+    	</div>
+    	<div class="item">
+			<%= image_tag "slide-02.jpg" %>
+			<div class="container">
+				<div class="carousel-caption">
+		    		<h1>Already an Associate Board member?</h1>
+					<p class="lead">Check out our curated list of associate boards, browse through our up-to-date listing of events, or look through our resources library to for "How to" guides and best practices. </p>
+		        	<%= link_to ' Learn more', existing_path, class: "btn btn-large btn-primary" %>
+		   		</div>
+			</div>
+    	</div>
+    	<div class="item">
+			<%= image_tag "slide-03.jpg" %>
+			<div class="container">
+				<div class="carousel-caption">
+		    		<h1>Want to get involved with an Associate Board?</h1>
+					<p class="lead">Browse through our up-to-date listing of events and join us at one of our quarterly meetups. </p>
+		        	<%= link_to ' Learn more', interested_path, class: "btn btn-large btn-primary" %>
+		   		</div>
+			</div>
+    	</div>
+  	</div>
+  	<!-- Carousel nav -->
+  	<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+  	<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
 </div>
 
-<div class="row">
-	<div class="span12">
-		<p class="lead text-center">We are creating a community to strengthen the impact of Associate Boards around Chicago.</p>
-	</div>
-<div>
-
-
-<div class="row">
-	<div class="span12">
-		<div class="span7 mycontent-left-no-border">
-			<h4>Connect</h4>
-			<p>Check out our curated list of <%= link_to 'Associate Boards', boards_path %>. This directory offers a list of associate boards around Chicago, along with a description of their mission. Enabling us to find each other.<blockquote><em>When we have a better way to connect with one another, then partnerships can start to develop.</em></blockquote></p>		
-			<h4>Communicate</h4>
-			<p>Let's borrow ideas from one another and also plan strategically. Browse through our up-to-date <%= link_to 'listing of events', events_path %> among all boards. Get ideas for your next event or partner up to make your event have a bigger impact.</p>
-			<p><em>Have thoughts and feedback for a board?</em> <%= link_to 'Leave confidential reviews', new_review_path %> for boards to gain honest feedback about their performance.</p>
-			<h4>Collaborate</h4> 
-			<p>Resource sharing is an important tool for enhancing the outcomes of work done by associate boards.  <em>Why re-create the wheel each time you do an event?</em> Look through our <%= link_to 'resources library', articles_path %> for “How to” guides as well as reviews of local vendors and venues that have been used by our members.</p>
-		</div>
-		<div class="span4 pull-right">
-			<div class="row">
-				<div>&nbsp;</div>
+<div class="container">
+	<div class="row">
+		<div class="span12">
+			<div class="span7 mycontent-left-no-border">
+				<h3>Recent Updates</h3>
+				<% if !@announcements.blank? %>
+					<% @announcements.each do |announcement| %>
+						<p><%= announcement.text %></p>
+						<small>By: <%= link_to announcement.board.name, board_path(announcement.board.slug) %> | Submitted <%= time_ago_in_words(announcement.created_at) %> ago.</small>
+						<% if announcement != @announcements.last %>
+  								<hr />
+  						<% end %>
+					<% end %>
+				<% else %>
+					<p>Announcements and Updates coming soon.</p>
+				<% end %>
+				
 			</div>
-			<div class="row">
-				<div class="focus-box">
-					<h1>An Associate Board Review</h1>
-						<% if !@boards.blank? %>
-							<% @boards.each do |board| %>
-								<% if board.reviews.any? %>
-									<% review = board.get_random_review %>
-									<%= link_to board.name, board_path(board.slug) %>
-									<div class="star" data-score='<%= board.get_average_rating %>'></div>	
-									<div>&nbsp;</div>	
-									<blockquote>
-										<p><%= link_to review.title, board_review_path(board.slug, review)  %></p>
-										<small><%= review.reviewer_type.name%>. Submitted <%= time_ago_in_words(review.created_at) %> ago.</small>
-										<h5>Pros:</h5>
-										<p style="font-size:14px"><%= review.pros.truncate(80, separator:' ') %> <%= link_to 'more', board_review_path(board.slug, review)  %></p>
-										<h5>Cons:</h5>
-										<p style="font-size:14px"><%= review.cons.truncate(80, separator:' ') %> <%= link_to 'more', board_review_path(board.slug, review)  %></p>
-									</blockquote>
-									<div> <p class="text-center">Like this review? Contribute to the Community. <br />
-										<%= link_to "Write a Review!", new_review_path, class: "btn btn-primary" %></p>
-									</div>
-								<% end %>
-							<% end %>
-						<% else %>
-		 					<p class="text-center">No reviews yet, Be the first! <%= link_to "Write a Review!", new_review_path, class: "btn btn-primary" %></p>
-						<% end %>
+			<div class="span4 pull-right">
+				<div class="row">
+					<div>
+						<%= image_tag 'AAA_Logo.png' %>
+						
+						<a class="twitter-timeline" 
+						   href="https://twitter.com/ABoardAlliance" 
+						   data-widget-id="515968580030963712"
+  						   width="300"
+						   height="500"
+						   target="_blank">
+						Tweets by @ABoardAlliance</a>
+					</div>
+					
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
-<div class="row">
-	<div class="span12 row-separator pull-right">
-	</div>
-</div>
-<div class='row'>
-	<div class="span12">
-		<div class="span8 pull-left">
-			<h4>Upcoming Events</h4>
-		</div>
-		<div class="span3 pull-right">
-			<h4 class="text-right"><%= button_to 'See All Events', events_path, class: "btn btn-link", method: 'get' %> </h4>
+	<div class="row">
+		<div class="span12 row-separator pull-right">
 		</div>
 	</div>
-</div>
-<div class="row">
-	<div class="span12 pull-right">
-		<% if !@events.blank? %>
-			<table class="table">
-				<tbody>
-					<% @events.each do |event| %>
-						<tr>
-							<td width="45%"><strong><%= link_to event.name, event_path(event.slug) %></strong></td>
-							<td width="20%"><%= event.date.strftime("%B %d, %Y") %></td>
-							<td width="35%"><%= link_to event.board.name, board_path(event.board.slug) %></td>  
-						</tr>
-					<% end %>
-				</tbody>
-			</table>
-		<% else %>
-			<p>There are no currently no planned events. </p>
-		<% end %>
+	
+	<div class='row'>
+		<div class="span12">
+			<div class="span8 pull-left">
+				<h3>Upcoming Events</h3>
+			</div>
+			<div class="span3 pull-right">
+				<h3 class="text-right"><%= button_to 'See All Events', events_path, class: "btn btn-link", method: 'get' %> </h3>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span12 pull-right">
+			<% if !@events.blank? %>
+				<table class="table">
+					<tbody>
+						<% @events.each do |event| %>
+							<tr>
+								<td width="80%"><h4><%= link_to event.name, event_path(event.slug) %></h4></td>
+								<td width="20%"><strong><%= event.date.strftime("%B %d, %Y") %></strong></td>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
+			<% else %>
+				<p>There are no currently no planned events. </p>
+			<% end %>
+		</div>
 	</div>
 </div>
-
 
 <script>
 // call the flippyNum function
@@ -105,4 +122,14 @@
 										}
 									);
 */
+      !function ($) {
+        $(function(){
+          // carousel demo
+          $('#myCarousel').carousel()
+        })
+      }(window.jQuery)
+	
+	!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+
+
 </script>

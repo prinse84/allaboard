@@ -5,6 +5,7 @@ class Board < ActiveRecord::Base
     has_many :events, dependent: :destroy
     has_many :vendors, dependent: :destroy
     belongs_to :user
+    has_many :announcements, dependent: :destroy
 
     has_and_belongs_to_many :categories
     

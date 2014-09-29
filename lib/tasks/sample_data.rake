@@ -47,6 +47,8 @@ namespace :db do
                           food: [true,false].sample,
                           catering: [true,false].sample
                           )
+
+        #for each board created, create 2 vendor reviews
         2.times do |vr|
           v.vendor_reviews.create!(title: Faker::Lorem.sentence.to_s,
                                rating: [*1..5].sample,
@@ -55,6 +57,13 @@ namespace :db do
                                )
         end
       end
+        
+       #for each board created, create 2 announcements
+      2.times do |a|
+         a = Announcement.create!(text: Faker::Lorem.sentences.to_s,
+                                  board_id: b.id)
+      end
+      
     end
   end
 end
