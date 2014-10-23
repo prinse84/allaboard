@@ -94,42 +94,43 @@
 			</div>
 		</div>		
 		
-		<div class="row">
-			<div class="span7">
-				<p class="section-title">Public Reviews of this Board (<%= @board.reviews.size %>) <span class='text-info'><small>Got thoughts on this board? <%= link_to "Write a review", new_board_review_path(:board_slug => @board.slug, :board_id => @board.id) %>. </small></span> </p>
-				<div class="row">	
-					<div class="span7 section-content">
-						<% if !@reviews.blank? %>
-							<% @reviews.each do |review| %>
-								<div class="row">
-									<div class="span6">
-										<blockquote>
-												<p><%= review.title %></p>
-                                                <% if site_admin_logged_in? %>
-													<span class='text-info' style="font-size:12px"><%= link_to "Edit", edit_review_path(review) %> | <%= link_to "Delete", review_path(review), method: :delete, data: { confirm: "Do you want to delete this review?" } %></span>
-												<% end %>
-
-
-												<div class="star" data-score='<%= review.rating %>'></div>
-												<small><%= review.reviewer_type.name%>. Submitted <%= time_ago_in_words(review.created_at) %> ago.</small>
-												<h5>Pros:</h5>
-												<p style="font-size:14px"><%= review.pros %></p>
-												<h5>Cons:</h5>	
-												<p style="font-size:14px"><%= review.cons %></p>
-										</blockquote>					
+		<% if current_user && @board.board_admin?(current_user) %>
+			<div class="row">
+				<div class="span7">
+					<p class="section-title">Public Reviews of this Board (<%= @board.reviews.size %>) <span class='text-info'><small><%= link_to "Write a review", new_board_review_path(:board_slug => @board.slug, :board_id => @board.id) %>. </small></span> </p>
+					<div class="row">	
+						<div class="span7 section-content">
+							<% if !@reviews.blank? %>
+								<% @reviews.each do |review| %>
+									<div class="row">
+										<div class="span6">
+											<blockquote>
+													<p><%= review.title %></p>
+                                                	<% if site_admin_logged_in? %>
+														<span class='text-info' style="font-size:12px"><%= link_to "Edit", edit_review_path(review) %> | <%= link_to "Delete", review_path(review), method: :delete, data: { confirm: "Do you want to delete this review?" } %></span>
+													<% end %>
+													<div class="star" data-score='<%= review.rating %>'></div>
+													<small><%= review.reviewer_type.name%>. Submitted <%= time_ago_in_words(review.created_at) %> ago.</small>
+													<h5>Pros:</h5>
+													<p style="font-size:14px"><%= review.pros %></p>
+													<h5>Cons:</h5>	
+													<p style="font-size:14px"><%= review.cons %></p>
+											</blockquote>					
+										</div>
 									</div>
-								</div>
+								<% end %>
 							<% end %>
-						<% end %>
+						</div>
+					</div>
+					<div class="row">	
+						<div class="span6">
+							<%= will_paginate @reviews %>
+						</div>
 					</div>
 				</div>
-				<div class="row">	
-					<div class="span6">
-						<%= will_paginate @reviews %>
-					</div>
-				</div>
-			</div>
-		</div>	
+			</div>	
+		<% end %>
+
 	</div>
 	<div class="span4">
 		<div class="row">
@@ -169,14 +170,16 @@
 				<p><small>N/A</small></p>
 			<% end %>
 		</div>
-		
+		<div class="row">
+			<p>&nbsp;</p>
+		</div>
 		<div class="row">
 			<h5>Vendors used by this Board:</h5>			
 			<% if !@vendors.blank? %>
 				<% @vendors.each do |vendor| %>
 					<div class="row">
 						<div class="span4 section-content">
-							<p><%= link_to vendor.name, vendor_path(vendor) %>
+							<p><small><%= link_to vendor.name, vendor_path(vendor) %></small>
 							<% if current_user && @board.board_admin?(current_user) %>
 								<span class='text-info'><small>(<%= link_to "Edit Details", edit_vendor_path(vendor) %>)</small></span>
 							<% end %>

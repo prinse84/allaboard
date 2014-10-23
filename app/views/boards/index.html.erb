@@ -22,7 +22,7 @@
 						<tbody>
 							<% @boards.each do |board| %>
 				    			<tr>
-				      				<td width="50%"><%= link_to board.name, board_path(board.slug) %><div class="star" data-score='<%= board.get_average_rating %>'></div></td>
+				      				<td width="50%"><%= link_to board.name, board_path(board.slug) %><!--- <div class="star" data-score='<%= board.get_average_rating %>'></div> --> </td>
 				      				<td width="30%">
 					  					<% if !board.board_claimed? %>
 											<%= link_to 'Claim board', board_claim_path(board.slug) %>

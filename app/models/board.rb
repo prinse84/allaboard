@@ -34,7 +34,8 @@ class Board < ActiveRecord::Base
       if self.user_id == user.id
         true
       else 
-        return user.admin
+        #return user.admin
+        return false
       end
     end
     

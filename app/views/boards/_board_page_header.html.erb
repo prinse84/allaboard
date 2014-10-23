@@ -1,6 +1,9 @@
 <div class="content-header">
 	<span class="lead"><strong><%= @board.name %></strong></span>
-	<div class="star" data-score='<%= @board.get_average_rating %>'></div>	
+	
+	<!--- <div class="star" data-score='<%= @board.get_average_rating %>'></div> --> 
+	<p><small><strong>Interested in leaving private feedback for this board?</strong> <%= link_to 'Write an anonymous review', new_board_review_path(:board_slug => @board.slug, :board_id => @board.id) %>.</small></p>
+		 
 	<% if current_user && @board.board_admin?(current_user) %>
 		<p><small><%= link_to 'Edit Board Details',edit_board_path(@board.slug) %> | 		
 			<%= link_to 'Delete this Board', board_path(@board.slug), method: :delete, data: { confirm: "Do you want to delete this board and all information that belongs to it (vendors, events, reviews)?" } %></small>
