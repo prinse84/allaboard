@@ -38,8 +38,12 @@
 					<p><%= @event.formatted_date %><p>
 				<h5>Location</h5>
 					<p><%= @event.location %></p>
-				<h5>Website</h5>		
-					<p><%= link_to @event.event_url, @event.event_url, :target => "_blank" %></p>				
+				<h5>Website</h5>	
+					<% if !@event.event_url.blank? %>
+						<p><%= link_to @event.event_url, @event.event_url, :target => "_blank" %></p>
+					<% else %>
+						<p><small>N/A</small></p>
+					<% end %>			
 			</div>
 		</div>
 	</div>

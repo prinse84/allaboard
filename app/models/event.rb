@@ -25,7 +25,7 @@ class Event < ActiveRecord::Base
     protected
     
     def smart_add_url_protocol
-      unless self.event_url[/\Ahttp:\/\//] || self.event_url[/\Ahttps:\/\//] || !self.event_url.blank?
+      unless self.event_url[/\Ahttp:\/\//] || self.event_url[/\Ahttps:\/\//] || self.event_url.blank?
         self.event_url = "http://#{self.event_url}"
       end
     end
