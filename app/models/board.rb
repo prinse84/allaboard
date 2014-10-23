@@ -45,7 +45,7 @@ class Board < ActiveRecord::Base
     
     protected
     def smart_add_url_protocol
-      unless self.url[/\Ahttp:\/\//] || self.url[/\Ahttps:\/\//] || !self.url.blank?
+      unless self.url[/\Ahttp:\/\//] || self.url[/\Ahttps:\/\//] || self.url.blank?
         self.url = "http://#{self.url}"
       end
     end

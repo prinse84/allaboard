@@ -1,21 +1,31 @@
 <div class="row">
-	<div class="span12">
-		<span class="lead">Add A-Board to directory.</span>
+	<div class="span8 mycontent-left">
+		<div class="row">
+			<div class="span8 content-header">
+				<span class="lead"><strong>Add A-Board to directory</strong></span>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="span7 clear-separator">
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="span7">
+        		<% if site_admin_logged_in? %>
+					<%= render 'form'%>
+				<% else %>
+					<p>Sorry, only the All A-Board Alliance administrators can add a board. This is how we can maintain a carefully curated list of boards.<br /> If you would like to suggest a board to add, please <%= link_to "tell us about it", boards_suggest_path %>.</p>
+				<% end %>
+			</div>
+		</div>
 	</div>
-</div>
-
-<div class="row">
-	<div class="span8 separator"></div>
-</div>
-
-<div class="row">
-	<div class="span6">
-		
-		
-        <% if site_admin_logged_in? %>
-			<%= render 'form'%>
-		<% else %>
-		<p>Sorry, only the All A-Board Alliance administrators can add a board. This is how we can maintain a carefully curated list of boards.<br /> If you would like to suggest a board to add, please <%= link_to "tell us about it", boards_suggest_path %>.</p>
-		<% end %>
+	
+	<div class="span3">
+		<div class="row">
+			<%= image_tag 'AAA_Logo.png' %>
+			<p>&nbsp;</p>
+		</div>
 	</div>
 </div>
