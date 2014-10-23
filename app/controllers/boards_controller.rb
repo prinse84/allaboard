@@ -111,6 +111,8 @@ class BoardsController < ApplicationController
     if !@board.blank?    
       @board.update_attribute(:user_id, current_user.id)
       if @board.save
+        # Tell the BoardMailer to send a notification to the administrators after save
+        BoardMailer.board_claim_email(current_user.id, @board.id).deliver
         flash[:success] = "Congratulations, you are now the administrator of this board."
         redirect_to board_path(@board.slug)
       else

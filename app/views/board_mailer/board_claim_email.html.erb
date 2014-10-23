@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <p>Woohoo! <%= @user.get_name %> has claimed <%= @board.name %></p>
+	
+	<p>Feel free to follow with <%= @user.get_name %> (<%= mail_to @user.email, @user.email, encode: "hex" %>).</p> 
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+	<p>Thanks, <br />
+	<p>Your awesome website admin!</p>
+
+  </body>
+</html>

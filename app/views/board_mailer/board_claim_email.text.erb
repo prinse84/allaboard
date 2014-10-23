@@ -1,0 +1,6 @@
+Woohoo! <%= @user.get_name %> has claimed <%= @board.name %>
+==============================================
+Feel free to follow with <%= @user.get_name %> (<%= mail_to @user.email, @user.email, encode: "hex" %>).
+
+Thanks, 
+Your awesome website admin!
