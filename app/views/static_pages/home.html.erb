@@ -44,11 +44,11 @@
 			<div class="span7 mycontent-left-no-border">
 				<h3>Recent Updates</h3>
 				<% if @new_boards != 0 %>
-					<p><span class="label label-info">Boards</span>&nbsp; <%= pluralize(@new_boards, 'boards') %> added this week.</p>
+					<p><span class="label label-info">Boards</span>&nbsp; <%= pluralize(@new_boards, 'board') %> added this week.</p>
 				<% end %>
 				
 				<% if @new_events != 0 %>
-					<p><span class="label label-info">Events</span>&nbsp; <%= pluralize(@new_events, 'boards') %> added this week.</p>
+					<p><span class="label label-info">Events</span>&nbsp; <%= pluralize(@new_events, 'event') %> added this week.</p>
 				<% end %>
 				
 				<% if @new_boards != 0 || @new_events !=0 %>
