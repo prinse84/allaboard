@@ -43,9 +43,16 @@
 		<div class="span12">
 			<div class="span7 mycontent-left-no-border">
 				<h3>Recent Updates</h3>
+				<% if @new_boards != 0 %>
+					<p><span class="label label-info">Boards</span>&nbsp; <%= pluralize(@new_boards, 'boards') %> added this week.</p>
+				<% end %>
+				<% if @new_events != 0 %>
+					<p><span class="label label-info">Events</span>&nbsp; <%= pluralize(@new_events, 'boards') %> added this week.</p>
+				<% end %>
+				
 				<% if !@announcements.blank? %>
 					<% @announcements.each do |announcement| %>
-						<p><%= announcement.text %></p>
+						<p><span class="label label-info">Announcement</span>&nbsp;<%= announcement.text %></p>
 						<small>By: <%= link_to announcement.board.name, board_path(announcement.board.slug) %> | Submitted <%= time_ago_in_words(announcement.created_at) %> ago.</small>
 						<% if announcement != @announcements.last %>
   								<hr />

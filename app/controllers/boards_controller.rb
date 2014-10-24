@@ -1,18 +1,20 @@
 class BoardsController < ApplicationController
   
   before_action :authenticate_user!, :only => [:claim, :new, :edit, :destroy]
+  helper_method :sort_column, :sort_direction
   
   def index
     if params[:tag]
       category = Category.find_by(name: params[:tag])
         if !category.blank?
-          @boards = category.boards.paginate(:page => params[:page], :per_page => 20).order('name')
+          @boards = category.boards.paginate(:page => params[:page], :per_page => 20).order(sort_column + ' ' + sort_direction)
         else 
-          @boards = Board.all.paginate(:page => params[:page], :per_page => 20).order('name')
+          @boards = Board.all.paginate(:page => params[:page], :per_page => 20).order(sort_column + ' ' + sort_direction)
         end  
-    else  
-      @boards = Board.all.paginate(:page => params[:page], :per_page => 20).order('name')
+    else
+      @boards = Board.all.paginate(:page => params[:page], :per_page => 20).order(sort_column + ' ' + sort_direction)
     end
+    
     @reviews = Review.all
     ids = Review.pluck(:board_id).shuffle[0]
     @board_reviews = Board.where(id: ids) 
@@ -164,5 +166,14 @@ class BoardsController < ApplicationController
     def suggestion_params
       params.require(:suggestion).permit(:suggested_board_name, :suggester_email)
     end
+    
+    def sort_column
+      %w[name contact].include?(params[:sort]) ? params[:sort] : "name"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
+    end
+    
 
 end

@@ -4,6 +4,8 @@ class StaticPagesController < ApplicationController
   def home
     @events = Event.where("date >= ?", Time.now).order('date').limit(5)
     @announcements = Announcement.where("created_at >= ?",Time.now.last_month).order('created_at DESC').limit(5)
+    @new_boards = Board.where("created_at >= ?", Time.now.last_week).count
+    @new_events = Event.where("created_at >= ?", Time.now.last_week).count
   end
   
   def contact
