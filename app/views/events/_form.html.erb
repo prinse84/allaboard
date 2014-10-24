@@ -60,13 +60,15 @@
 		</div>
 		
 		<div class="row">
-			<div class="span6"><%= f.label 'Select categories for this event'%></div>
-				<% @categories.each do |category| %>
-					<div class="span5 radio"><%= check_box_tag "event[category_ids][]", category.id, @event.categories.include?(category) %> <%= category.name %></div>
-				<% end %>
+			<div class="span6">
+				<%= f.label 'Select categories for this event'%>
 			</div>
-		<div>
-
+			<% @categories.each do |category| %>
+				<div class="span5 radio"><%= check_box_tag "event[category_ids][]", category.id, @event.categories.include?(category) %> <%= category.name %>
+				</div>
+			<% end %>
+		</div>
+		
 		<div class="row">
 			<div class="span6">&nbsp;</div>
 		</div>			

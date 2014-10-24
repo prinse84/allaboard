@@ -1,11 +1,12 @@
 class BoardsController < ApplicationController
   
   before_action :authenticate_user!, :only => [:claim, :new, :edit, :destroy]
-  helper_method :sort_column, :sort_direction
+  helper_method :sort_column, :sort_direction, :tag_param
   
   def index
     if params[:tag]
-      category = Category.find_by(name: params[:tag])
+      #category = Category.find_by(name: params[:tag])
+      category = Category.where("name = ? AND for = ?", tag_param, 'Board').take
         if !category.blank?
           @boards = category.boards.paginate(:page => params[:page], :per_page => 20).order(sort_column + ' ' + sort_direction)
         else 
@@ -173,6 +174,10 @@ class BoardsController < ApplicationController
 
     def sort_direction
       %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
+    end
+    
+    def tag_param
+      Category.where(:for => 'Board').pluck(:name).include?(params[:tag]) ? params[:tag] : ""
     end
     
 

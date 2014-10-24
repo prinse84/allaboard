@@ -8,8 +8,9 @@ class EventsController < ApplicationController
     end
     
     if params[:tag]
-      category = Category.find_by(name: params[:tag])
+      category = Category.where("name = ? AND for = ?", params[:tag], 'Event').take
       if !category.blank?
+      #if Category.where(name: params[:tag]).exists?
         @events = category.events.where("date >= ?",criteria).paginate(:page => params[:page], :per_page => 20).order('date')
       else 
         @events = Event.where("date >= ?", criteria).paginate(:page => params[:page], :per_page => 20).order('date')
@@ -61,6 +62,7 @@ class EventsController < ApplicationController
       flash[:success] = "New Event added."  
       redirect_to board_path(@board.slug)
     else
+      @categories = Category.where(:for => 'Event').order('name')
       render 'new'
     end    
   end
