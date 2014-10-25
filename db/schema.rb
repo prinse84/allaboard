@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140927215022) do
+ActiveRecord::Schema.define(version: 20141025213245) do
 
   create_table "announcements", force: true do |t|
     t.string   "text"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20140927215022) do
     t.string   "parent_company"
     t.string   "url"
     t.string   "slug"
+    t.date     "claim_date"
   end
 
   create_table "boards_categories", id: false, force: true do |t|

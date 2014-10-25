@@ -112,7 +112,8 @@ class BoardsController < ApplicationController
   def assign
     @board = Board.find_by(slug: params[:board_slug])    
     if !@board.blank?    
-      @board.update_attribute(:user_id, current_user.id)
+      @board.user_id = current_user.id
+      @board.claim_date = Date.today
       if @board.save
         # Tell the BoardMailer to send a notification to the administrators after save
         BoardMailer.board_claim_email(current_user.id, @board.id).deliver
@@ -130,7 +131,8 @@ class BoardsController < ApplicationController
   def unassign
     @board = Board.find_by(slug: params[:board_slug])
     if !@board.blank?     
-      @board.update_attribute(:user_id, nil)
+      @board.user_id = nil
+      @board.claim_date = nil
       if @board.save
         flash[:success] = "You have been removed as the administrator of " + @board.name
         redirect_to user_path(current_user)

@@ -43,28 +43,42 @@
 		<div class="span12">
 			<div class="span7 mycontent-left-no-border">
 				<h3>Recent Updates</h3>
-				<% if @new_boards != 0 %>
-					<p><span class="label label-info">Boards</span>&nbsp; <%= pluralize(@new_boards, 'board') %> added this week.</p>
+				<% if !@new_boards.blank? %>
+					<p><span class="label label-info">Boards</span>&nbsp; <%= pluralize(@new_boards.count, 'board') %> claimed this week.</p>
+					<% @new_boards.each do |new_board| %>
+						<%= mail_to new_board.user.email, new_board.user.get_name, encode: "hex", subject: "About your board on the All ABoard Alliance." %> is the contact for <%= link_to new_board.name, board_path(new_board.slug) %><br />
+						<% if new_board == @new_boards.last %>
+  							</p>	<hr />
+  						<% end %>
+					<% end %>
 				<% end %>
 				
-				<% if @new_events != 0 %>
-					<p><span class="label label-info">Events</span>&nbsp; <%= pluralize(@new_events, 'event') %> added this week.</p>
-				<% end %>
-				
-				<% if @new_boards != 0 || @new_events !=0 %>
-					<hr />
+				<% if !@new_events.blank? %>
+					<p><span class="label label-info">Events</span>&nbsp; <%= pluralize(@new_events.count, 'event') %> added this week.</p>
+					<% @new_events.each do |new_event| %>
+						<%= link_to new_event.name, event_path(new_event.slug)  %> submitted by <%= link_to new_event.board.name, board_path(new_event.board.slug) %><br />
+						<% if new_event == @new_events.last %>
+  							</p>	<hr />
+  						<% end %>
+					<% end %>
 				<% end %>
 				
 				<% if !@announcements.blank? %>
 					<% @announcements.each do |announcement| %>
-						<p><span class="label label-info">Announcement</span>&nbsp;<%= announcement.text %></p>
-						<small>By: <%= link_to announcement.board.name, board_path(announcement.board.slug) %> | Submitted <%= time_ago_in_words(announcement.created_at) %> ago.</small>
-						<% if announcement != @announcements.last %>
+						<p><span class="label label-info">Announcement</span>&nbsp;<%= announcement.text %><br />
+						<small><span class="text-info">By: <%= link_to announcement.board.name, board_path(announcement.board.slug) %> | Submitted <%= time_ago_in_words(announcement.created_at) %> ago.</span></small></p>
+						<hr />
+					<% end %>
+				<% end %>
+				
+				<% if !@recent_articles.blank? %>
+					<% @recent_articles.each do |recent_article| %>
+						<p><span class="label label-info">KB Article</span>&nbsp; <strong><%= link_to recent_article.title.html_safe, article_path(recent_article.slug) %></strong><br />	
+						<small><span class="text-info">Published: <%= time_ago_in_words(recent_article.created_at) %> ago by <%= mail_to recent_article.user.email, recent_article.user.get_name, encode:"hex", subject: "About your KB article on All ABoard Alliance.", body: "I read through your Knowledge Base article on " + recent_article.title.html_safe + "and I wanted to reach out to you about it."%>.</span></small></p>
+						<% if recent_article != @recent_articles.last %>
   								<hr />
   						<% end %>
 					<% end %>
-				<% else %>
-					<p>Announcements and Updates coming soon.</p>
 				<% end %>
 				
 			</div>
