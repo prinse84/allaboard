@@ -46,7 +46,8 @@
 				<% if !@new_boards.blank? %>
 					<p><span class="label label-info">Boards</span>&nbsp; <%= pluralize(@new_boards.count, 'board') %> claimed this week.</p>
 					<% @new_boards.each do |new_board| %>
-						<%= mail_to new_board.user.email, new_board.user.get_name, encode: "hex", subject: "About your board on the All ABoard Alliance." %> is the contact for <%= link_to new_board.name, board_path(new_board.slug) %><br />
+						<p><%= link_to new_board.name, board_path(new_board.slug) %><br />
+							<small><span class="text-info">Contact: <%= mail_to new_board.user.email, new_board.user.get_name, encode: "hex", subject: "About your board on the All ABoard Alliance." %></span></small></p>
 						<% if new_board == @new_boards.last %>
   							</p>	<hr />
   						<% end %>
@@ -56,7 +57,8 @@
 				<% if !@new_events.blank? %>
 					<p><span class="label label-info">Events</span>&nbsp; <%= pluralize(@new_events.count, 'event') %> added this week.</p>
 					<% @new_events.each do |new_event| %>
-						<%= link_to new_event.name, event_path(new_event.slug)  %> submitted by <%= link_to new_event.board.name, board_path(new_event.board.slug) %><br />
+						<p><%= link_to new_event.name, event_path(new_event.slug)  %> <br />
+							<small><span class="text-info">Submitted by <%= link_to new_event.board.name, board_path(new_event.board.slug) %></span></small></p>
 						<% if new_event == @new_events.last %>
   							</p>	<hr />
   						<% end %>
