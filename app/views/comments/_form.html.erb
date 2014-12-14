@@ -1,0 +1,17 @@
+<%= form_for [@article, @comment], :url => article_comments_path, method: :post do |f| %>
+	<div class="form-group">
+		<%= render 'error_messages' %>
+
+		<div class="row">
+			<div class="span6"><%= f.label :text, 'Comment'%></div>
+		</div>
+
+		<div class="row">		
+			<div class="span6"><%= f.text_area :text, :placeholder=>"Your comment on the article...", :rows=>2, :class=>'input-block-level', :autofocus=> true %></div>
+		</div>
+		
+		<div class="row">	
+			<div class="span6"><%= f.submit "Submit", class: "btn btn-primary" %></div>
+		</div>
+	</div>	
+<% end %>

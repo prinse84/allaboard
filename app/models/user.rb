@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   
   has_many :boards
   has_many :articles
+  has_many :comments
   
   def get_name
     self.first_name + ' ' + self.last_name

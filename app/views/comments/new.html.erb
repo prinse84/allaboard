@@ -1,0 +1,29 @@
+<div class="row">
+	<div class="span8 mycontent-left">
+		
+		<div class="row">
+			<div class="span7 content-header">
+				<span class="lead"><strong><%= @comment.article.title.html_safe %></strong></span> <br />
+				Use the text box below to leave a comment for the author of this article. Note that your comment will be public and will not be anonymous. </span>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="span7 clear-separator">
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="span7">
+					<%= render 'form'%>
+			</div>
+		</div>
+	</div>
+	
+	<div class="span3">
+		<div class="row">
+			<%= image_tag 'AAA_Logo.png' %>
+			<p>&nbsp;</p>
+		</div>
+	</div>
+</div>

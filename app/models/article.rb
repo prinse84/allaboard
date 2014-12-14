@@ -1,11 +1,15 @@
 class Article < ActiveRecord::Base
+  
   validates :title, presence: true
   validates :body, presence: true
   validates :slug, presence: true, uniqueness: { case_sensitive: false }
   
   belongs_to :user
+  has_many :comments
   
   before_validation :create_slug
+  
+
   
   
   private

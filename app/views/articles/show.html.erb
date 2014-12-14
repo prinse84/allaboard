@@ -11,9 +11,38 @@
 		<div class="row">
 			<div class="span7">
 				<%= @article.body.html_safe %>
-				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="span7 clear-separator">
+			</div>
+		</div>
+		<div class="row">
+			<div class="span7">
+				<p class="section-title">Comments (<%= @comments.size %>) <%= link_to 'Leave a comment', new_article_comment_path(:article_slug => @article.slug, :article_id => @article.id) %>
+					
+					<% if !user_signed_in? %>
+						<small><span class="text-info">(You must be signed in to leave a comment.)</span></small>
+					<% end %>
+					
+					</p>
+				<% if !@comments.blank? %>
+					
+					<% @comments.each do |comment| %>
+						<p><%= comment.text %><br />
+							<small><span class="text-info">Submitted: <%= time_ago_in_words(comment.created_at) %> ago by <%= comment.user.get_name %> </span></small></p>
+							<% if comment != @comments.last %>
+	  								<hr />
+	  						<% end %>
+					<% end %>
+				<% else %>
+					<p>Be the first, <%= link_to 'leave a comment', new_article_comment_path(:article_slug => @article.slug, :article_id => @article.id) %>.</p>
+				<% end %>
+			</div>
 		</div>
 	</div>
+	
 	<div class="span4">
 		<div class="row">
 			<%= image_tag 'AAA_Logo.png' %>

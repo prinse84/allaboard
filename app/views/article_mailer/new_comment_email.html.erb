@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <p>Woohoo! <%= @comment.user.get_name %> has posted a comment for your article - <%= @comment.article.title %> - on the All A-Board Alliance website. Follow the link below to see the comment.</p>
+	<p><%= link_to @comment.article.title, article_url(@comment.article) %></p>
+	
+	<p>&nbsp;</p>
+	<p>Thanks, <br />
+	<p>Your awesome website admin!</p>
+
+  </body>
+</html>
