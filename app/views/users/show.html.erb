@@ -58,9 +58,8 @@
 			<p><span class='lead'>Manage your Account</span></p>
 		</div>
 		<div class="row">
-			<p><small><%= link_to "Update your account information", "#" %> </small><br />
-				<small><%= link_to "Change your password", "#" %></small></p>
-				
+			<p><small><%= link_to "Update your account information", edit_user_registration_path %> </small></p>
+			<p><small><%= link_to "Cancel my account", registration_path(@user), data: { confirm: "Are you sure?" }, method: :delete %>
 		</div>
 	</div>
 </div>

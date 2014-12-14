@@ -67,7 +67,7 @@
 				
 				<% if !@announcements.blank? %>
 					<% @announcements.each do |announcement| %>
-						<p><span class="label label-info">Announcement</span>&nbsp;<%= announcement.text %><br />
+						<p><span class="label label-info">Announcement</span><%= announcement.text.html_safe %>
 						<small><span class="text-info">By: <%= link_to announcement.board.name, board_path(announcement.board.slug) %> | Submitted <%= time_ago_in_words(announcement.created_at) %> ago.</span></small></p>
 						<hr />
 					<% end %>

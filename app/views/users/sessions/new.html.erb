@@ -28,6 +28,11 @@
 						<div class="span6"><%= f.check_box :remember_me %><span class="text-info">Remember me </span></div>
 					</div>
 			  	<% end -%>
+			
+				<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+				  <p class="small"> Forgot your password? <%= link_to "Reset Instructions", new_password_path(resource_name) %></p>
+				<% end -%>
+				
 			  	
 				<div class="row">
 					<div class="span6"><%= f.submit "Sign in", class: "btn btn-primary" %></div>
