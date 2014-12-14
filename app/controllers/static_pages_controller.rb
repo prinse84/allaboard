@@ -46,7 +46,7 @@ class StaticPagesController < ApplicationController
   end
   
   def get_five_most_recent_articles
-    articles = Article.order("created_at DESC").limit(5)
+    articles = Article.where("created_at >= ?",Time.now.last_month).order("created_at DESC").limit(5)
   end
   
 end

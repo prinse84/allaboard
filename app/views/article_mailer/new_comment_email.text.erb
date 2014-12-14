@@ -1,6 +1,6 @@
 Woohoo! <%= @comment.user.get_name %> has posted a comment for your article - <%= @comment.article.title %> - on the All A-Board Alliance website. Follow the link below to see the comment.
 
-<%= link_to @comment.article.title, url_for(@comment.article) %>
+<%= link_to @comment.article.title, url_for(@comment.article.slug) %>
 
 Thanks, 
 Your awesome website admin!
