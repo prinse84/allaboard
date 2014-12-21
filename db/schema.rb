@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141214191022) do
+ActiveRecord::Schema.define(version: 20141221151942) do
 
   create_table "announcements", force: true do |t|
     t.string   "text"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20141214191022) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
-    t.string   "for"
+    t.string   "forr"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

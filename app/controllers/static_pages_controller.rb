@@ -2,7 +2,7 @@ class StaticPagesController < ApplicationController
   layout "home"
   
   def home
-    @events = Event.where("date >= ?", Time.now).order('date').limit(5)
+    @events = Event.where("date >= ?", Date.today).order('date').limit(5)
     @announcements = get_all_announcements_created_over_the_past_month
     @new_boards = get_all_boards_claimed_this_week
     @new_events = get_all_events_created_this_week

@@ -4,11 +4,11 @@ class EventsController < ApplicationController
     if params[:past]
       criteria = Time.now.last_month
     else
-      criteria = Time.now
+      criteria = Date.today
     end
     
     if params[:tag]
-      category = Category.where("name = ? AND for = ?", params[:tag], 'Event').take
+      category = Category.where("name = ? AND forr = ?", params[:tag], 'Event').take
       if !category.blank?
       #if Category.where(name: params[:tag]).exists?
         @events = category.events.where("date >= ?",criteria).paginate(:page => params[:page], :per_page => 20).order('date')
@@ -18,7 +18,7 @@ class EventsController < ApplicationController
     else
       @events = Event.where("date >= ?",criteria).paginate(:page => params[:page], :per_page => 20).order('date')
     end 
-    @categories = Category.where(:for => 'Event').order('name')   
+    @categories = Category.where(:forr => 'Event').order('name')   
   end
 
   def show
@@ -47,7 +47,7 @@ class EventsController < ApplicationController
     @board = Board.find_by(slug: params[:board_slug])
     if !@board.blank?
       @event = Event.new(:board_id => @board.id)
-      @categories = Category.where(:for => 'Event').order('name')
+      @categories = Category.where(:forr => 'Event').order('name')
     else
       flash[:warning] = "The board that owns this event that you are looking for does not exist"
       redirect_to events_path
@@ -62,7 +62,7 @@ class EventsController < ApplicationController
       flash[:success] = "New Event added."  
       redirect_to board_path(@board.slug)
     else
-      @categories = Category.where(:for => 'Event').order('name')
+      @categories = Category.where(:forr => 'Event').order('name')
       render 'new'
     end    
   end
@@ -72,7 +72,7 @@ class EventsController < ApplicationController
     if !@board.blank?    
       @event = Event.find_by(slug: params[:slug])
       if !@event.blank?
-        @categories = Category.where(:for => 'Event').order('name')
+        @categories = Category.where(:forr => 'Event').order('name')
       else
         flash[:warning] = "The event that you are looking for does not exist"
         redirect_to events_path
