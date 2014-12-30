@@ -48,10 +48,10 @@ class BoardsController < ApplicationController
     @board = Board.find_by(slug: params[:slug])
     if !@board.blank?
       @all_users = User.all
-      @categories = Category.where(:for => 'Board').order('name')    
-      if !@board.board_admin?(current_user) 
+      @categories = Category.where(:forr => 'Board').order('name')    
+      if !@board.board_admin?(current_user) && !site_admin_logged_in?
         flash[:notice] = "You are not the admin of this board. Therefore, you cannot edit details."
-        redirect_to board_path(@board)
+        redirect_to board_path(@board.slug)
       end
     else 
       flash[:warning] = "The board you are looking for does not exist"
@@ -82,15 +82,20 @@ class BoardsController < ApplicationController
   end
 
   def destroy
-    Board.find_by(slug: params[:slug]).destroy
+    @board = Board.find_by(slug: params[:slug])
     if !@board.blank?
-      flash[:success] = "The board has been deleted."
-      redirect_to boards_path
+      if !@board.board_admin?(current_user) && !site_admin_logged_in?
+        flash[:notice] = "You are not the admin of this board. Therefore, you cannot delete it."
+        redirect_to board_path(@board.slug)
+      else
+        @board.destroy
+        flash[:success] = "The board has been deleted."
+        redirect_to boards_path
+      end
     else
       flash[:warning] = "The board you are looking for does not exist"
       redirect_to boards_path
     end
-    
   end
   
   def claim
