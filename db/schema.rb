@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141221151942) do
+ActiveRecord::Schema.define(version: 20150312092648) do
 
   create_table "announcements", force: true do |t|
     t.string   "text"
@@ -129,8 +129,8 @@ ActiveRecord::Schema.define(version: 20141221151942) do
   create_table "vendor_reviews", force: true do |t|
     t.string   "title"
     t.float    "rating"
-    t.string   "pros"
-    t.string   "cons"
+    t.text     "pros"
+    t.text     "cons"
     t.integer  "vendor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
