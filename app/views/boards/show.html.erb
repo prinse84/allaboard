@@ -170,6 +170,25 @@
 				<p><small>N/A</small></p>
 			<% end %>
 		</div>
+		
+		<div class="row">
+			<span><strong>Meeting Occurrence:</strong></span>
+			<% if !@board.period_id.blank? %>
+				<p><small><%= @board.period.name %></small></p>
+			<% else %>
+				<p><small>N/A</small></p>
+			<% end %>
+		</div>
+		
+		<div class="row">
+			<span><strong>Founded:</strong></span>
+			<% if !@board.founding_date.blank? %>
+				<p><small><%= @board.founding_date.strftime("%B %d, %Y")  %></small></p>
+			<% else %>
+				<p><small>N/A</small></p>
+			<% end %>
+		</div>
+		
 		<div class="row">
 			<p>&nbsp;</p>
 		</div>

@@ -41,6 +41,7 @@ class BoardsController < ApplicationController
   def new
     @board = Board.new
     @all_users = User.all    
+    @periods = Period.all
     @categories = Category.where(:forr => 'Board').order('name')
   end
   
@@ -168,7 +169,7 @@ class BoardsController < ApplicationController
   
   private
     def board_params
-      params.require(:board).permit(:name, :description, :parent_company, :url, :user_id, {category_ids: []})
+      params.require(:board).permit(:name, :description, :parent_company, :url, :user_id, :period_id, :founding_date, {category_ids: []})
     end
     
     def suggestion_params

@@ -53,6 +53,24 @@
 				</div>
         	</div> 
 		<% end %>
+		
+		<div class="row">
+			<div class="span6"><%= f.label :founding_date, 'When was this board founded?' %></div>
+		</div>
+
+		<div class="row">
+			<div class="span6"><%= f.text_field :founding_date, class: "datepicker", :placeholder=>"2014-03-24" %></div>
+		</div>
+			
+		<div class="row">
+			<div class="span6"><%= f.label 'How often does this board meet?'%></div>
+		</div>
+		<div class="row">
+			<div class="span6">
+				<%= f.collection_select :period_id, Period.all, :id, :name, prompt: true%>
+			</div>
+		</div>
+		
 	
 		<div class="row">	
 			<div class="span6"><%= f.submit "Save", class: "btn btn-primary" %> <%= link_to 'Cancel', boards_path %></div>
