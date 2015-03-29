@@ -6,6 +6,7 @@ class Board < ActiveRecord::Base
     has_many :vendors, dependent: :destroy
     belongs_to :user
     belongs_to :period
+    belongs_to :membership_size
     has_many :announcements, dependent: :destroy
 
     has_and_belongs_to_many :categories

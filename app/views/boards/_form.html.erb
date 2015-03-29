@@ -65,9 +65,20 @@
 		<div class="row">
 			<div class="span6"><%= f.label 'How often does this board meet?'%></div>
 		</div>
+		
 		<div class="row">
 			<div class="span6">
 				<%= f.collection_select :period_id, Period.all, :id, :name, prompt: true%>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="span6"><%= f.label 'What is the membership size of this board?'%></div>
+		</div>
+		
+		<div class="row">
+			<div class="span6">
+				<%= f.collection_select :membership_size_id, MembershipSize.all, :id, :name, prompt: true%>
 			</div>
 		</div>
 		

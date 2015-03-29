@@ -169,7 +169,7 @@ class BoardsController < ApplicationController
   
   private
     def board_params
-      params.require(:board).permit(:name, :description, :parent_company, :url, :user_id, :period_id, :founding_date, {category_ids: []})
+      params.require(:board).permit(:name, :description, :parent_company, :url, :user_id, :period_id, :founding_date, :membership_size_id, {category_ids: []})
     end
     
     def suggestion_params

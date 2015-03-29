@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150325031352) do
+ActiveRecord::Schema.define(version: 20150329131452) do
 
   create_table "announcements", force: true do |t|
     t.text     "text"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20150325031352) do
     t.date     "claim_date"
     t.integer  "period_id"
     t.date     "founding_date"
+    t.integer  "membership_size_id"
   end
 
   create_table "boards_categories", id: false, force: true do |t|
@@ -81,6 +82,12 @@ ActiveRecord::Schema.define(version: 20150325031352) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "slug"
+  end
+
+  create_table "membership_sizes", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "periods", force: true do |t|
