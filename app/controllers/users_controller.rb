@@ -5,7 +5,11 @@ class UsersController < ApplicationController
   before_action :check_user_before_destroy, :only => [:destroy]
 
   def index
-    @users = User.all.paginate(:page => params[:page], :per_page => 20).order('created_at, first_name, last_name')
+    @users = User.all.paginate(:page => params[:page], :per_page => 20).order('created_at DESC, first_name, last_name')    
+    respond_to do |format|
+      format.html
+      format.csv { render text: @users.generate_csv(["first_name", "last_name", "email", "created_at"]) }
+    end
   end
   
   def show

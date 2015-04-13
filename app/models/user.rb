@@ -14,4 +14,14 @@ class User < ActiveRecord::Base
   def get_name
     self.first_name + ' ' + self.last_name
   end
+  
+  def self.generate_csv(fields)
+    CSV.generate do |csv|
+      csv << fields.collect(&:humanize)
+      all.each do |record|
+        csv << record.attributes.values_at(*fields)
+      end
+    end
+  end
+
 end
