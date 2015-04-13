@@ -18,6 +18,7 @@
           <tr>
             <th>Name</th>
             <th>Email</th>
+            <th>Date Joined</th>
             <th>Boards Owned</th>
             <th>Administrator Status</th>
           </tr>
@@ -27,6 +28,7 @@
             <tr>
               <td><%= link_to user.get_name, user_path(user) %></td>
               <td><%= user.email %></td>
+              <td><%= user.created_at.strftime("%b %d, %Y")  %></td>
               <td><%= user.boards.count %></td>
               <td>
                 <% if user.admin %>
