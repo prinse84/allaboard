@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @users = User.all.paginate(:page => params[:page], :per_page => 20).order('created_at DESC, first_name, last_name')    
     respond_to do |format|
       format.html
-      format.csv { render text: @users.generate_csv(["first_name", "last_name", "email", "created_at"]) }
+      format.csv { render text: User.all.generate_csv(["first_name", "last_name", "email", "created_at"]) }
     end
   end
   
