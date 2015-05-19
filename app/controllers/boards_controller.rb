@@ -67,6 +67,7 @@ class BoardsController < ApplicationController
       flash[:success] = "Board added to directory."
       redirect_to board_path(@board.slug)
     else
+      @categories = Category.where(:forr => 'Board').order('name')      
       render 'new'
     end
   end
