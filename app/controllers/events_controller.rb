@@ -25,6 +25,8 @@ class EventsController < ApplicationController
   def show
     # Check to see that a valid event was sent in. If not, redirect to events index page
     @event = Event.find_by(slug: params[:slug])
+    @categories = @event.categories.order('name')
+    
     if !@event.blank?
       # A valid event was passed via :slug
       # Identify the board that created this event.
