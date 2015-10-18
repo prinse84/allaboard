@@ -49,7 +49,7 @@
 	</div>
 	<div class="span4">
 		<div class="row">
-			<h5>Other events by this board</h5>
+			<h5>Other events by this board (Past 30 Days)</h5>
 			<% if !@other_events_by_board.blank? %>
 				<% @other_events_by_board.each do |other_event_by_board| %>
 			 		<p><%= link_to other_event_by_board.name, event_path(other_event_by_board.slug) %></p>
@@ -59,7 +59,7 @@
 			<% end %>
 		</div>
 		<div class="row">
-			<h5>Other events like this</h5>
+			<h5>Other events like this (Past 30 Days)</h5>
 			<% if !@other_events_by_categories.blank? %>
 				<% @other_events_by_categories.each do |other_event_by_categories| %>
 			 		<p><%= link_to other_event_by_categories.name, event_path(other_event_by_categories.slug) %></p>

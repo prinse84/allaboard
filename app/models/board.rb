@@ -20,6 +20,12 @@ class Board < ActiveRecord::Base
       reviews[index]
     end
     
+    def get_previous_events_past_6_months
+      # Grab all events for this board from the past 6 months.
+      # Order by date, ascending
+      self.events.where(date: 6.months.ago..Date.today).order('date')
+    end
+    
     def get_average_rating
       self.reviews.sum(:rating) / self.reviews.size
     end

@@ -21,22 +21,21 @@ class EventsController < ApplicationController
     @categories = Category.where(:forr => 'Event').order('name')   
   end
 
+  # Show action. This will respond to /events/:slug
   def show
+    # Check to see that a valid event was sent in. If not, redirect to events index page
     @event = Event.find_by(slug: params[:slug])
     if !@event.blank?
-      @board = @event.board
-      @categories = @event.categories.order('name')   
-      @other_events_by_board = @board.events.where.not(id: @event.id).order('date')
-      @other_events_by_categories = []
-      if !@categories.blank?
-        @categories.each do |category|
-          events = category.events.where.not(id: @event.id).order('date')
-          events.each do |event|
-            @other_events_by_categories << event
-          end         
-        end
-        @other_events_by_categories = @other_events_by_categories.uniq
-      end
+      # A valid event was passed via :slug
+      # Identify the board that created this event.
+      @board = @event.board   
+      
+      # Get previous events by this board over the past six months. 
+      @other_events_by_board = @board.get_previous_events_past_6_months
+
+      # Get other events that are tagged similar to this one. Show only the ones
+      # from 30 days ago
+      @other_events_by_categories = @event.get_other_events_tagged_like_this_one_from_30days
     else
       flash[:warning] = "The event you are looking for does not exist"
       redirect_to events_path

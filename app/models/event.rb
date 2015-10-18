@@ -7,6 +7,26 @@ class Event < ActiveRecord::Base
     before_validation :smart_add_url_protocol, :create_slug
     
     
+    def get_other_events_tagged_like_this_one_from_30days
+      # Identify all categories related this event. Fyi, this is the 'tag' for the event
+      categories = self.categories.order('name')      
+      
+      # Assuming this event was tagged with a category(ies)
+      # For each category, grab all the events from past 30 days into an array
+      # return only the unique set
+      other_events_by_categories = []
+      if !categories.blank?
+        categories.each do |category|
+          events = category.events.where(date: 30.days.ago..Date.today)
+          events.each do |event|
+            other_events_by_categories << event
+          end         
+        end
+        other_events_by_categories = other_events_by_categories.uniq
+      end
+      return other_events_by_categories
+    end
+    
     def formatted_date
       if !self.start_time.nil? && !self.end_time.nil?
         return self.date.strftime("%B %d, %Y") + " from " + self.start_time.strftime("%I:%M%p") + " to " + self.end_time.strftime("%I:%M%p")
