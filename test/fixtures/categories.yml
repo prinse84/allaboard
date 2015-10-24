@@ -1,9 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  for: MyString
+category_one:
+  name: baller
+  forr: Event
 
-two:
-  name: MyString
-  for: MyString
+category_two:
+  name: baller
+  forr: Board
+  
+category_three:
+  name: even more baller
+  forr: Event

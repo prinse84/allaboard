@@ -1,3 +1,5 @@
+<% provide(:title, @event.name + " by " + @event.board.name + ":") %>
+
 <div class="row">
 	<div class="span7 mycontent-left">
 		
@@ -17,8 +19,8 @@
 					 None
 					<% end %>
 				</small><br />
-				<% if current_user && @board.board_admin?(current_user) %>
-					<span class='text-info'><small><%= link_to "Edit", edit_board_event_path(@board.slug, @event.slug) %> | <%= link_to 'Delete', board_event_path(@board.slug, @event.slug), method: :delete, data: { confirm: "Do you want to delete this event?" } %> </small>
+				<% if current_user && @event.board.board_admin?(current_user) %>
+					<span class='text-info'><small><%= link_to "Edit", edit_board_event_path(@event.board.slug, @event.slug) %> | <%= link_to 'Delete', board_event_path(@event.board.slug, @event.slug), method: :delete, data: { confirm: "Do you want to delete this event?" } %> </small>
 					</span>
 				<% end %>	
 			</div>

@@ -6,7 +6,7 @@ ruby '2.0.0'
 gem 'rails', '4.0.2'
 gem 'bootstrap-sass', '2.3.2.0'
 gem 'sprockets', '2.11.0'
-gem 'faker', '1.1.2'
+#gem 'faker', '1.1.2'
 gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9' 
 gem 'devise'
@@ -14,10 +14,22 @@ gem 'mail_form'
 gem 'ckeditor'
 gem 'actionview-encoded_mail_to'
 
-group :development do 
+group :development, :test do 
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3', '1.3.8'
-  gem "better_errors"
+  gem 'faker'
+  gem 'better_errors'
+  
+  # guard testing
+  gem 'guard'
+  gem 'guard-minitest' # https://github.com/guard/guard-minitest
+  gem 'minitest-colorize'
+  gem 'terminal-notifier'
+  gem 'terminal-notifier-guard'
+end
+
+group :test do
+  gem 'ruby-prof'
 end
 
 group :production do

@@ -1,43 +1,49 @@
 class EventsController < ApplicationController
   
+  # index action. This will respone to /events
   def index
-    if params[:past]
-      criteria = Time.now.last_month
-    else
-      criteria = Date.today
-    end
+     # set a time criteria for events
+     if params[:past]
+       criteria = Time.now.last_month
+     else
+       criteria = Date.today
+     end
     
-    if params[:tag]
-      category = Category.where("name = ? AND forr = ?", params[:tag], 'Event').take
-      if !category.blank?
-      #if Category.where(name: params[:tag]).exists?
-        @events = category.events.where("date >= ?",criteria).paginate(:page => params[:page], :per_page => 20).order('date')
-      else 
-        @events = Event.where("date >= ?", criteria).paginate(:page => params[:page], :per_page => 20).order('date')
-      end  
-    else
-      @events = Event.where("date >= ?",criteria).paginate(:page => params[:page], :per_page => 20).order('date')
-    end 
-    @categories = Category.where(:forr => 'Event').order('name')   
+     # return events for a specific time frame and for certain categories
+     # if the :tag parameter is passed in the URL grab the tag (category) and 
+     # show only events from that category within the selected date range
+     if params[:tag]
+       category = Category.where("name = ? AND forr = ?", params[:tag], 'Event').take
+       if !category.blank?
+         @events = category.events.where("date >= ?",criteria).paginate(:page => params[:page], :per_page => 20).order('date')
+       else 
+         @events = Event.where("date >= ?", criteria).paginate(:page => params[:page], :per_page => 20).order('date')
+       end  
+     else
+       # show events across all categories
+       @events = Event.where("date >= ?",criteria).paginate(:page => params[:page], :per_page => 20).order('date')
+     end 
+     
+     @categories = get_categories('Event')
   end
 
   # Show action. This will respond to /events/:slug
   def show
     # Check to see that a valid event was sent in. If not, redirect to events index page
     @event = Event.find_by(slug: params[:slug])
-    @categories = @event.categories.order('name')
     
     if !@event.blank?
       # A valid event was passed via :slug
-      # Identify the board that created this event.
-      @board = @event.board   
+      
+      # get all categories (tags) associated with this event
+      @categories = @event.categories.order('name')
       
       # Get previous events by this board over the past six months. 
-      @other_events_by_board = @board.get_previous_events_past_6_months
+      @other_events_by_board = @event.board.get_previous_events_past_6_months
 
       # Get other events that are tagged similar to this one. Show only the ones
       # from 30 days ago
-      @other_events_by_categories = @event.get_other_events_tagged_like_this_one_from_30days
+      @other_events_by_categories = @event.get_other_events_tagged_like_this_one(Time.now.last_month)
     else
       flash[:warning] = "The event you are looking for does not exist"
       redirect_to events_path

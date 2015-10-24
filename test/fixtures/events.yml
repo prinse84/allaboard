@@ -1,23 +1,62 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  description: MyText
-  date: 2014-07-06
+  name: Random Event One
+  description: This is a test event
+  date: <%= Time.now - 1.weeks %>
   start_time: 2014-07-06 18:44:11
   end_time: 2014-07-06 18:44:11
-  location: MyString
-  location_address: MyString
-  event_url: MyString
-  board_id: 1
-
+  location: ACME Ballroom
+  location_address: 123 Main Street
+  board: Aboard
+  slug: random-event-one
+    
 two:
-  name: MyString
-  description: MyText
-  date: 2014-07-06
+  name: Random Event Two
+  description: This is a test event
+  date: <%= Time.now %>
   start_time: 2014-07-06 18:44:11
   end_time: 2014-07-06 18:44:11
-  location: MyString
-  location_address: MyString
-  event_url: MyString
-  board_id: 1
+  location: ACME Ballroom
+  location_address: 123 Main Street
+  board: Aboard
+  slug: random-event-two
+  categories: category_one  
+  
+three:
+  name: Random Event Three
+  description: This is a test event
+  date: <%= Time.now + 1.week %>
+  start_time: 2014-07-06 18:44:11
+  end_time: 2014-07-06 18:44:11
+  location: ACME Ballroom
+  location_address: 123 Main Street
+  board: Aboard
+  slug: random-event-three
+  categories: category_three  
+  
+# Generate 10 events in the same category on the same day
+<% 1.upto(10) do |i| %>
+event_<%= i %>:
+    name: Random_<%= i %>
+    description: Random Event_<%= i %>
+    date: <%= Time.now - 2.weeks %>
+    start_time: 2014-07-06 18:00:00
+    location: ACME Ballroom
+    board: Aboard
+    categories: category_three 
+    slug: random-<%= i %>
+<% end %>
+
+# Generate 10 events in the same category from 5 weeks ago
+<% 11.upto(20) do |i| %>
+event_<%= i %>:
+    name: Random5w_<%= i %>
+    description: Random Event5w_<%= i %>
+    date: <%= Time.now - 3.weeks %>
+    start_time: 2014-07-06 18:00:00
+    location: ACME Ballroom
+    board: Aboard
+    categories: category_one  
+    slug: random-<%= i %>
+<% end %>

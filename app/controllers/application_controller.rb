@@ -19,5 +19,8 @@ class ApplicationController < ActionController::Base
       end
     end
     
+    def get_categories(type)
+      Category.where(:forr => type).order('name')   
+    end
     
 end
