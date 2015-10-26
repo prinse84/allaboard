@@ -30,9 +30,7 @@ class EventsController < ApplicationController
   # Show action. This will respond to /events/:slug
   def show
     # Check to see that a valid event was sent in. If not, redirect to events index page
-    @event = Event.find_by(slug: params[:slug])
-    
-    if !@event.blank?
+    if @event = Event.find_by(slug: params[:slug])
       # A valid event was passed via :slug
       
       # get all categories (tags) associated with this event

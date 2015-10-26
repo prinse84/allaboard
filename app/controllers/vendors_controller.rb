@@ -8,10 +8,17 @@ class VendorsController < ApplicationController
     @vendors = Vendor.all.paginate(:page => params[:page], :per_page => 20).order('name')
   end
   
+  # Show action. This will respond to /vendors/:id
   def show
-    @vendor = Vendor.find(params[:id])
-    @board = Board.find(@vendor.board_id)
-    @reviews = @vendor.vendor_reviews.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
+    # Check to see that a valid vendor id was sent in. If not, redirect to vendors index page
+    if @vendor = Vendor.find_by(id: params[:id])
+      # A valid vendor was passed via :id
+      # get all reviews associated with this vendor
+      @reviews = @vendor.vendor_reviews.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
+    else
+      flash[:warning] = "The vendor you are looking for does not exist"
+      redirect_to vendors_path
+    end
   end
   
   def new

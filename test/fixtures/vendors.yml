@@ -7,7 +7,7 @@ one:
   email: MyString
   contact: MyString
   outdoor: 
-  board_id: 1
+  board: Aboard
 
 two:
   name: MyString
@@ -16,4 +16,4 @@ two:
   email: MyString
   contact: MyString
   outdoor: 
-  board_id: 1
+  board: Aboard
