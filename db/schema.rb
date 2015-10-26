@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150329131452) do
+ActiveRecord::Schema.define(version: 20151026164058) do
 
   create_table "announcements", force: true do |t|
     t.text     "text"
@@ -85,6 +85,13 @@ ActiveRecord::Schema.define(version: 20150329131452) do
   end
 
   create_table "membership_sizes", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "parent_organizations", force: true do |t|
+    t.string   "ein"
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
