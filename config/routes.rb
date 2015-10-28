@@ -13,6 +13,7 @@ Allaboard::Application.routes.draw do
   match '/interested', to: 'static_pages#interested_member', via: 'get'  
 
   resources :users
+  resources :parent_organizations
   resources :reviews, only: [:new, :create]
   resources :events, only: [:index, :show], param: :slug 
   resources :reviews

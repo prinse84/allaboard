@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   
-  # index action. This will respone to /events
+  # index action. This will respond to /events
   def index
      # set a time criteria for events
      if params[:past]

@@ -1,0 +1,9 @@
+<%= form_for @parent_organization do |f| %>
+
+<%= f.text_field :name, :placeholder=>"Ex: A-Board Launch Party" %>
+<%= f.text_field :ein, :placeholder=>"Ex: A-Board Launch Party" %>
+
+	<div class="row">	
+		<div class="span6"><%= f.submit "Save", class: "btn btn-primary" %>&nbsp;<%= link_to 'Cancel', parent_organizations_path %></div>
+	</div>
+<% end %>

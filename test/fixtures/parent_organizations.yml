@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  ein: MyString
+  ein: '123456789'
   name: MyString
 
 two:
-  ein: MyString
+  ein: '987654321'
   name: MyString

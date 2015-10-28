@@ -6,11 +6,15 @@
 #
 one: 
     email: user@example.com
+    first_name: User
+    last_name: One
 
 two: 
     email: user1@example.com
 
 admin:
     email: admin@example.com
+    first_name: Admin
+    last_name: User
     admin: true    
 
