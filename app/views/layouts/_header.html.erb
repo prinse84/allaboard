@@ -17,8 +17,9 @@
 									<li><%= link_to "My Account", user_path(current_user.id)%></li>
 									<% if site_admin_logged_in? %>
 										<li class="divider"></li>
-										<li><%= link_to "Manage Categories", categories_path%></li>										
-										<li><%= link_to "Manage Users", users_path%></li>
+										<li><%= link_to "Categories", categories_path%></li>										
+										<li><%= link_to "Parent Organizations", parent_organizations_path%></li>
+										<li><%= link_to "Users", users_path%></li>										
 				                    <% end %>				
 									<li class="divider"></li>
 									<li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>

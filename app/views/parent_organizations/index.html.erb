@@ -1,1 +1,54 @@
 <% provide(:title, "Non-profit organizations directory on") %>
+
+<div class="row">
+	<div class="span8 mycontent-left">
+		<div class="row">
+			<div class="span8 content-header">
+				<span class="lead"><strong>Chicago Non-profit Organizations directory</strong></span>
+				<p>This is a listing of all Non-profit organizations in the Chicagoland area.</p>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="span8">
+				<% if !@parent_organizations.blank? %>
+					<table class="table table-hover">
+						<thead>
+			    			<tr>
+			      				<th>EIN</th>				
+			      				<th>Organization Name</th>	
+								<th></th>
+			    			</tr>
+						</thead>
+						<tbody>
+							<% @parent_organizations.each do |parent_organization| %>
+							<tr>
+								<td width="20%"><%= parent_organization.formatted_ein %></td>							
+								<td width="60%"><%= link_to parent_organization.name, parent_organization_path(parent_organization) %>								</td>
+								<td width="20%">&nbsp;</td>
+							</tr>
+							<% end %>
+						</tbody>
+					</table>
+				<% else %>
+					<p>There are no parent organizations to show. <%= link_to 'Add One', new_parent_organization_path%></p>
+				<% end %>
+			</div>
+		</div>
+
+		<div class="row">	
+			<div class="span8">
+				<%= will_paginate %>
+			</div>
+		</div>
+	</div>
+	<div class="span3">
+		<div class="row">
+			<%= image_tag 'AAA_Logo.png' %>
+			<p>&nbsp;</p>
+			<% if site_admin_logged_in? %>
+				<%= button_to "Add an Organization", new_parent_organization_path, class: "btn btn-primary", method: 'get' %>
+			<% end %>
+		</div>
+	</div>
+</div>

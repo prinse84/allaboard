@@ -1,9 +1,25 @@
 <%= form_for @parent_organization do |f| %>
+	<div class="form-group">
+		<%= render 'error_messages' %>
 
-<%= f.text_field :name, :placeholder=>"Ex: A-Board Launch Party" %>
-<%= f.text_field :ein, :placeholder=>"Ex: A-Board Launch Party" %>
+		<div class="row">
+			<div class="span6"><%= f.label :name, 'Organization Name'%></div>
+		</div>
 
-	<div class="row">	
-		<div class="span6"><%= f.submit "Save", class: "btn btn-primary" %>&nbsp;<%= link_to 'Cancel', parent_organizations_path %></div>
+		<div class="row">		
+			<div class="span6"><%= f.text_field :name, :placeholder=>"ACME Organization" %></div>
+		</div>	
+		
+		<div class="row">
+			<div class="span6"><%= f.label :ein, 'Organization EIN'%></div>
+		</div>
+
+		<div class="row">		
+			<div class="span6"><%= f.text_field :ein, :placeholder=>"123456789" %></div>
+		</div>
+		
+		<div class="row">	
+			<div class="span6"><%= f.submit "Save", class: "btn btn-primary" %> <%= link_to 'Cancel', parent_organizations_path %></div>
+		</div>
 	</div>
 <% end %>
