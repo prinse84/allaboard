@@ -67,7 +67,7 @@ class ParentOrganizationsControllerTest < ActionController::TestCase
   
   test "should create a new organization" do
     assert_difference('ParentOrganization.count' ) do
-      post :create, parent_organization: { name: @parent.name, ein: @parent.ein }
+      post :create, parent_organization: { name: @parent.name, ein: '987654321' }
     end
     assert_equal "New organization created.", flash[:success]
     assert_redirected_to parent_organization_path(assigns(:parent_organization))
@@ -80,6 +80,17 @@ class ParentOrganizationsControllerTest < ActionController::TestCase
     assert_equal "An error occurred.", flash[:warning]
     assert_not_nil assigns(:parent_organization), "Parent organization object not gerenated for new page"    
     assert_template 'new'
+  end
+  
+  test "should import a list of organizations" do
+    csv_data = "1 Fur 1 Foundation,465204545
+    11 10 02 Foundation,364240225
+    1261 Foundation,364018186"
+    assert_difference('ParentOrganization.count',3 ) do
+      post :import, organizations: csv_data
+    end
+    assert_equal "Organizations imported.", flash[:success]
+    assert_redirected_to parent_organizations_path
   end
   
   test "should redirect to login page when viewing the edit page whilst not authenticated" do
@@ -105,7 +116,7 @@ class ParentOrganizationsControllerTest < ActionController::TestCase
   end
   
   test "should update an organization" do
-    patch :update, id: @parent, parent_organization: { name: @parent.name, ein: @parent.ein }
+    patch :update, id: @parent, parent_organization: { name: @parent.name, ein: '034241655' }
     assert_equal "Organization details updated.", flash[:success]
     assert_redirected_to parent_organization_path(assigns(:parent_organization))
   end

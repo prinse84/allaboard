@@ -4,10 +4,18 @@
 	<div class="span8 mycontent-left">
 		<div class="row">
 			<div class="span8 content-header">
-				<span class="lead"><strong>Add an Organization to the directory</strong></span>
+				<span class="lead"><strong>Add Organizations to the directory</strong></span>
 			</div>
 		</div>
-
+		
+		<div class="row">
+			<div class="span7">				
+				<p class="section-title">Add an individual new organization</p>
+				<p> Use the form below to add a new organization. Note that both fields are required</p>
+				<%= render 'form'%>
+			</div>
+		</div>
+		
 		<div class="row">
 			<div class="span7 clear-separator">
 			</div>
@@ -15,9 +23,13 @@
 		
 		<div class="row">
 			<div class="span7">
-				<%= render 'form'%>
+				<p class="section-title">Import a list of organizations</p>
+				<p> Copy and Paste a list of organizations onto the form below. Use a new line for each entry. Entries should be formatted as: <br />
+					<i>Organization Name, EIN</i></p>
+				<%= render 'import_form'%>
 			</div>
 		</div>
+
 	</div>
 	
 	<div class="span3">

@@ -45,6 +45,15 @@ class ParentOrganizationsController < ApplicationController
     end
   end
   
+  def import
+    if ParentOrganization.import(parent_organization_import_params)
+      flash[:success] = "Organizations imported."
+      redirect_to parent_organizations_path
+    else
+      render 'new'
+    end
+  end
+  
   def edit
     # only show page if user is an admin
     if site_admin_logged_in?
@@ -76,4 +85,9 @@ class ParentOrganizationsController < ApplicationController
   def parent_organization_params
     params.require(:parent_organization).permit(:name, :ein)
   end
+  
+  def parent_organization_import_params
+    params.require(:organizations)
+  end
+
 end
