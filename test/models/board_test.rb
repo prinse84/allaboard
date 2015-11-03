@@ -52,7 +52,13 @@ class BoardTest < ActiveSupport::TestCase
   test "should not add 'http' prefix to URL for event url when event_url blank but not nil" do
     @board.url = ''
     @board.save
-    assert_not_equal 'https://', @board.url, "The 'http' prefix was added to a board url that was blank"
+    assert_not_equal 'http://', @board.url, "The 'http' prefix was added to a board url that was blank"
+  end
+
+  test "should not add 'http' prefix to URL for event url when event_url is nil" do
+    @board.url = nil
+    @board.save
+    assert_not_equal 'http://', @board.url, "The 'http' prefix was added to a board url that was nil"
   end
 
   test "should not save board without a parent organization id" do

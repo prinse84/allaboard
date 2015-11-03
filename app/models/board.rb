@@ -80,7 +80,7 @@ class Board < ActiveRecord::Base
   # makes assumption that all URLs will be https instead of https
   # code snippet borrowed from the interwebs
   def add_http_to_url
-    if !self.url.nil?
+    if !self.url.blank?
       unless self.url[/\Ahttp:\/\//] || self.url[/\Ahttps:\/\//]
         self.url = "http://#{self.url}"
       end

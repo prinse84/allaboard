@@ -1,29 +1,29 @@
 class Event < ActiveRecord::Base
-  
-  # perform validations 
-  validates :name, presence: true, length: { minimum: 3 } 
+
+  # perform validations
+  validates :name, presence: true, length: { minimum: 3 }
   validates :description, presence: true
   validates :date, presence: true
   validates :location, presence: true
   validates :start_time, presence: true
   validates :slug, uniqueness: { case_sensitive: false }
   validates :board_id, presence: true
-  
+
   before_validation :create_slug, :add_http_to_url
 
   # define associations
-  belongs_to :board    
+  belongs_to :board
   has_and_belongs_to_many :categories
-  
+
   # public functions
-  
+
   # helper function to return other events in the same category as this one
-  # will return as many as necessary depending on the criteria parameter  
+  # will return as many as necessary depending on the criteria parameter
   # Note: function will not include current event even if event falls within the criteria period
   def get_other_events_tagged_like_this_one(criteria)
     # Identify all categories related this event. Fyi, this is the 'tag' for the event
-    categories = self.categories.order('name')      
-      
+    categories = self.categories.order('name')
+
     # Assuming this event was tagged with a category(ies)
     # For each category, grab all the events based on criteria (for example last month) into an array
     # return only the unique set
@@ -33,15 +33,15 @@ class Event < ActiveRecord::Base
         events = category.events.where("date >= ? and date <= ? and event_id != ?", criteria, Time.now, self.id)
         events.each do |event|
           other_events_by_categories << event
-        end         
+        end
       end
       other_events_by_categories = other_events_by_categories.uniq
     end
     return other_events_by_categories
   end
 
-  # helper function to return a formatted date in views. 
-  # function will return a formatted date depending on the presence of start_time and/or end_time    
+  # helper function to return a formatted date in views.
+  # function will return a formatted date depending on the presence of start_time and/or end_time
   def formatted_date
     if !self.start_time.nil? && !self.end_time.nil?
       return self.date.strftime("%B %d, %Y") + " from " + self.start_time.strftime("%I:%M%p") + " to " + self.end_time.strftime("%I:%M%p")
@@ -49,9 +49,9 @@ class Event < ActiveRecord::Base
       return self.date.strftime("%B %d, %Y") + " starting at " + self.start_time.strftime("%I:%M%p")
     else
       return self.date.strftime("%B %d, %Y")
-    end 
+    end
   end
-    
+
   private
 
   # function to create slug (i.e. parameterized value of name column. This will be used for unique URLs)
@@ -70,18 +70,18 @@ class Event < ActiveRecord::Base
     end
     self.slug = slug
   end
-    
+
   protected
-  
+
   # function to add the 'http' prefix to event urls that do not have this value
   # makes assumption that all URLs will be https instead of https
   # code snippet borrowed from the interwebs
   def add_http_to_url
-    if !self.event_url.nil?
+    if !self.event_url.blank?
       unless self.event_url[/\Ahttp:\/\//] || self.event_url[/\Ahttps:\/\//]
         self.event_url = "http://#{self.event_url}"
       end
     end
   end
-  
+
 end

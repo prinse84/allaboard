@@ -82,7 +82,13 @@ class EventTest < ActiveSupport::TestCase
   test "should not add 'http' prefix to URL for event url when event_url blank but not nil" do
     @event.event_url = ''
     @event.save
-    assert_not_equal 'https://', @event.event_url, "The 'http' prefix was added to an event_url that was blank"
+    assert_not_equal 'http://', @event.event_url, "The 'http' prefix was added to an event_url that was blank"
+  end
+
+  test "should not add 'http' prefix to URL for event url when event_url is nil" do
+    @event.event_url = nil
+    @event.save
+    assert_not_equal 'http://', @event.event_url, "The 'http' prefix was added to an event_url that was nil"
   end
 
   test "should return a formatted date and start time for an event" do

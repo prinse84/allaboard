@@ -79,6 +79,9 @@ GEM
     guard-minitest (2.4.4)
       guard-compat (~> 1.2)
       minitest (>= 3.0)
+    has_scope (0.6.0)
+      actionpack (>= 3.2, < 5)
+      activesupport (>= 3.2, < 5)
     hike (1.2.3)
     i18n (0.7.0)
     jbuilder (1.5.3)
@@ -201,6 +204,7 @@ DEPENDENCIES
   faker
   guard
   guard-minitest
+  has_scope
   jbuilder (~> 1.2)
   jquery-rails
   jquery-ui-rails

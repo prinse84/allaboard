@@ -7,6 +7,9 @@ class ParentOrganization < ActiveRecord::Base
   # define associations
   has_many :boards
 
+  # scopes (stored queries) thanks for 'has_scope' gem
+  scope :by_name, -> name { where("lower(name) like ?", "%#{name}%") }
+
 
   # public functions
 

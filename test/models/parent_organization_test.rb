@@ -6,6 +6,10 @@ class ParentOrganizationTest < ActiveSupport::TestCase
     @parent = parent_organizations(:one)
   end
 
+  # called after every single test
+  def teardown
+  end
+
   test "should not save a parent organization without a name" do
     @parent.name = nil
     assert_not @parent.save, "The parent organization was saved without a name"
@@ -67,6 +71,13 @@ class ParentOrganizationTest < ActiveSupport::TestCase
 
   test "should be related to a board" do
     skip ("Test TBD")
+  end
+
+  test "should be searchable by name" do
+    @parent.name = 'associate board alliance'
+    @parent.ein = '123987626'
+    @parent.save
+    assert_equal 1, ParentOrganization.by_name("board").count, "Query by name did not return the same value"
   end
 
 end
