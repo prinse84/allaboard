@@ -31,7 +31,7 @@
 						</tbody>
 					</table>
 				<% else %>
-					<p>There are no parent organizations to show. <%= link_to 'Add One', new_parent_organization_path%></p>
+					<p>There are no parent organizations to show. <%= link_to 'Add one', new_parent_organization_path%></p>
 				<% end %>
 			</div>
 		</div>
@@ -46,9 +46,10 @@
 		<div class="row">
 			<%= image_tag 'AAA_Logo.png' %>
 			<p>&nbsp;</p>
-			<% if site_admin_logged_in? %>
-				<%= button_to "Add an Organization", new_parent_organization_path, class: "btn btn-primary", method: 'get' %>
-			<% end %>
+			<span><strong>Add Organizations</strong></span>
+			<p><small>You can add organizations to the directory. 
+				<%= link_to 'Click here.', new_parent_organization_path %></small>
+			</p>
 		</div>
 	</div>
 </div>

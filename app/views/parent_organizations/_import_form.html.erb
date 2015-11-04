@@ -1,0 +1,13 @@
+<%= form_tag import_parent_organizations_path do %>
+	<div class="form-group">
+
+		<div class="row">		
+			<div class="span6"><%= text_area_tag :organizations, "organization name, 123456789", :rows=>15, :class=>'input-block-level', :autofocus=> true %>
+			</div>
+		</div>
+		
+		<div class="row">	
+			<div class="span6"><%= submit_tag "Import", class: "btn btn-primary" %></div>
+		</div>
+	</div>
+<% end %>

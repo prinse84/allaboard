@@ -20,6 +20,5 @@
 //= require bootstrap-carousel
 //= reqiure bootstrap-transition
 //= require ckeditor/init
+//= require select2
 //= require_tree .
-
-

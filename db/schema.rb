@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151026164058) do
+ActiveRecord::Schema.define(version: 20151102213758) do
 
   create_table "announcements", force: true do |t|
     t.text     "text"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20151026164058) do
     t.integer  "period_id"
     t.date     "founding_date"
     t.integer  "membership_size_id"
+    t.integer  "parent_organization_id"
   end
 
   create_table "boards_categories", id: false, force: true do |t|
