@@ -12,7 +12,8 @@ gem 'devise'
 gem 'mail_form'
 gem 'ckeditor'
 gem 'actionview-encoded_mail_to'
-gem 'has_scope'
+gem 'has_scope' # to help with model searches
+gem 'select2-rails' # to help with dropdown searches
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
