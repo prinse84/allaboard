@@ -66,10 +66,10 @@ class Board < ActiveRecord::Base
     if !self.name.nil?
       slug = name.parameterize
       # look for other slugs with the same name
-      s = Board.where(slug: self.slug)
-      if !s.nil?
-        slug = slug + "-" + Time.now.strftime("%Y%m%d")
-      end
+      #s = Board.where(slug: slug)
+      #if !s.nil?
+      #  slug = slug + "-" + Time.now.strftime("%Y%m%d")
+      #end
       self.slug = slug
     end
   end
