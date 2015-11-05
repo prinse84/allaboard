@@ -28,7 +28,16 @@ class BoardTest < ActiveSupport::TestCase
     other_board.name = 'Test Board'
     assert_not other_board.save, "Another board was saved with the same slug value"
     sample_slug = 'test-board' + "-" + Time.now.strftime("%Y%m%d")
-    assert_equal sample_slug, other_board.slug, "A unique slug value was not created for a duplicate titled event"
+    assert_equal sample_slug, other_board.slug, "A unique slug value was not created for a duplicate named board"
+  end
+
+  test "should not update slug value if name of board does not change " do
+    skip ("test tbd")
+    @board.name = 'Test Board'
+    @board.save
+    original_slug_value = @board.slug
+    @board.update_attribute(:name, 'Test Board')
+    assert_equal original_slug_value, @board.slug, "The slug name was changed"
   end
 
   test "should add 'http' prefix to URL for board url when url is populated but the prefix is not present" do
