@@ -6,17 +6,22 @@
 			<div class="span8 content-header">
 				<span class="lead"><strong>Associate Boards Directory</strong></span>
 				<p>This is intended to be <strong>a community driven directory of Associate Boards across Chicago</strong>. This directory is curated by the All A-Board Alliance steering committee. This directory will become increasingly useful as more associate boards are added. So, if you know of (or are part of) an associate board, or any other sort of non-governing board and would like to see your board added, please <%= link_to "tell us about it", boards_suggest_path %>.</p>
+				<% if site_admin_logged_in? %>
+					<p>
+						Download:	<%= link_to "CSV", boards_path(format: "csv") %>
+					</p>
+				<% end %>
 			</div>
-		</div>	
+		</div>
 		<div class="row">
 			<div class="span8">
-				<% if !@boards.blank? %>		
-					<table class="table table-hover">		
+				<% if !@boards.blank? %>
+					<table class="table table-hover">
 						<thead>
 		    				<tr>
 		      					<th><%= sortable "name" %></th>
 		      					<th>Contact</th>
-								<th>Tags</th>		
+								<th>Tags</th>
 		    				</tr>
 						</thead>
 						<tbody>
@@ -49,8 +54,8 @@
 				<% end %>
 			</div>
 		</div>
-		
-		<div class="row">	
+
+		<div class="row">
 			<div class="span8">
 				<%= will_paginate %>
 			</div>
@@ -58,7 +63,7 @@
 	</div>
 	<div class="span3">
 		<div class="row">
-			
+
 			<%= image_tag 'AAA_Logo.png' %>
 			<p>&nbsp;</p>
 			<p><strong>Filter Results</strong></p>
@@ -73,7 +78,7 @@
 				<%= button_to "Add a Board", new_board_path, class: "btn btn-primary", method: 'get' %>
 			<% end %>
 		</div>
-		
+
 		<div class="row">
 		</div>
 	</div>

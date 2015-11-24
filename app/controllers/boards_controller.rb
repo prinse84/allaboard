@@ -5,7 +5,6 @@ class BoardsController < ApplicationController
 
   def index
     if params[:tag]
-      #category = Category.find_by(name: params[:tag])
       category = Category.where("name = ? AND forr = ?", tag_param, 'Board').take
         if !category.blank?
           @boards = category.boards.paginate(:page => params[:page], :per_page => 20).order(sort_column + ' ' + sort_direction)
@@ -20,6 +19,11 @@ class BoardsController < ApplicationController
     ids = Review.pluck(:board_id).shuffle[0]
     @board_reviews = Board.where(id: ids)
     @categories = Category.where(:forr => 'Board').order('name')
+
+    respond_to do |format|
+      format.html
+       format.csv { render text: Board.all.generate_csv(["name", "created_at", "first_name", "last_name", "email"]) }      
+    end
   end
 
   def show

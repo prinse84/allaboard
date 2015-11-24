@@ -58,6 +58,23 @@ class Board < ActiveRecord::Base
     end
   end
 
+  # helper function to enable CSV output
+  # same function is available for User model
+  def self.generate_csv(fields)
+    CSV.generate do |csv|
+      csv << fields.collect(&:humanize)
+      all.each do |record|
+        #csv << record.attributes.values_at(*fields)
+        # i'm hardcoding and I don't like it. Need to refactor this to make it better
+        if !record.user.nil?
+          csv << [record.name, record.created_at, record.user.first_name, record.user.last_name, record.user.email]
+        else
+          csv << [record.name, record.created_at, '','','']
+        end
+      end
+    end
+  end
+
   private
 
   # function to create slug (i.e. parameterized value of name column. This will be used for unique URLs)
