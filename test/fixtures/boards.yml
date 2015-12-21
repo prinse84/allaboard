@@ -2,6 +2,8 @@
 
 Aboard:
   name: All A Board Alliance
+  slug: all-a-board-alliance
 
-two:
+one:
   name: Test Board 1
+  slug: test-board-1

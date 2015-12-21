@@ -20,9 +20,11 @@ class BoardsController < ApplicationController
     @board_reviews = Board.where(id: ids)
     @categories = Category.where(:forr => 'Board').order('name')
 
+    @recent_boards = Board.where("created_at >= ?", Time.now.last_month )
     respond_to do |format|
       format.html
-       format.csv { render text: Board.all.generate_csv(["name", "created_at", "first_name", "last_name", "email"]) }      
+      format.csv { render text: Board.all.generate_csv(["name", "created_at", "first_name", "last_name", "email"]) }
+      format.rss { render :layout => false }
     end
   end
 
@@ -170,6 +172,10 @@ class BoardsController < ApplicationController
     else
       render 'suggestion'
     end
+  end
+
+  def feed
+    @boards = Board.all
   end
 
   private
