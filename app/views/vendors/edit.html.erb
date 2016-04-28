@@ -1,15 +1,25 @@
-<div class="row">
-	<div class="span12">
-		<span class="lead">Update Vendor details.</span>
-	</div>
-</div>
+<% provide(:title, "Edit Vendor details for " + @vendor.name + ": ") %>
+<%= render 'shared/header' %>
 
-<div class="row">
-	<div class="span8 separator"></div>
-</div>
+<section>
+	<div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h3 class="section-heading">Edit vendor details</h3>
+      </div>
+    </div>
 
-<div class="row">
-	<div class="span6">
-		<%= render 'form'%>
+		<div class="row text-muted">
+			<div class="col-lg-12">
+			     <p>Use the form below to edit vendor details.</p>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-8">
+					<%= render 'form'%>
+			</div>
+		</div>
+
 	</div>
-</div>
+</section>

@@ -1,19 +1,26 @@
-<div class="row">
-	<div class="span7">	
-		<div class="content-header">
-			<span class="lead"><strong><%= @board.name %></strong></span>
-		</div>
+<% provide(:title, "Claim " + @board.name + ": ") %>
+<%= render 'shared/header' %>
+
+<section>
+	<div class="container">
+		<%= render 'board_page_header'%>
+	</div>
+</section>
+
+<aside>
+  <div class="container">
 		<div class="row">
-			<div class="span7">
-				<p class="section-title">Remove claim and ownership of this board profile.</p>
-				
-				<p> <strong>What does this mean?</strong></p>
+			<div class="col-md-8">
+				<h4>Remove ownership of this board profile.</h4>
+
+				<h5>What does this mean?</h5>
 				<p>You will no longer be the owner of this board profile. Therefore, you will not be able to update this board's information, receive anonymous feedback from community, and post community events.</p>
 			</div>
 		</div>
 		<div class="row">
-			<div class="span7">
-				<p class="section-title"></p>
+			<div class="col-md-8">
 				<%= button_to "Yes, remove me as the owner of this board", board_unassign_path(@board.slug), :class => 'btn btn-primary' %><%= link_to 'Cancel', boards_path %>
 			</div>
 		</div>
+	</div>
+</aside>

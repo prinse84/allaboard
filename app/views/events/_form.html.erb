@@ -3,78 +3,85 @@
 		<%= render 'error_messages' %>
 
 		<div class="row">
-			<div class="span6"><%= f.label :name, 'Event Title'%></div>
-		</div>
-
-		<div class="row">		
-			<div class="span6"><%= f.text_field :name, :placeholder=>"Ex: A-Board Launch Party" %></div>
-		</div>
-		
-		<div class="row">
-			<div class="span6"><%= f.label :description, 'Summary of event'%></div>
-		</div>
-
-		<div class="row">		
-			<div class="span6"><%= f.text_area :description, :placeholder=>"Descriptive summary of your event. Tell us about the event.", :rows=>5, :class=>'input-block-level', :autofocus=> true %>
-			</div>
-		</div>		
-		
-		<div class="row">
-			<div class="span6"><%= f.label :date, 'Event date' %></div>
-		</div>
-		
-		<div class="row">
-			<div class="span6"><%= f.text_field :date, class: "datepicker" %></div>
-		</div>
-
-		<div class="row">
-			<div class="span6"><%= f.label :location, 'Location'%></div>
-		</div>
-
-		<div class="row">		
-			<div class="span6"><%= f.text_field :location, :placeholder=>"ACME Ballroom" %></div>
-		</div>
-
-		<div class="row">
-			<div class="span6"><%= f.label :event_url, 'URL to event page'%></div>
-		</div>
-
-		<div class="row">		
-			<div class="span6"><%= f.text_field :event_url, :placeholder=>"http://example.com/board_name" %></div>
-		</div>
-		
-		<div class="row">
-			<div class="span6"><%= f.label :start_time, 'Start Time'%></div>
-		</div>
-
-		<div class="row">		
-			<div class="span6"><%= f.text_field :start_time, :placeholder=>"5PM" %></div>
-		</div>
-		
-		<div class="row">
-			<div class="span6"><%= f.label :end_time, 'End Time'%></div>
-		</div>
-
-		<div class="row">		
-			<div class="span6"><%= f.text_field :end_time, :placeholder=>"8PM" %></div>
-		</div>
-		
-		<div class="row">
-			<div class="span6">
-				<%= f.label 'Select categories for this event'%>
-			</div>
-			<% @categories.each do |category| %>
-				<div class="span5 radio"><%= check_box_tag "event[category_ids][]", category.id, @event.categories.include?(category) %> <%= category.name %>
+			<div class="col-md-6">
+				<div class="form-group">
+					<%= f.label :name, 'Event Title'%>
+					<%= f.text_field :name, :placeholder=>"Ex: A-Board Launch Party", class:"form-control" %>
 				</div>
-			<% end %>
+			</div>
 		</div>
-		
-		<div class="row">
-			<div class="span6">&nbsp;</div>
-		</div>			
 
-		<div class="row">	
-			<div class="span6"><%= f.submit "Save", class: "btn btn-primary" %>&nbsp;<%= link_to 'Cancel', events_path %></div>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+					<%= f.label :description, 'Summary of event'%>
+					<%= f.text_area :description, :placeholder=>"Descriptive summary of your event. Tell us about the event.", :rows=>5, :class=>'input-block-level', class:"form-control"  %>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+					<%= f.label :date, 'Event date'%>
+					<%= f.text_field :date, class:"datepicker form-control" %>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+					<%= f.label :location, 'Event Location'%>
+					<%= f.text_field :location, :placeholder=>"ACME Ballroom", class:"form-control" %>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+					<%= f.label :event_url, 'URL to event page'%>
+					<%= f.text_field :event_url, :placeholder=>"http://example.com/board_name", class:"form-control" %>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+					<%= f.label :start_time, 'Event Start Time'%>
+					<%= f.text_field :start_time, :placeholder=>"5PM", class:"form-control" %>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+					<%= f.label :end_time, 'Event End Time'%>
+					<%= f.text_field :end_time, :placeholder=>"8PM", class:"form-control" %>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+					<%= f.label 'Select categories for this event'%>
+					<% @categories.each do |category| %>
+						<div class="checkbox"><label><%= check_box_tag "event[category_ids][]", category.id, @event.categories.include?(category) %> <%= category.name %></label></div>
+					<% end %>
+				</div>
+			</div>
+		</div>
+
+		<div class="clearfix"></div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<%= f.submit "Save", class: "btn btn-primary" %>&nbsp;<%= link_to 'Cancel', events_path %>
+			</div>
 		</div>
 	</div>
 <% end %>

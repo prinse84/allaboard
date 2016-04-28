@@ -1,27 +1,24 @@
-<div class="row">
-	<div class="span8 mycontent-left">
-		<div class="row">
-			<div class="span8 content-header">
-				<span class="lead"><strong>Add an event for <%= @board.name %></strong></span>
+<% provide(:title, "Add a new event for " + @board.name + ": ") %>
+<%= render 'shared/header' %>
+
+<section>
+	<div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h3 class="section-heading">Add an event for <%= @board.name %></h3>
+      </div>
+    </div>
+
+		<div class="row text-muted">
+			<div class="col-lg-12">
+			     <p>Use the form below to add a new event for this board.</p>
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="span7 clear-separator">
-			</div>
-		</div>
-		
-		<div class="row">
-			<div class="span7">
-				<%= render 'form'%>
+			<div class="col-md-8">
+					<%= render 'form'%>
 			</div>
 		</div>
 	</div>
-	
-	<div class="span3">
-		<div class="row">
-			<%= image_tag 'AAA_Logo.png' %>
-			<p>&nbsp;</p>
-		</div>
-	</div>
-</div>
+</section>

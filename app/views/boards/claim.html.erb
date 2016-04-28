@@ -1,24 +1,30 @@
-<div class="row">
-	<div class="span7">	
-		<div class="content-header">
-			<span class="lead"><strong><%= @board.name %></strong></span>
-		</div>
+<% provide(:title, "Claim " + @board.name + ": ") %>
+<%= render 'shared/header' %>
+
+<section>
+	<div class="container">
+		<%= render 'board_page_header'%>
+	</div>
+</section>
+
+<aside>
+  <div class="container">
 		<div class="row">
-			<div class="span7">
-				<p class="section-title">Claim ownership of this board profile.</p>
-				
-				<p> <strong>What does this mean?</strong></p>
+			<div class="col-md-8">
+				<h4>Claim ownership of this board profile.</h4>
+
+				<h5>What does this mean?</h5>
 				<p>Claiming ownership of this profile means that you will be able to update your board information, receive anonymous feedback from community, and post community events.</p>
-				
-				<p><strong>Who is this for?</strong></p>
+
+				<h5>Who is this for?</h5>
 				<p>If you are the membership director, or a member of the executive team of this board, then you may want to claim ownership of this board. As the board owner, you will be responsible for the content that appears on this board profile.</p>
 			</div>
 		</div>
 		<div class="row">
-			<div class="span7">
-				<p class="section-title"></p>
-				<small><span class="text-info">By claiming this board, you are agreeing that you represent the executive team of this board.</span></small>
-				<%= button_to "Yes, make me the owner of this board", board_assign_path(@board.slug), :class => 'btn btn-primary' %><%= link_to 'Cancel', boards_path %>
+			<div class="col-md-8">
+				<p><small><span class="text-info">By claiming this board, you are agreeing that you represent the executive team of this board.</span></small></p>
+				<%= button_to "Yes, I am the owner of this board", board_assign_path(@board.slug), :class => 'btn btn-primary' %><%= link_to 'Cancel', boards_path %>
 			</div>
 		</div>
-				
+	</div>
+</aside>

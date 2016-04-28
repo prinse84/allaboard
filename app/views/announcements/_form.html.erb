@@ -1,22 +1,21 @@
 <%= form_for [@board, @announcement] do |f| %>
 	<div class="form-group">
 		<%= render 'error_messages' %>
-		
-		<div class="row">
-			<div class="span6"><%= f.label :text, 'Announcement'%></div>
-		</div>
-
-		<div class="row">		
-			<div class="span6"><%= f.cktext_area :text, rows: 2, :class=>'input-block-level', :autofocus=> true %></div>
-		</div>
 
 		<div class="row">
-			<div class="span6"><p>&nbsp;</p></div>
+			<div class="col-md-8  col-sm-6">
+				<div class="form-group">
+					<%= f.label :text, 'Announcement'%>
+					<%= f.cktext_area :text, rows: 2, :class=>'input-block-level', :autofocus=> true, class:"form-control" %>
+				</div>
+			</div>
 		</div>
-		
-		<div class="row">	
-			<div class="span6"><%= f.submit "Save", class: "btn btn-primary" %> <%= link_to 'Cancel', board_path(@board.slug) %></div>
+
+		<div class="clearfix"></div>
+		<div class="row">
+			<div class="col-md-6">
+				<%= f.submit "Save", class: "btn btn-primary" %> <%= link_to 'Cancel', board_path(@board.slug) %>
+			</div>
 		</div>
-		
 	</div>
 <% end %>

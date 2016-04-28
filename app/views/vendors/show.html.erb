@@ -1,83 +1,109 @@
 <% provide(:title, 'Community vendor: ' + @vendor.name + ' on') %>
+<%= render 'shared/header' %>
 
-<div class="row">
-  <div class="span7 mycontent-left">
-    <h1><%= @vendor.name %></h1>
-    <% if current_user && @vendor.board.board_admin?(current_user) %>
-      <p><%= link_to "Edit this vendor", edit_vendor_path(@vendor) %></p>
-      <p><%= link_to "Delete this vendor", vendor_path(@vendor), method: :delete, data: { confirm: "Do you want to delete this vendor?" } %></p>
-    <% end %>
-    <% if !@vendor.address.blank? %>
-      <strong>Address</strong>
-      <p><%= @vendor.address %></p>
-    <% end %>
-    <% if !@vendor.phone.blank? %>
-      <strong>Phone number</strong>
-      <p><%= @vendor.phone %></p>
-    <% end %>
-    <% if !@vendor.contact.blank? %>
-      <strong>Vendor contact name</strong>
-      <p><%= @vendor.contact %></p>
-    <% end %>
-    <% if !@vendor.email.blank? %>
-      <strong>Vendor contact email</strong>
-      <p><%= @vendor.email %></p>
-    <% end %>
-    <strong>Indoor events</strong>
-    <% if @vendor.indoor %>
-      <p>Yes</p>
-    <% else %>
-      <p>No</p>
-    <% end %>
-    <strong>Outdoor events</strong>
-    <% if @vendor.outdoor %>
-      <p>Yes</p>
-    <% else %>
-      <p>No</p>
-    <% end %>
-    <strong>Capacity</strong>
-    <p><%= number_with_delimiter(@vendor.capacity) %></p>
-    <strong>Cost estimate for using this vendor</strong>
-    <p><%= number_to_currency(@vendor.cost) %></p>
-    <strong>Provides food</strong>
-    <% if @vendor.food %>
-      <p>Yes</p>
-    <% else %>
-      <p>No</p>
-    <% end %>
-    <strong>Allows outside catering</strong>
-    <% if @vendor.catering %>
-      <p>Yes</p>
-    <% else %>
-      <p>No</p>
-    <% end %>
-    <strong>Board who added this vendor</strong>
-    <p><%= link_to @vendor.board.name, board_path(@vendor.board.slug) %></p>
 
-    <p class="section-title">Reviews (<%= @vendor.vendor_reviews.size %>) <span class='text-info'><small>Got thoughts on this vendor? <%= link_to "Write a review", new_vendor_review_path(:vendor_id => @vendor.id) %>. </small></span> </p>
-    <div class="row">
-      <% if !@reviews.blank? %>
-        <% @reviews.each do |review| %>
-          <div class="row">
-            <div class="span6">
-              <blockquote>
-                <p><%= review.title %></p>
-                <% if site_admin_logged_in? %>
-                  <p style="font-size:14px"><%= link_to "Edit this review", edit_vendor_review_path(review) %></p>
-                  <p style="font-size:14px"><%= link_to "Delete this review", vendor_review_path(review), method: :delete, data: { confirm: "Do you want to delete this review?" } %></p>
-                <% end %>
-                <div class="star" data-score='<%= review.rating %>'></div>
-                <small>Submitted <%= time_ago_in_words(review.created_at) %> ago.</small>
-                <h5>Pros:</h5>
-                <p style="font-size:14px"><%= review.pros %></p>
-                <h5>Cons:</h5>
-                <p style="font-size:14px"><%= review.cons %></p>
-              </blockquote>
-              <%= will_paginate @reviews %>
-            </div>
-          </div>
-        <% end %>
+<section>
+	<div class="container">
+		<div class="col-md-12 ">
+			<h2 class="section-heading"><%= @vendor.name %></h2>
+
+      <% if current_user && @vendor.board.board_admin?(current_user) %>
+        <p><%= link_to "Edit this vendor", edit_vendor_path(@vendor) %></p>
+        <p><%= link_to "Delete this vendor", vendor_path(@vendor), method: :delete, data: { confirm: "Do you want to delete this vendor?" } %></p>
       <% end %>
     </div>
   </div>
-</div>
+</section>
+
+<aside>
+  <div class="container">
+		<div class="row">
+
+      <div class="col-md-7 mycontent-left">
+        <div class="row">
+					<div class="col-md-12">
+						<h4>Address</h4>
+            <% if !@vendor.address.blank? %>
+              <p><%= @vendor.address %></p>
+            <% end %>
+
+            <h4>Phone number</h4>
+            <% if !@vendor.phone.blank? %>
+              <p><%= @vendor.phone %></p>
+            <% end %>
+
+            <h4>Vendor contact email</h4>
+            <% if !@vendor.email.blank? %>
+              <p><%= @vendor.email %></p>
+            <% end %>
+
+            <h4>Indoor events</h4>
+            <% if @vendor.indoor %>
+              <p>Yes</p>
+            <% else %>
+              <p>No</p>
+            <% end %>
+
+            <h4>Outdoor events</h4>
+            <% if @vendor.outdoor %>
+              <p>Yes</p>
+            <% else %>
+              <p>No</p>
+            <% end %>
+
+            <h4>Capacity</h4>
+            <p><%= number_with_delimiter(@vendor.capacity) %></p>
+
+            <h4>Cost estimate for using this vendor</h4>
+            <p><%= number_with_delimiter(@vendor.cost) %></p>
+
+            <h4>Provides food</h4>
+            <% if @vendor.food %>
+              <p>Yes</p>
+            <% else %>
+              <p>No</p>
+            <% end %>
+
+            <h4>Allows outside catering</h4>
+            <% if @vendor.catering %>
+              <p>Yes</p>
+            <% else %>
+              <p>No</p>
+            <% end %>
+
+            <h4>Board who added this vendor</h4>
+            <p><%= link_to @vendor.board.name, board_path(@vendor.board.slug) %></p>
+
+          </div>
+        </div>
+
+        <p>Reviews (<%= @vendor.vendor_reviews.size %>) <span class='text-info'><small>Got thoughts on this vendor? <%= link_to "Write a review", new_vendor_review_path(:vendor_id => @vendor.id) %>. </small></span> </p>
+        <div class="row">
+          <div class="col-md-12">
+            <% if !@reviews.blank? %>
+              <% @reviews.each do |review| %>
+                <div class="row">
+                  <div class="col-md-12">
+                    <blockquote>
+                      <p><%= review.title %></p>
+                      <% if site_admin_logged_in? %>
+                        <p style="font-size:14px"><%= link_to "Edit this review", edit_vendor_review_path(review) %></p>
+                        <p style="font-size:14px"><%= link_to "Delete this review", vendor_review_path(review), method: :delete, data: { confirm: "Do you want to delete this review?" } %></p>
+                      <% end %>
+                      <div class="star" data-score='<%= review.rating %>'></div>
+                      <small>Submitted <%= time_ago_in_words(review.created_at) %> ago.</small>
+                      <h5>Pros:</h5>
+                      <p><%= review.pros %></p>
+                      <h5>Cons:</h5>
+                      <p><%= review.cons %></p>
+                  </blockquote>
+                  <%= will_paginate @reviews, renderer: BootstrapPagination::Rails %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</aside>

@@ -1,27 +1,24 @@
-<div class="row">
-	<div class="span8 mycontent-left">
-		<div class="row">
-			<div class="span8 content-header">
-				<span class="lead"><strong>Edit Event details</strong></span>
-			</div>
-		</div>
-		
-		<div class="row">
-			<div class="span7 clear-separator">
-			</div>
-		</div>
-		
-		<div class="row">
-			<div class="span7">
-				<%= render 'form'%>
-			</div>
-		</div>
-	</div>
-	<div class="span3">
-		<div class="row">
-			<%= image_tag 'AAA_Logo.png' %>
-			<p>&nbsp;</p>
-		</div>
-	</div>
-</div>
+<% provide(:title, "Edit event details for " + @event.name + ": ") %>
+<%= render 'shared/header' %>
 
+<section>
+	<div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h3 class="section-heading">Edit Event details</h3>
+      </div>
+    </div>
+
+		<div class="row text-muted">
+			<div class="col-lg-12">
+			     <p>Use the form below to edit event details. </p>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-8">
+					<%= render 'form'%>
+			</div>
+		</div>
+	</div>
+</section>

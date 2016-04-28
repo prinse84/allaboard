@@ -1,104 +1,124 @@
-<div class="span12">
-	<div class="row">
-		<div class="span2"><p>&nbsp;</p></div>
+<%= render 'shared/header' %>
 
-		<div class="span4 mycontent-left">
-			<p class="lead">If you have already created an account, Sign in.</p>
-			<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-			<div class="form-group">
-				
-				<div class="row">
-					<div class="span6"><%= f.label :email %></div>			
-				</div>
-				
-				<div class="row">
-					<div class="span6"><%= f.email_field :email, :autofocus=> true, :placeholder=>"Email address", :class => "form-control" %></div>
-				</div>
+<section>
+	<div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+					<div class="col-lg-4 mycontent-left">
+						<h4>If you have already created an account, Sign in.</h4>
+							<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+								<div class="form-group">
 
-			  	<div class="row">
-					<div class="span6"><%= f.label :password %></div>
-				</div>
-			    
-				<div class="row">
-					<div class="span6"><%= f.password_field :password, :autocomplete=> "off", :placeholder => "Password", :class=> "form-control" %></div>
-				</div>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group">
+												<%= f.label :email, 'Email'%>
+												<%= f.email_field :email, :autofocus=> true, :placeholder=>"Email address", class: "form-control" %>
+											</div>
+										</div>
+									</div>
 
-			  	<% if devise_mapping.rememberable? -%>
-			   		<div class="row">
-						<div class="span6"><%= f.check_box :remember_me %><span class="text-info">Remember me </span></div>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group">
+												<%= f.label :password, 'Password'%>
+												<%= f.password_field :password, :autocomplete=> "off", :placeholder => "Password", class: "form-control" %>
+											</div>
+										</div>
+									</div>
+
+			  					<% if devise_mapping.rememberable? -%>
+			   						<div class="row">
+											<div class="col-md-12">
+												<div class="checkbox"><label><%= f.check_box :remember_me %><span class="text-info">Remember me </span></label></div>
+											</div>
+										</div>
+			  					<% end -%>
+
+									<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<p class="small"> Forgot your password? <%= link_to "Reset Instructions", new_password_path(resource_name) %></p>
+												</div>
+											</div>
+										</div>
+									<% end -%>
+								<div class="clearfix"></div>
+
+								<div class="row">
+									<div class="col-md-12">
+										<%= f.submit "Sign in", class: "btn btn-primary" %>
+									</div>
+								</div>
+
+							</div>
+						<% end %>
 					</div>
-			  	<% end -%>
-			
-				<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-				  <p class="small"> Forgot your password? <%= link_to "Reset Instructions", new_password_path(resource_name) %></p>
-				<% end -%>
-				
-			  	
-				<div class="row">
-					<div class="span6"><%= f.submit "Sign in", class: "btn btn-primary" %></div>
+
+					<div class="col-lg-4" >
+						<div class="row">
+							<h4>If not, create an account to manage your board.</h4>
+								<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+									<%= devise_error_messages! %>
+									<div class="form-group">
+
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<%= f.label :first_name, 'First Name'%>
+													<%= f.text_field :first_name, :placeholder=>"First Name", class:"form-control" %>
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<%= f.label :last_name, 'Last Name'%>
+													<%= f.text_field :last_name, :placeholder=>"Last Name", class:"form-control" %>
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<%= f.label :email, 'Email Address'%>
+													<%= f.email_field :email, :placeholder=>"Email Address", class:"form-control" %>
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<%= f.label :password, 'Password'%>
+													<%= f.password_field :password, :autocomplete=> "off", :placeholder=>"Passowrd", class:"form-control" %>
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<%= f.label :password_confirmation, 'Password Confirmation'%>
+													<%= f.password_field :password_confirmation, :autocomplete=> "off", :placeholder => "Re-enter Password", class:"form-control" %>
+												</div>
+											</div>
+										</div>
+										<div class="clearfix"></div>
+
+										<div class="row">
+											<div class="col-md-12">
+												<%= f.submit "Sign up", class: "btn btn-primary" %>
+											</div>
+										</div>
+									</div>
+								<% end %>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-			<% end %>
-		</div>
-		
-		<div class="span4" >
-			<div class="row">
-				<p class="lead">If not, create an account to manage your board.</p>
-			</div>
-			
-			<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-				<%= devise_error_messages! %>
-				<div class="form-group">
-					<div class="row">
-						<div class="span6"><%= f.label :first_name, "First Name" %></div>			
-					</div>
-					<div class="row">
-						<div class="span6"><%= f.text_field :first_name, :autofocus=> true, :placeholder=>"First Name"%></div>
-					</div>	
-					<div class="row">
-						<div class="span6"><%= f.label :last_name, "Last Name" %></div>			
-					</div>
-					<div class="row">
-						<div class="span6"><%= f.text_field :last_name, :autofocus=> true, :placeholder=>"Last Name"%></div>
-					</div>
-										
-					<div class="row">
-						<div class="span6"><%= f.label :email %></div>			
-					</div>
-					<div class="row">
-						<div class="span6"><%= f.email_field :email, :autofocus=> true, :placeholder=>"Email address"%></div>
-					</div>
-					<div class="row">
-						<div class="span6"><%= f.label :password %></div>
-					</div>
-		    		<div class="row">
-						<div class="span6"><%= f.password_field :password, :autocomplete=> "off", :placeholder => "Password", :class=> "form-control" %></div>
-					</div>
-					<div class="row">
-						<div class="span6"><%= f.label :password_confirmation %></div>
-					</div>
-		    		<div class="row">
-						<div class="span6"><%= f.password_field :password_confirmation, :autocomplete=> "off", :placeholder => "Re-enter Password", :class=> "form-control" %></div>
-					</div>
-					<div class="row">
-						<div class="span6"><%= f.submit "Sign up", class: "btn btn-primary" %></div>
-					</div>
-				</div>
-			<% end %>
-		</div>
-	</div>
-</div>
-
-
-		
-		
-		
-		
-		
-		
-		
-
-
-
-
-
+</section>

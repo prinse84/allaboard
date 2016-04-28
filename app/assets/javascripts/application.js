@@ -11,14 +11,10 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
 //= require jquery-ui
+//= require jquery_ujs
 //= require turbolinks
-//= require bootstrap-dropdown
-//= require bootstrap-alert
-//= require bootstrap-tab
-//= require bootstrap-carousel
-//= reqiure bootstrap-transition
+//= require bootstrap-sprockets
 //= require ckeditor/init
 //= require select2
 //= require_tree .

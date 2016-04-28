@@ -1,6 +1,6 @@
 Allaboard::Application.routes.draw do
 
-  root  'static_pages#home'
+  root  'static_pages#new_home'
 
   get 'boards/suggest', to: 'boards#suggestion'
   post 'boards/suggestion/create', to: 'boards#suggestion_create'
@@ -11,6 +11,8 @@ Allaboard::Application.routes.draw do
   post '/contact/send', to: 'static_pages#send_contact_message'
   match '/existing', to: 'static_pages#existing_members', via: 'get'
   match '/interested', to: 'static_pages#interested_member', via: 'get'
+  match '/new_home', to: 'static_pages#new_home', via: 'get'
+  match '/community', to: 'static_pages#community', via: 'get'
 
   resources :users
   resources :parent_organizations do

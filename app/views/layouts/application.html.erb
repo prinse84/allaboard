@@ -2,21 +2,48 @@
 <html>
 <head>
   <title><%= yield(:title) %> The All A-Board Alliance </title>
+  <%= csrf_meta_tags %>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="All A-Board Alliance is a Chicago-based 501(c)(3) nonprofit organization dedicated to the advancement of associate boards around Chicago.">
+  <meta name="keywords" content="associate boards,non-governing boards,non-profit boards,junior boards,chicago associate boards,chicago junior boards,a-board ">
+  <meta property="og:site_name" content="All A-Board Alliance"/>
+  <meta property="og:url" content="http://www.allaboardalliance.org"/>
+  <meta property="og:title" content="Chicago's Associate Boards | All A-Board Alliance"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:description" content="All A-Board Alliance is a Chicago-based 501(c)(3) nonprofit organization dedicated to the advancement of associate boards around Chicago."/>
+  <meta property="og:image" content="http://www.allaboardalliance.org/assets/AAA_Logo-7573e16f2847d9e79fff0af79e177f75.png"/>
+  <meta name="twitter:title" content="Chicago's Associate Boards | All A-Board Alliance"/>
+  <meta name="twitter:image" content="http://www.allaboardalliance.org/assets/AAA_Logo-7573e16f2847d9e79fff0af79e177f75.png"/>
+  <meta name="twitter:url" content="http://www.allaboardalliance.org"/>
+  <meta name="twitter:card" content="summary"/>
+  <meta name="twitter:site" content="@ABoardAlliance"/>
+  <meta name="twitter:description" content="All A-Board Alliance is a Chicago-based 501(c)(3) nonprofit organization dedicated to the advancement of associate boards around Chicago.">
+
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <%= favicon_link_tag 'favicon.png' %>
   <%= render 'layouts/shim' %>
+
+  <!-- Custom Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 </head>
-<body>
-	<%= render 'layouts/header' %>
-	<div class="container">
-		<%= render partial: "shared/flash_messages", flash: flash %> 
-		<%= yield %>
-		<%= render 'layouts/footer' %>	
-		<%= debug(params) if Rails.env.development? %>
-	</div>
+
+<body id="page-top">
+	<%= render 'layouts/new_header' %>
+  <%= render partial: "shared/flash_messages", flash: flash %>
+
+  <%= yield %>
+
+	<%= render 'layouts/new_footer' %>
+
+	<%= debug(params) if Rails.env.development? %>
+
 	<script>
 
 	$('.star').raty({ score: function() {
@@ -25,15 +52,15 @@
 		      		halfScore: true,
 					readOnly: true
 					});
-					
+
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-   
+
     ga('create', 'UA-56065538-1', 'auto');
-    ga('send', 'pageview');					
+    ga('send', 'pageview');
 	</script>
-		
+
 </body>
 </html>

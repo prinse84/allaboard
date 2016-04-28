@@ -1,15 +1,25 @@
-<div class="row">
-	<div class="span12">
-		<span class="lead">Add Vendor to directory.</span>
-	</div>
-</div>
+<% provide(:title, "Add a new vendor:") %>
+<%= render 'shared/header' %>
 
-<div class="row">
-	<div class="span8 separator"></div>
-</div>
+<section>
+	<div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h3 class="section-heading">Add a vendor to directory</h3>
+      </div>
+    </div>
 
-<div class="row">
-	<div class="span6">
-		<%= render 'form'%>
+		<div class="row text-muted">
+			<div class="col-lg-12">
+			     <p>Use the form below to add a new vendor to the directory.</p>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-8">
+					<%= render 'form'%>
+			</div>
+		</div>
+
 	</div>
-</div>
+</section>

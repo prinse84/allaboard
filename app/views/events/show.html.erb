@@ -1,74 +1,61 @@
 <% provide(:title, @event.name + " by " + @event.board.name + ":") %>
+<%= render 'shared/header' %>
 
-<div class="row">
-	<div class="span7 mycontent-left">
-		
+<section>
+	<div class="container">
+		<%= render 'event_page_header'%>
+	</div>
+</section>
+
+<aside>
+  <div class="container">
 		<div class="row">
-			<div class="span7 content-header">
-				<span class="lead"><strong><%= @event.name %></strong></span> <br />
-				<small>Organized by <%= link_to @event.board.name, board_path(@event.board.slug)%></small><br />
-				<small>Tags:				
-					<% if !@categories.blank? %>
-						<% @categories.each do |category| %>
-							<%= category.name %>
-							<% if category != @categories.last %>
-								,
-							<% end %>
+			<div class="col-md-7 mycontent-left">
+
+				<div class="row">
+					<div class="col-md-12">
+						<h4>Date & Time</h4>
+						<p><%= @event.formatted_date %><p>
+
+						<h4>Location</h4>
+						<p><%= @event.location %></p>
+
+						<h4>Website</h4>
+						<% if !@event.event_url.blank? %>
+							<p><%= link_to @event.event_url, @event.event_url, :target => "_blank" %></p>
+						<% else %>
+							<p><small>N/A</small></p>
 						<% end %>
-					<% else %>
-					 None
-					<% end %>
-				</small><br />
-				<% if current_user && @event.board.board_admin?(current_user) %>
-					<span class='text-info'><small><%= link_to "Edit", edit_board_event_path(@event.board.slug, @event.slug) %> | <%= link_to 'Delete', board_event_path(@event.board.slug, @event.slug), method: :delete, data: { confirm: "Do you want to delete this event?" } %> </small>
-					</span>
-				<% end %>	
+					</div>
+				</div>
+				<div class="clear-separator"></div>
 			</div>
-		</div>
-		
-		<div class="row">
-			<div class="span7">
-				<p class="section-title">Event Details</p>
-				<h5>Description</h5>
-				<% if !@event.description.blank? %>
-					<p><%= simple_format(@event.description, class:"section-content") %></p>
-				<% else %>
-					<p>N/A</p>
-				<% end %>
-				
-				<h5>Date & Time</h5>
-					<p><%= @event.formatted_date %><p>
-				<h5>Location</h5>
-					<p><%= @event.location %></p>
-				<h5>Website</h5>	
-					<% if !@event.event_url.blank? %>
-						<p><%= link_to @event.event_url, @event.event_url, :target => "_blank" %></p>
-					<% else %>
-						<p><small>N/A</small></p>
-					<% end %>			
+			<div class="col-md-4">
+				<div class="row">
+					<div class="col-md-12">
+						<h4>Other events by this board</h4>
+						<% if !@other_events_by_board.blank? %>
+							<% @other_events_by_board.each do |other_event_by_board| %>
+								<p><%= link_to other_event_by_board.name, event_path(other_event_by_board.slug) %></p>
+							<% end %>
+						<% else %>
+							<p>There are currently no other planned events by this board.</p>
+						<% end %>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<h4>Other events like this</h4>
+						<% if !@other_events_by_categories.blank? %>
+							<% @other_events_by_categories.each do |other_event_by_categories| %>
+						 		<p><%= link_to other_event_by_categories.name, event_path(other_event_by_categories.slug) %></p>
+							<% end %>
+						<% else %>
+							<p>There are currently no other planned events like this one.</p>
+						<% end %>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-	<div class="span4">
-		<div class="row">
-			<h5>Other events by this board (Past 30 Days)</h5>
-			<% if !@other_events_by_board.blank? %>
-				<% @other_events_by_board.each do |other_event_by_board| %>
-			 		<p><%= link_to other_event_by_board.name, event_path(other_event_by_board.slug) %></p>
-				<% end %>
-			<% else %>
-				<p>There are currently no other planned events by this board.</p>
-			<% end %>
-		</div>
-		<div class="row">
-			<h5>Other events like this (Past 30 Days)</h5>
-			<% if !@other_events_by_categories.blank? %>
-				<% @other_events_by_categories.each do |other_event_by_categories| %>
-			 		<p><%= link_to other_event_by_categories.name, event_path(other_event_by_categories.slug) %></p>
-				<% end %>
-			<% else %>
-				<p>There are currently no other planned events like this one.</p>
-			<% end %>
-		</div>
-	</div>
-</div>
+</aside>

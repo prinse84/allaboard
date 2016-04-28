@@ -3,89 +3,96 @@
 		<%= render 'error_messages' %>
 
 		<div class="row">
-			<div class="span6"><%= f.label :name, 'Board Name'%></div>
-		</div>
-
-		<div class="row">
-			<div class="span6"><%= f.text_field :name, :placeholder=>"Board Name" %></div>
-		</div>
-
-		<div class="row">
-			<div class="span6"><%= f.label :description, 'Summary of Board Mission'%></div>
-		</div>
-
-		<div class="row">
-			<div class="span6"><%= f.text_area :description, :placeholder=>"How would you describe the mission of your board?", :rows=>5, :class=>'input-block-level', :autofocus=> true %>
+			<div class="col-md-6">
+				<div class="form-group">
+					<%= f.label :name, 'Board Name'%>
+					<%= f.text_field :name, :placeholder=>"Board Name", class:"form-control" %>
+				</div>
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="span6"><%= f.label :url, 'URL to board home page'%></div>
-		</div>
-
-		<div class="row">
-			<div class="span6"><%= f.text_field :url, :placeholder=>"http://example.com/board_name" %></div>
-		</div>
-
-		<div class="row">
-			<div class="span6"><%= f.label :parent_company, 'Parent Organization'%></div>
-		</div>
-
-		<div class="row">
-			<div class="span6"><%= f.text_field :parent_company, :placeholder=>"Parent Organization" %></div>
-			<div class="span6"><%= f.select :parent_organization_id, ParentOrganization.all.collect{ |p| [p.name, p.id] }, include_blank: true %> </div>
-		</div>
-
-		<div class="row">
-			<div class="span6"><%= f.label 'Select categories for this board'%></div>
-			<% @categories.each do |category| %>
-				<div class="span5 radio"><%= check_box_tag "board[category_ids][]", category.id, @board.categories.include?(category) %> <%= category.name %>
+			<div class="col-md-6">
+				<div class="form-group">
+					<%= f.label :description, 'Summary of Board Mission'%>
+					<%= f.text_area :description, :placeholder=>"How would you describe the mission of your board?", :rows=>5, :class=>'input-block-level form-control' %>
 				</div>
-			<% end %>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+					<%= f.label :url, 'URL to board home page'%>
+					<%= f.text_field :url, :placeholder=>"http://example.com/board_name", class:"form-control" %>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+					<%= f.label :parent_company, 'Parent Organization'%>
+					<%= f.text_field :parent_company, :placeholder=>"Parent Organization", class:"form-control" %>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+					<%= f.label 'Select categories for this board'%>
+					<% @categories.each do |category| %>
+						<div class="checkbox"><label><%= check_box_tag "board[category_ids][]", category.id, @board.categories.include?(category) %> <%= category.name %></label></div>
+					<% end %>
+				</div>
+			</div>
 		</div>
 
 		<% if site_admin_logged_in? %>
-        	<div class="row">
-    			<div class="span6"><%=  f.label :user_id, 'Primary Contact' %></div>
-    		</div>
-  			<div class="row">
-        		<div class="span6">
-					<%= f.collection_select :user_id, User.all, :id, :get_name, prompt: true %>
+    	<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<%= f.label :user_id, 'Primary Contact' %>
+						<p><%= f.collection_select :user_id, User.all, :id, :get_name, {prompt: true}, {class: "form-control"} %></p>
+					</div>
 				</div>
-        	</div>
+			</div>
 		<% end %>
 
 		<div class="row">
-			<div class="span6"><%= f.label :founding_date, 'When was this board founded?' %></div>
-		</div>
-
-		<div class="row">
-			<div class="span6"><%= f.text_field :founding_date, class: "datepicker", :placeholder=>"2014-03-24" %></div>
-		</div>
-
-		<div class="row">
-			<div class="span6"><%= f.label 'How often does this board meet?'%></div>
-		</div>
-
-		<div class="row">
-			<div class="span6">
-				<%= f.collection_select :period_id, Period.all, :id, :name, prompt: true%>
+			<div class="col-md-6">
+				<div class="form-group">
+					<%= f.label :founding_date, 'Parent Organization'%>
+					<%= f.text_field :founding_date, class: "datepicker", :placeholder=>"2014-03-24", class:"form-control" %>
+				</div>
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="span6"><%= f.label 'What is the membership size of this board?'%></div>
-		</div>
-
-		<div class="row">
-			<div class="span6">
-				<%= f.collection_select :membership_size_id, MembershipSize.all, :id, :name, prompt: true%>
+			<div class="col-md-6">
+				<div class="form-group">
+					<%= f.label :period_id, 'How often does this board meet?'%>
+					<p><%= f.collection_select :period_id, Period.all, :id, :name, {prompt: true}, {class: "form-control"} %></p>
+				</div>
 			</div>
 		</div>
 
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+					<%= f.label :membership_size_id, 'What is the membership size of this board?'%>
+					<p><%= f.collection_select :membership_size_id, MembershipSize.all, :id, :name, {prompt: true}, {class: "form-control"}  %></p>
+				</div>
+			</div>
+		</div>
+
+		<div class="clearfix"></div>
 
 		<div class="row">
-			<div class="span6"><%= f.submit "Save", class: "btn btn-primary" %> <%= link_to 'Cancel', boards_path %></div>
+			<div class="col-md-6">
+				<%= f.submit "Save", class: "btn btn-primary" %> <%= link_to 'Cancel', boards_path %></div>
+			</div>
 		</div>
 	</div>
 <% end %>

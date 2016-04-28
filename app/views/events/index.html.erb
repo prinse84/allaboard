@@ -1,78 +1,74 @@
 <% provide(:title, "Associate Board Events in Chicago:") %>
+<%= render 'shared/header' %>
 
-<div class="row">
-	<div class="span8 mycontent-left">
-		<div class="row">
-			<div class="span8 content-header">
-				<span class="lead"><strong>Events at Chicago's Associate Boards</strong></span>
-				<p>This is a listing of upcoming events as submitted by members of the All A-Board Alliance. </p>
+<section>
+	<div class="container">
+    <div class="row text-center">
+      <div class="col-lg-12">
+        <h2 class="section-heading">Events at Chicago's Associate Boards</h2>
+      </div>
+    </div>
+
+		<div class="row text-muted">
+			<div class="col-lg-12 text-center">
+			     <p>This is a listing of upcoming events as submitted by members of the All A-Board Alliance. </p>
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="span8">
-				<% if !@events.blank? %>
+      <div class="col-md-8 mycontent-left">
+			  <% if !@events.blank? %>
 					<table class="table table-hover">
 						<thead>
-			    			<tr>
-			      				<th>Date</th>				
-			      				<th>Event Name</th>	
+				  		<tr>
+								<th>Date</th>
+								<th>Event Name</th>
 								<th>Tags</th>
-			    			</tr>
+					    </tr>
 						</thead>
 						<tbody>
 							<% @events.each do |event| %>
-							<tr>
-								<td width="20%"><%= event.date.strftime("%b %d, %Y") %></td>							
-								<td width="60%"><strong><%= link_to event.name, event_path(event.slug) %></strong><br / >
-									<small>Submitted by <%= link_to event.board.name, board_path(event.board.slug) %></small>
-								</td>
-								<td width="20%"><small>
-									<% if !event.categories.blank? %>
-										<% event.categories.each do |category| %>
-											<%= category.name %><% if category != event.categories.last %>,
+							  <tr>
+									<td width="20%"><%= event.date.strftime("%b %d, %Y") %></td>
+									<td width="60%"><strong><%= link_to event.name, event_path(event.slug) %></strong><br / >
+										<small>Submitted by <%= link_to event.board.name, board_path(event.board.slug) %></small>
+									</td>
+									<td width="20%"><small>
+										<% if !event.categories.blank? %>
+											<% event.categories.each do |category| %>
+												<%= category.name %><% if category != event.categories.last %>,
+														<% end %>
 											<% end %>
+										<% else %>
+									 		None
 										<% end %>
-									<% else %>
-								 		None
-									<% end %>
-								</small></td>
-							</tr>
+									</small></td>
+								</tr>
 							<% end %>
 						</tbody>
 					</table>
 				<% else %>
 					<p>There are currently no planned events. </p>
 				<% end %>
-			</div>
-		</div>
 
-		<div class="row">	
-			<div class="span8">
-				<%= will_paginate %>
-			</div>
+        <%= will_paginate @events, renderer: BootstrapPagination::Rails %>
+      </div>
+
+			<div class="col-md-3">
+        <div class="row">
+          <p><strong>Filter Results</strong></p>
+          <p>Select Tag:<br />
+						<% @categories.each do |category| %>
+							<small><%= link_to category.name, events_path(:tag => category.name) %><% if category != @categories.last %>,
+							<% end %></small>
+						<% end %>
+          </p>
+					<p>Show Past Events:<br />
+						<small><%= link_to 'Last Month', events_path(:past => '30days') %><br />
+						<%= link_to '[Show all]', events_path %></small>
+					</p>
+        </div>
+      </div>
 		</div>
 	</div>
-	<div class="span3">
-		<div class="row">
-			
-			<%= image_tag 'AAA_Logo.png' %>
-			<p>&nbsp;</p>
-			<p><strong>Filter Results</strong></p>
-			<p>Select Tag:<br />
-				<% @categories.each do |category| %>
-					<small><%= link_to category.name, events_path(:tag => category.name) %><% if category != @categories.last %>,
-					<% end %></small>
-				<% end %>	
-					<small><%= link_to '[Show all]', events_path %></small>
-			</p>
-			
-			<p>Show Past Events:<br />
-				<small><%= link_to 'Last Month', events_path(:past => '30days') %><br />
-				<%= link_to '[Show all]', events_path %></small>
-			</p>
-			
-			
-		</div>
-	</div>
-</div>
+</section>

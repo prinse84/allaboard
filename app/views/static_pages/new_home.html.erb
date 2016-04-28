@@ -1,0 +1,426 @@
+<% provide(:title, "Chicago's Associate Boards:") %>
+<% provide(:nav_title1, "Resources") %>
+<% provide(:nav_link1, "#portfolio") %>
+<% provide(:nav_title2, "About") %>
+<% provide(:nav_link2, "#about") %>
+<% provide(:nav_title3, "Team") %>
+<% provide(:nav_link3, "#team") %>
+<% provide(:nav_title4, "Contact") %>
+<% provide(:nav_link4, "#contact") %>
+
+<!-- Header -->
+<header style="background-image: url('/assets/header-bg.png');">
+    <div class="container">
+        <div class="intro-text">
+          <div class="intro-lead-in">Welcome to Chicago's Associate Board</div>
+          <div class="intro-heading">Community</div>
+          <a href="#services" class="page-scroll btn btn-xl">Tell Me More</a>
+      </div>
+    </div>
+</header>
+
+<!-- Mission Section -->
+<section id="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Our Mission</h2>
+                <h3 class="section-subheading text-muted">Strengthen the impact of non-governing boards by fostering collaboration and sharing resources.</h3>
+                <%= image_tag 'AAA_Logo.png', alt: "All A Board Alliance Logo" %>
+            </div>
+        </div>
+
+        <div class="row text-center">
+          <div class="col-md-4 text-center">
+              <h2 class="text-right">Message from our founders</h2>
+          </div>
+          <div class="col-md-8 text-justify">
+            <blockquote>
+                <p class="large text-muted">As associate boards and other non-governing boards have become integrated into many nonprofit organizations’ strategic plans, it only makes sense to create a community for these boards to come together and share resources. Many boards have an abundance of talent and energy, but lack resources for board growth and development. </p>
+                <p class="large text-muted">Our goal is to create a space that brings these boards together to share ideas, gain knowledge, and foster support and enthusiasm for the work achieved by this community.</p>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+</section>
+
+<!--  Aside -->
+<aside class="bg-light-gray">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-heading">Get Started</h2>
+        <h3 class="section-subheading text-muted"></h3>
+      </div>
+    </div>
+    <div class="row text-center">
+      <div class="col-md-4">
+        <span class="fa-stack fa-4x">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-folder-open fa-stack-1x fa-inverse"></i>
+        </span>
+        <h4 class="service-heading">Current Members</h4>
+        <p class="text-muted">Already an Associate Board member? <br> Check out our curated <%= link_to "list of associate boards", boards_path %>, browse through our up-to-date <%= link_to "listing of events", events_path %>, or look through our <%= link_to "resources library", articles_path%> for "How to" guides and best practices.</p>
+        <p><%= link_to 'Learn More', community_path(:anchor => "existing"), class: 'btn btn-primary', role: "button" %></p>
+      </div>
+      <div class="col-md-4">
+        <span class="fa-stack fa-4x">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-bookmark fa-stack-1x fa-inverse"></i>
+        </span>
+        <h4 class="service-heading">Prospective Members</h4>
+        <p class="text-muted">Looking to find the right board for you?<br />Browse through our up-to-date <%= link_to "listing of events", events_path %> and view local <%= link_to "Associate Board profiles", boards_path %>.
+</p>
+        <p><%= link_to 'Learn More', community_path(:anchor => "prospective"), class: 'btn btn-primary', role: "button" %></p>
+      </div>
+      <div class="col-md-4">
+        <span class="fa-stack fa-4x">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-university fa-stack-1x fa-inverse"></i>
+        </span>
+        <h4 class="service-heading">Community Members</h4>
+          <p class="text-muted">Interested in knowing the value of Associate Boards? <br> Read about the Chicago-land Associate Board landscape and how these boards are impacting the nonprofit sector.</p>
+          <p><%= link_to 'Learn More', community_path(:anchor => "nonprofits"), class: 'btn btn-primary', role: "button" %></p>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- Clients Aside -->
+<aside class="bg-light-gray">
+    <div class="container">
+      <div class="row">
+          <div class="col-lg-12 text-center">
+              <h2 class="section-heading text-muted">Sign up for our newsletter</h2>
+              <h3 class="section-subheading text-muted"></h3>
+          </div>
+          <div class="row">
+              <div class="col-lg-12 text-center">
+                <%= render "mailchimp_form" %>
+              </div>
+          </div>
+      </div>
+    </div>
+</aside>
+
+
+<!-- Portfolio Grid Section -->
+<section id="portfolio" class="bg-light-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Resources</h2>
+                <h3 class="section-subheading text-muted"></h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-6 portfolio-item">
+              <%= link_to (image_tag "woman_with_phone", class:"img-responsive", alt: "Associate Board Directory Image"), boards_path, class: "portfolio-link"  %>
+              <div class="portfolio-caption">
+                <h4><%= link_to "Associate Board Directory", boards_path %></h4>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-6 portfolio-item">
+              <%= link_to (image_tag "bar_scene", class:"img-responsive", alt: "Bar Scene"), events_path , class: "portfolio-link" %>
+              <div class="portfolio-caption">
+                <h4><%= link_to "Events", events_path %> </h4>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-6 portfolio-item">
+              <%= link_to (image_tag "conference", class:"img-responsive", alt: "Conference"), vendors_path, class: "portfolio-link" %>
+              <div class="portfolio-caption">
+                <h4><%= link_to "Vendors", vendors_path %> </h4>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-6 portfolio-item">
+              <%= link_to (image_tag "desktop", class:"img-responsive", alt: "Desktop"), articles_path, class: "portfolio-link" %>
+              <div class="portfolio-caption">
+                <h4><%= link_to "Blog", articles_path %></h4>
+              </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6 portfolio-item">
+              <%= image_tag "post-its", class:"img-responsive", alt: "Post its" %>
+              <div class="portfolio-caption">
+                <h4>Templates</h4>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-6 portfolio-item">
+              <%= image_tag "bookshelf", class:"img-responsive", alt: "Bookshelf Image" %>
+              <div class="portfolio-caption">
+                  <h4>Tidbits</h4>
+              </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">About</h2>
+                <h3 class="section-subheading text-muted">All A-Board Alliance is a Chicago-based 501(c)(3) nonprofit organization dedicated to the advancement of associate boards. </h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="timeline">
+                    <li>
+                        <div class="timeline-image">
+                          <%= image_tag "first.png", class: "img-circle img-responsive", alt: "Idea ignites" %>
+                        </div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>December 2013</h4>
+                                <h4 class="subheading">An Idea Ignites</h4>
+                            </div>
+                            <div class="timeline-body">
+                                <p class="text-muted">Several community members came together to talk about the need for associate boards to have a space to come together, share resources and collaborate.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="timeline-inverted">
+                        <div class="timeline-image">
+                            <%= image_tag "train-locomotive.png", class: "img-circle img-responsive", alt: "Idea is born" %>
+                        </div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>April 2014</h4>
+                                <h4 class="subheading">All A-Board Alliance is Born</h4>
+                            </div>
+                            <div class="timeline-body">
+                                <p class="text-muted">The idea gained traction as representatives from 6 associate boards refined the vision and became the founding steering committee. Choosing a name was challenging, as multiple names exist for boards with similar goals (associate board, auxiliary boards, junior boards, young professional boards etc). In an effort to be inclusive <i>and show we have a sense of humor</i>, the steering committee chose <strong>All A-Board Alliance </strong> as the name. This was intended to embody the notion that we aim to bring together all non-governing boards.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="timeline-image">
+                          <%= image_tag "laptop-image.jpg", class: "img-circle img-responsive", alt: "About image" %>
+                        </div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>October 2014</h4>
+                                <h4 class="subheading">All A-Board Alliance and <%= link_to 'CharityScenes', "http://www.charityscenes.org", target: "_blank" %> Unite</h4>
+                            </div>
+                            <div class="timeline-body">
+                                <p class="text-muted">After accidently finding one another’s websites, both organizations quickly realized they have similar and complementary goals. Rather than creating redundancy in programming, they united as one organization.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="timeline-inverted">
+                        <div class="timeline-image">
+                          <%= image_tag "cheers.png", class: "img-circle img-responsive", alt: "celebration" %>
+                        </div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>April 2015</h4>
+                                <h4 class="subheading">One Year Celebration!</h4>
+                            </div>
+                            <div class="timeline-body">
+                                <p class="text-muted">AABA  celebrated a successful first year in which we held four quarterly events, created an online community resource and had over 60 members.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="timeline-image">
+                          <%= image_tag "document-signing.png", class: "img-circle img-responsive", alt: "Document signing" %>
+                        </div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>August 2015</h4>
+                                <h4 class="subheading">Articles of Incorporation- check!</h4>
+                            </div>
+                            <div class="timeline-body">
+                                <p class="text-muted">AABA formalized their presence by filing Articles of Incorporation and becoming a nonprofit organization recognized by the State of Illinois.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="timeline-inverted">
+                        <div class="timeline-image">
+                            <h4>Our
+                                <br>Adventure
+                                <br>Continues!</h4>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section id="team" class="bg-light-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Our Amazing Team</h2>
+                <h3 class="section-subheading text-muted">All A-Board Alliance is overseen by a team of volunteers who have experience creating and/or serving on associate boards.</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="team-member">
+                    <%= image_tag "cameron_croft.jpg", class: "img-responsive img-circle", alt: "Cameron Croft" %>
+                    <h5>Cameron Croft</h5>
+                    <ul class="list-inline social-buttons">
+                      <li>
+                        <%= link_to "", "#", class:"fa fa-twitter", target: "_blank" %>
+                      </li>
+                      <li>
+                        <%= link_to "", "https://www.linkedin.com/in/cameron", class:"fa fa-linkedin", target: "_blank" %>
+                      </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="team-member">
+                    <%= image_tag "maureen_fishback.jpg", class: "img-responsive img-circle", alt: "Maureen Fishback"%>
+                    <h5>Maureen Fishback</h5>
+                    <ul class="list-inline social-buttons">
+                      <li>
+                        <%= link_to "", "https://twitter.com/moe_fishback", class:"fa fa-twitter", target: "_blank" %>
+                      </li>
+                      <li>
+                        <%= link_to "", "https://www.linkedin.com/in/maureenfishback", class:"fa fa-linkedin", target: "_blank" %>
+                      </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="team-member">
+                    <%= image_tag "elizabeth_fu.jpg", class: "img-responsive img-circle", alt: "Elizabeth Fu"%>
+                    <h5>Elizabeth Fu</h5>
+                    <ul class="list-inline social-buttons">
+                      <li>
+                        <%= link_to "", "#", class:"fa fa-twitter", target: "_blank" %>
+                      </li>
+                      <li>
+                        <%= link_to "", "#", class:"fa fa-linkedin", target: "_blank" %>
+                      </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="team-member">
+                    <%= image_tag "sarah_hurwit.jpg", class: "img-responsive img-circle", alt: "Sarah Hurwit"%>
+                    <h5>Sarah Hurwit</h5>
+                    <ul class="list-inline social-buttons">
+                      <li>
+                        <%= link_to "", "https://twitter.com/SarahHurwit", class:"fa fa-twitter", target: "_blank" %>
+                      </li>
+                      <li>
+                        <%= link_to "", "https://www.linkedin.com/in/hurwit", class:"fa fa-linkedin", target: "_blank" %>
+                      </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="team-member">
+                    <%= image_tag "lauren_king.jpg", class: "img-responsive img-circle", alt: "Lauren King"%>
+                    <h5>Lauren King</h5>
+                    <ul class="list-inline social-buttons">
+                      <li>
+                        <%= link_to "", "#", class:"fa fa-twitter", target: "_blank" %>
+                      </li>
+                      <li>
+                        <%= link_to "", "https://www.linkedin.com/in/kinglauren", class:"fa fa-linkedin", target: "_blank" %>
+                      </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="team-member">
+                    <%= image_tag "elizabeth_slawin.jpg", class: "img-responsive img-circle", alt: "Elizabeth Slawin"%>
+                    <h5>Elizabeth Slawin</h5>
+                    <ul class="list-inline social-buttons">
+                      <li>
+                        <%= link_to "", "#", class:"fa fa-twitter", target: "_blank" %>
+                      </li>
+                      <li>
+                        <%= link_to "", "https://www.linkedin.com/in/elizabeth-slawin-6153a93b", class:"fa fa-linkedin", target: "_blank" %>
+                      </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="team-member">
+                    <%= image_tag "alnierys_venegas.jpg", class: "img-responsive img-circle", alt: "Alnierys Venegas"%>
+                    <h5>Alnierys Venegas</h5>
+                    <ul class="list-inline social-buttons">
+                      <li>
+                        <%= link_to "", "#", class:"fa fa-twitter", target: "_blank" %>
+                      </li>
+                      <li>
+                        <%= link_to "", "#", class:"fa fa-linkedin", target: "_blank" %>
+                      </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="team-member">
+                    <%= image_tag "warren_yates.jpg", class: "img-responsive img-circle", alt: "Warren Yates"%>
+                    <h5>Warren Yates</h5>
+                    <ul class="list-inline social-buttons">
+                        <li><a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li><a href="https://www.linkedin.com/in/warrenyates"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+          </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <p class="large text-muted">All comments and opinions expressed on this page are of the authors themselves and do not reflect the opinion of the All-Aboard Alliance or its steering committee.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Clients Aside -->
+<aside class="clients">
+    <div class="container">
+      <div class="row">
+          <div class="col-lg-12 text-center">
+              <h2 class="section-heading">Thank you to our Community Supporters</h2>
+              <h3 class="section-subheading text-muted"></h3>
+          </div>
+      </div>
+        <div class="row text-center">
+            <div class="col-md-4 col-sm-8">
+                <a href="#">
+                    <h5 class="text-muted">Capital One 360® Cafés, Chicago - Gold Coast</h5>
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-8">
+                <a href="#">
+                    <h5 class="text-muted">Tiny Bold Creative</h5>
+                </a>
+            </div>
+        </div>
+        <div class="row text-center">
+          <h5 class="text-muted">&nbsp;</h5>
+        </div>
+    </div>
+</aside>
+
+<!-- Contact Section -->
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Contact Us</h2>
+                <h3 class="section-subheading text-muted"></h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+              <%= render "contact_form" %>
+            </div>
+        </div>
+    </div>
+</section>

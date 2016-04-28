@@ -1,0 +1,214 @@
+<% provide(:title, "Our Community:") %>
+<% provide(:nav_title1, "Home") %>
+<% provide(:nav_link1, root_path) %>
+<% provide(:nav_title2, "Prospective") %>
+<% provide(:nav_link2, "#prospective") %>
+<% provide(:nav_title3, "Current") %>
+<% provide(:nav_link3, "#existing") %>
+<% provide(:nav_title4, "Nonprofits") %>
+<% provide(:nav_link4, "#nonprofits") %>
+
+<!-- Header -->
+<header style="background-image: url('/assets/community-header-bg.png');"> <!-- Need new image -->
+    <div class="container">
+      <div class="intro-text">
+      </div>
+    </div>
+</header>
+
+<!-- Prospective Members Section -->
+<section id="prospective" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Prospective Associate Board Members</h2>
+                <h3 class="section-subheading text-muted">Get involved with an Associate Board.</h3>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 col-sm-6 text-center">
+              <h2 class="text-right">What is an Associate Board?</h2>
+          </div>
+
+          <div class="col-md-8 text-justify">
+            <blockquote>
+                <p class="large text-muted">Junior Board, Young Professionals Board, Associate Board, Auxiliary Board.</p>
+                <p class="large text-muted">The names may very, but they all have a similar purpose. These groups exist to provide support to nonprofit organizations. Most often this is done through philanthropic support (hosting fundraisers) and through advocacy (serving as ambassadors for the organization's mission).</p>
+                <p class="large text-muted">As these types of boards have grown in popularity, so too has the opportunity for young professionals to get involved.</p>
+            </blockquote>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4 col-sm-6 ">
+          </div>
+
+          <div class="col-md-8 col-sm-12 portfolio-item">
+            <div class="portfolio-caption">
+              <h4 class="text-center">Three Reasons to join an Associate Board:</h4>
+              <div class="col-md-4 col-sm-6 portfolio-item">
+                <%= image_tag "new-skills", class:"img-responsive", alt: "Learn new shills" %>
+                <div class="portfolio-caption">
+                  <h5 class="text-center text-muted">Develop and Practice skills that you don't get to use at work.</h5>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6 portfolio-item">
+                <%= image_tag "community-leadership", class:"img-responsive", alt: "Community Leadership" %>
+                <div class="portfolio-caption">
+                  <h5 class="text-center text-muted">Serve the community and build leadership skills.</h5>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-6 portfolio-item">
+                <%= image_tag "networking", class:"img-responsive", alt: "Networking" %>
+                <div class="portfolio-caption">
+                  <h5 class="text-center text-muted">Grow your network in meaningful way. Work alongside professionals outside of your field.</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12">
+              <h2 class="text-left">Here are ways to get started.</h2>
+
+              <div class="col-md-4 col-sm-6 portfolio-item">
+                <div class="portfolio-caption">
+                  <h4 class="text-center"><%= link_to "Find the board for you", boards_path %></h4>
+                </div>
+                <div class="portfolio-caption">
+                  <p class="text-justify text-muted">Browse through our directory of Associate Boards.
+                    Check out their board profiles, and reach out to the board representatives to inquire about opportunities to get involved.</p>
+                </div>
+              </div>
+
+              <div class="col-md-4 col-sm-6 portfolio-item">
+                <div class="portfolio-caption">
+                  <h4 class="text-center"><%= link_to "Attend an event", events_path %></h4>
+                </div>
+                <div class="portfolio-caption">
+                  <p class="text-justify text-muted">Attend an event that is put on by local Associate Boards. Look our events page to see list of upcoming events.</p>
+                </div>
+              </div>
+
+              <div class="col-md-4 col-sm-6 portfolio-item">
+                <div class="portfolio-caption">
+                  <h4 class="text-center"><%= link_to "Get our newsletter", "http://www.charityscenes.org", target: "_blank"%> <i class="fa fa-external-link"></i></h4>
+                </div>
+                <div class="portfolio-caption">
+                  <p class="text-justify text-muted">Sign up for bi-monthly CharityScenes newsletter highlighting non-profit events for young professionals.</p>
+                </div>
+              </div>
+
+          </div>
+        </div>
+    </div>
+</section>
+
+<!-- Existing Nonprofits Aside -->
+<aside class="clients">
+    <div class="container">
+      <div class="row">
+          <div class="col-lg-12 text-center">
+              <h3 class="section-subheading text-muted">Some Community nonprofit organizations with associate boards</h3>
+          </div>
+      </div>
+        <div class="row text-center">
+          <div class="col-md-4 col-sm-4">
+              <%= link_to (image_tag 'big-brothers-big-sisters-chicagologo', alt: "Big Brothers Big Sisters Associate Board"), "http://www.bbbschgo.org/site/c.bkLUKcOVLkK2E/b.6448163/k.8D0F/Leadership_Board.htm", target: "_blank" %>
+          </div>
+          <div class="col-md-2 col-sm-3">
+              <%= link_to (image_tag 'american-cancer-society-logo', alt: "Amercian Cancer Soceity Associate Board"), "http://www.acsaboa.org/", target:"_blank" %>
+          </div>
+          <div class="col-md-2 col-sm-3">
+            <%= link_to (image_tag 'shedd-aquarium-logo', alt: "Shedd Aquarium Auxiliary Board"), "http://www.sheddaquarium.org/Support-Us/Auxiliary-Board/", target:"_blank" %>
+            </a>
+          </div>
+          <div class="col-md-4 col-sm-3">
+            <a href="#">
+              <%= link_to (image_tag 'center-for-economic-progress-logo', alt:"Center for Economic Progress Associate Board"), "http://www.economicprogress.org/about/our-team", target:"_blank" %>
+            </a>
+          </div>
+        </div>
+    </div>
+</aside>
+
+<!-- Existing Members Section -->
+<section id="existing" class="bg-light-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Current Associate Board Members</h2>
+                <h3 class="section-subheading text-muted">Enhance your Associate Board Experience.</h3>
+            </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-8 text-justify">
+            <blockquote class="blockquote-reverse">
+                <p class="large text-muted">We interact with many different group but our primary focus will always be on serving associate boards. When your board chooses to join our community, it represents a partnership between you and us.</p>
+                <p class="large text-muted">Although many associate boards have been functioning successfully on our own, we think we all stand to improve by coming together. The All A-Board Alliance aims to help strengthen boards so they can better meet their goals, as well as help ensure that associate board service provides a meaningful experience for young professionals.</p>
+            </blockquote>
+          </div>
+
+          <div class="col-md-4 col-sm-6 text-center">
+              <h2 class="text-left">Why join our community?</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+              <h2 class="text-right">Maximize your Involvement with our Community</h2>
+          </div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <div class="portfolio-caption">
+              <h4 class="text-center"><%= link_to "Use the resources", new_home_path(:anchor => "portfolio") %></h4>
+            </div>
+            <div class="portfolio-caption">
+              <p class="text-justify text-muted">From strategic planning to vendor lists to ideas for upcoming fundraisers, we’ve got it all. But they are only useful if you remember to use them. We encourage you to share these resources with your fellow board members too.</p>
+            </div>
+          </div>
+
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <div class="portfolio-caption">
+              <h4 class="text-center"><%= link_to "Share your knowledge", articles_path %></h4>
+            </div>
+            <div class="portfolio-caption">
+              <p class="text-justify text-muted">Providing additional information and resources, such as how-to articles, links to free service providers, or even a blog post about lessons learned from your most recent fundraiser, is a welcome gesture that helps the community remain strong and vibrant.</p>
+            </div>
+          </div>
+
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <div class="portfolio-caption">
+              <h4 class="text-center"><%= link_to "Attend our events", events_path %></h4>
+            </div>
+            <div class="portfolio-caption">
+              <p class="text-justify text-muted">We use our events primarily to surface and address problems affecting the AB community, but these are also opportunities for ABs to meet each other and hopefully form new collaborations!</p>
+            </div>
+          </div>
+
+
+        </div>
+    </div>
+</section>
+
+<!-- Existing Members Section -->
+<section id="nonprofits">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Nonprofit Organizations</h2>
+                <h3 class="section-subheading text-muted">How can Associate Boards help you?</h3>
+            </div>
+            <div class="col-md-4 col-sm-6 text-center">
+                <h2 class="text-right">Embrace the power of an Associate Board</h2>
+            </div>
+
+            <div class="col-md-8 text-justify">
+              <blockquote>
+                  <p class="large text-muted">Much of an associate board's success is contingent on the support of the parent organization, i.e. the nonprofit whose mission is supported by the associate board. This is because the associate board, or AB, can only do what its parent nonprofit allows it to do. </p>
+              </blockquote>
+            </div>
+
+        </div>
+    </div>
+</section>

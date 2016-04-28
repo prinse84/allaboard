@@ -1,30 +1,31 @@
 <%= form_for @article do |f| %>
 	<div class="form-group">
 		<%= render 'error_messages' %>
-		
-		<div class="row">
-			<div class="span6"><%= f.label :title, 'Article Title'%></div>
-		</div>
 
-		<div class="row">		
-			<div class="span6"><%= f.text_field :title, :placeholder=>"Clever title for your article." %></div>
-		</div>
-		
 		<div class="row">
-			<div class="span6"><%= f.label :body, 'Article Body'%></div>
-		</div>
-  		
-		<div class="row">
-    		<div class="span9"><%= f.cktext_area :body, rows: 10, :class=>'input-block-level', :placeholder=>"Go nuts!" %></div>
+			<div class="col-md-6">
+				<div class="form-group">
+					<%= f.label :title, 'Post Title'%>
+					<%= f.text_field :title, :placeholder=>"Clever title for your post.", class:"form-control" %>
+				</div>
+			</div>
 		</div>
 
 		<div class="row">
-			<div class="span6"><p>&nbsp;</p></div>
+			<div class="col-md-8 col-sm-6">
+				<div class="form-group">
+					<%= f.label :body, 'Post Body'%>
+					<%= f.cktext_area :body, rows: 10, :class=>'input-block-level', class:"form-control" %>
+				</div>
+			</div>
 		</div>
-		
-		<div class="row">	
-			<div class="span6"><%= f.submit "Save", class: "btn btn-primary" %> <%= link_to 'Cancel', articles_path %></div>
+
+		<div class="clearfix"></div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<%= f.submit "Save", class: "btn btn-primary" %> <%= link_to 'Cancel', articles_path %>
+			</div>
 		</div>
-		
 	</div>
 <% end %>

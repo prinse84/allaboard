@@ -1,29 +1,24 @@
-<div class="row">
-	<div class="span8 mycontent-left">
-		
-		<div class="row">
-			<div class="span7 content-header">
-				<span class="lead"><strong><%= @comment.article.title.html_safe %></strong></span> <br />
-				Use the text box below to leave a comment for the author of this article. Note that your comment will be public and will not be anonymous. </span>
+<% provide(:title, "Leave a comment for " +@comment.article.title.html_safe + ": ") %>
+<%= render 'shared/header' %>
+
+<section>
+	<div class="container">
+    <div class="row">
+			<div class="col-lg-12">
+        <h3 class="section-heading"><%= @comment.article.title.html_safe %> </h3>
+      </div>
+    </div>
+
+		<div class="row text-muted">
+			<div class="col-lg-12">
+			     <p>Use the text box below to leave a comment for the author of this post.<br /> Note that your comment will be public and will not be anonymous.</p>
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="span7 clear-separator">
-			</div>
-		</div>
-		
-		<div class="row">
-			<div class="span7">
-					<%= render 'form'%>
-			</div>
+			<div class="col-md-8">
+					<%= render "form" %>
+				</div>
 		</div>
 	</div>
-	
-	<div class="span3">
-		<div class="row">
-			<%= image_tag 'AAA_Logo.png' %>
-			<p>&nbsp;</p>
-		</div>
-	</div>
-</div>
+</section>

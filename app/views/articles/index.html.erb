@@ -1,21 +1,23 @@
 <% provide(:title, "Resources for Chicago's Associate Boards:") %>
+<%= render 'shared/header' %>
 
-<div class="row">
-	<div class="span8 mycontent-left">
-		
-		<div class="row">
-			<div class="span8 content-header">
-				<span class="lead"><strong>Knowledge Base (KB) Articles</strong></span>
-				<p>This is a listing of resources and articles that we have collected from the community.</p>
+<section>
+	<div class="container">
+    <div class="row text-center">
+      <div class="col-lg-12">
+        <h2 class="section-heading">All A-Board Blog & Resources</h2>
+      </div>
+    </div>
+		<div class="row text-muted">
+			<div class="col-lg-12 text-center">
+			     <p>This is a listing of resources and articles that we have collected from the community.</p>
 			</div>
 		</div>
-
-
 		<div class="row">
-			<div class="span8">
+      <div class="col-md-8 mycontent-left">
 				<% if !@articles.blank? %>
 					<% @articles.each do |article| %>
-  						<p><strong><%= link_to article.title.html_safe, article_path(article.slug) %></strong><br />	
+  						<p><strong><%= link_to article.title.html_safe, article_path(article.slug) %></strong><br />
 						<small><span class="text-info">Published: <%= time_ago_in_words(article.created_at) %> ago by <%= article.user.get_name %>.</span></small></p>
   						<p><%= article.body.truncate(500, separator:' ').html_safe %><br />
 <p><%= link_to 'more', article_path(article.slug)  %></p>
@@ -25,24 +27,20 @@
 					<% end %>
 				<% end %>
 			</div>
+			<div class="col-md-3">
+        <div class="row">
+					<h5>More Resources</h5>
+						<%= link_to 'Vendors Directory', vendors_path %>
+					</p>
+				</div>
+				<div class="row">
+					<% if site_admin_logged_in? %>
+						<p><strong>Admin Options</strong><br />
+							<%= link_to "Post new article", new_article_path %>
+						</p>
+					<% end %>
+				</div>
+			</div>
 		</div>
 	</div>
-	<div class="span3">
-		<div class="row">
-			
-			<%= image_tag 'AAA_Logo.png' %>
-			<p>&nbsp;</p>
-			<p><strong>More Resources</strong><br />
-				<%= link_to 'Vendors Directory', vendors_path %>
-			</p>			
-		</div>
-		
-		<div class="row">
-			<% if site_admin_logged_in? %>
-				<p><strong>Admin Options</strong><br />
-					<%= link_to "Post new article", new_article_path %>
-				</p>
-			<% end %>
-		</div>
-	</div>
-</div>
+</section>

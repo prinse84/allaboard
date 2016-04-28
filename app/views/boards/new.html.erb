@@ -1,35 +1,33 @@
+<% provide(:title, "Add a new board:") %>
+<%= render 'shared/header' %>
+
 <script>
 		$(document).ready(function() { $("#board_parent_organization_id").select2(); });
 </script>
 
-<div class="row">
-	<div class="span8 mycontent-left">
-		<div class="row">
-			<div class="span8 content-header">
-				<span class="lead"><strong>Add A-Board to directory</strong></span>
+<section>
+	<div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h3 class="section-heading">Add a board to the directory</h3>
+      </div>
+    </div>
+
+		<div class="row text-muted">
+			<div class="col-lg-12">
+			     <p>Use the form below to add a new board to the directory. </p>
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="span7 clear-separator">
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="span7">
-        		<% if site_admin_logged_in? %>
+			<div class="col-md-8">
+				<% if site_admin_logged_in? %>
 					<%= render 'form'%>
 				<% else %>
 					<p>Sorry, only the All A-Board Alliance administrators can add a board. This is how we can maintain a carefully curated list of boards.<br /> If you would like to suggest a board to add, please <%= link_to "tell us about it", boards_suggest_path %>.</p>
 				<% end %>
 			</div>
 		</div>
-	</div>
 
-	<div class="span3">
-		<div class="row">
-			<%= image_tag 'AAA_Logo.png' %>
-			<p>&nbsp;</p>
-		</div>
 	</div>
-</div>
+</section>
