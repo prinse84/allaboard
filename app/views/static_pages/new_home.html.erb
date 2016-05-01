@@ -19,91 +19,6 @@
     </div>
 </header>
 
-<!-- Mission Section -->
-<section id="services">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2 class="section-heading">Our Mission</h2>
-                <h3 class="section-subheading text-muted">Strengthen the impact of non-governing boards by fostering collaboration and sharing resources.</h3>
-                <%= image_tag 'AAA_Logo.png', alt: "All A Board Alliance Logo" %>
-            </div>
-        </div>
-
-        <div class="row text-center">
-          <div class="col-md-4 text-center">
-              <h2 class="text-right">Message from our founders</h2>
-          </div>
-          <div class="col-md-8 text-justify">
-            <blockquote>
-                <p class="large text-muted">As associate boards and other non-governing boards have become integrated into many nonprofit organizations’ strategic plans, it only makes sense to create a community for these boards to come together and share resources. Many boards have an abundance of talent and energy, but lack resources for board growth and development. </p>
-                <p class="large text-muted">Our goal is to create a space that brings these boards together to share ideas, gain knowledge, and foster support and enthusiasm for the work achieved by this community.</p>
-            </blockquote>
-          </div>
-        </div>
-      </div>
-</section>
-
-<!--  Aside -->
-<aside class="bg-light-gray">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <h2 class="section-heading">Get Started</h2>
-        <h3 class="section-subheading text-muted"></h3>
-      </div>
-    </div>
-    <div class="row text-center">
-      <div class="col-md-4">
-        <span class="fa-stack fa-4x">
-          <i class="fa fa-circle fa-stack-2x"></i>
-          <i class="fa fa-folder-open fa-stack-1x fa-inverse"></i>
-        </span>
-        <h4 class="service-heading">Current Members</h4>
-        <p class="text-muted">Already an Associate Board member? <br> Check out our curated <%= link_to "list of associate boards", boards_path %>, browse through our up-to-date <%= link_to "listing of events", events_path %>, or look through our <%= link_to "resources library", articles_path%> for "How to" guides and best practices.</p>
-        <p><%= link_to 'Learn More', community_path(:anchor => "existing"), class: 'btn btn-primary', role: "button" %></p>
-      </div>
-      <div class="col-md-4">
-        <span class="fa-stack fa-4x">
-          <i class="fa fa-circle fa-stack-2x"></i>
-          <i class="fa fa-bookmark fa-stack-1x fa-inverse"></i>
-        </span>
-        <h4 class="service-heading">Prospective Members</h4>
-        <p class="text-muted">Looking to find the right board for you?<br />Browse through our up-to-date <%= link_to "listing of events", events_path %> and view local <%= link_to "Associate Board profiles", boards_path %>.
-</p>
-        <p><%= link_to 'Learn More', community_path(:anchor => "prospective"), class: 'btn btn-primary', role: "button" %></p>
-      </div>
-      <div class="col-md-4">
-        <span class="fa-stack fa-4x">
-          <i class="fa fa-circle fa-stack-2x"></i>
-          <i class="fa fa-university fa-stack-1x fa-inverse"></i>
-        </span>
-        <h4 class="service-heading">Community Members</h4>
-          <p class="text-muted">Interested in knowing the value of Associate Boards? <br> Read about the Chicago-land Associate Board landscape and how these boards are impacting the nonprofit sector.</p>
-          <p><%= link_to 'Learn More', community_path(:anchor => "nonprofits"), class: 'btn btn-primary', role: "button" %></p>
-      </div>
-    </div>
-  </div>
-</aside>
-
-<!-- Clients Aside -->
-<aside class="bg-light-gray">
-    <div class="container">
-      <div class="row">
-          <div class="col-lg-12 text-center">
-              <h2 class="section-heading text-muted">Sign up for our newsletter</h2>
-              <h3 class="section-subheading text-muted"></h3>
-          </div>
-          <div class="row">
-              <div class="col-lg-12 text-center">
-                <%= render "mailchimp_form" %>
-              </div>
-          </div>
-      </div>
-    </div>
-</aside>
-
-
 <!-- Portfolio Grid Section -->
 <section id="portfolio" class="bg-light-gray">
     <div class="container">
@@ -155,8 +70,92 @@
     </div>
 </section>
 
-<!-- About Section -->
+<!-- Mission Section -->
 <section id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Our Mission</h2>
+                <h3 class="section-subheading text-muted">Strengthen the impact of non-governing boards by fostering collaboration and sharing resources.</h3>
+                <%= image_tag 'AAA_Logo.png', alt: "All A Board Alliance Logo" %>
+            </div>
+        </div>
+
+        <div class="row text-center">
+          <div class="col-md-4 text-center">
+              <h2 class="text-right">Message from our founders</h2>
+          </div>
+          <div class="col-md-8 text-justify">
+            <blockquote>
+                <p class="large text-muted">As associate boards and other non-governing boards have become integrated into many nonprofit organizations’ strategic plans, it only makes sense to create a community for these boards to come together and share resources. Many boards have an abundance of talent and energy, but lack resources for board growth and development. </p>
+                <p class="large text-muted">Our goal is to create a space that brings these boards together to share ideas, gain knowledge, and foster support and enthusiasm for the work achieved by this community.</p>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+</section>
+
+<!--  Aside -->
+<aside id="services">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-heading">Get Started</h2>
+        <h3 class="section-subheading text-muted"></h3>
+      </div>
+    </div>
+    <div class="row text-center">
+      <div class="col-md-4">
+        <span class="fa-stack fa-4x">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-folder-open fa-stack-1x fa-inverse"></i>
+        </span>
+        <h4 class="service-heading">Current Members</h4>
+        <p class="text-muted">Already an Associate Board member? <br> Check out our curated <%= link_to "list of associate boards", boards_path %>, browse through our up-to-date <%= link_to "listing of events", events_path %>, or look through our <%= link_to "blog posts", articles_path%> for "How to" guides and best practices.</p>
+        <p><%= link_to 'Learn More', community_path(:anchor => "existing"), class: 'btn btn-primary', role: "button" %></p>
+      </div>
+      <div class="col-md-4">
+        <span class="fa-stack fa-4x">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-bookmark fa-stack-1x fa-inverse"></i>
+        </span>
+        <h4 class="service-heading">Prospective Members</h4>
+        <p class="text-muted">Looking to find the right board for you?<br />Browse through our up-to-date <%= link_to "listing of events", events_path %> and view local <%= link_to "Associate Board profiles", boards_path %>.
+</p>
+        <p><%= link_to 'Learn More', community_path(:anchor => "prospective"), class: 'btn btn-primary', role: "button" %></p>
+      </div>
+      <div class="col-md-4">
+        <span class="fa-stack fa-4x">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-university fa-stack-1x fa-inverse"></i>
+        </span>
+        <h4 class="service-heading">Community Members</h4>
+          <p class="text-muted">Interested in knowing the value of Associate Boards? <br> Read about the Chicago-land Associate Board landscape and how these boards are impacting the nonprofit sector.</p>
+          <p><%= link_to 'Learn More', community_path(:anchor => "nonprofits"), class: 'btn btn-primary', role: "button" %></p>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- Clients Aside -->
+<aside>
+    <div class="container">
+      <div class="row">
+          <div class="col-lg-12 text-center">
+              <h2 class="section-heading text-muted">Sign up for our newsletter</h2>
+              <h3 class="section-subheading text-muted"></h3>
+          </div>
+          <div class="row">
+              <div class="col-lg-12 text-center">
+                <%= render "mailchimp_form" %>
+              </div>
+          </div>
+      </div>
+    </div>
+</aside>
+
+<!-- About Section -->
+<section>
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -229,11 +228,11 @@
                         </div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
-                                <h4>August 2015</h4>
+                                <h4>May 2015</h4>
                                 <h4 class="subheading">Articles of Incorporation- check!</h4>
                             </div>
                             <div class="timeline-body">
-                                <p class="text-muted">AABA formalized their presence by filing Articles of Incorporation and becoming a nonprofit organization recognized by the State of Illinois.</p>
+                                <p class="text-muted">AABA formalized their presence by filing Articles of Incorporation and becoming a 501c3 nonprofit organization.</p>
                             </div>
                         </div>
                     </li>
