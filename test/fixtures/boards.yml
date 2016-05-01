@@ -7,3 +7,7 @@ Aboard:
 one:
   name: Test Board 1
   slug: test-board-1
+
+two:
+  name: Test Board 2
+  slug: test-board-2

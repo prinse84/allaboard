@@ -15,5 +15,4 @@ class BoardsControllerTest < ActionController::TestCase
     get :index
     assert_response :success, "Boards index page did not load successfully"
   end
-  å
 end
