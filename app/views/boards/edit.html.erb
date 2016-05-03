@@ -21,10 +21,10 @@
 
 		<div class="row">
 			<div class="col-md-8">
-				<% if site_admin_logged_in? %>
+				<% if (current_user && @board.board_admin?(current_user)) || site_admin_logged_in? %>
 					<%= render 'form'%>
 				<% else %>
-					<p>Sorry, only the All A-Board Alliance administrators can add a board. This is how we can maintain a carefully curated list of boards.<br /> If you would like to suggest a board to add, please <%= link_to "tell us about it", boards_suggest_path %>.</p>
+					<p>Sorry, only the board owner or an All A-Board Alliance administrator can edit board details. <br />This is how we can maintain a carefully curated list of boards. If you would like to propose changes to this board, please reach out to the board owner, or a member of the All Aboard alliance team.</p>
 				<% end %>
 			</div>
 		</div>

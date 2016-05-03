@@ -1,17 +1,18 @@
-<% provide(:title, "Vendors for Associate Boards in Chicago:") %>
+<% provide(:title, "Event Spaces in Chicago:") %>
 <%= render 'shared/header' %>
 
 <section>
 	<div class="container">
     <div class="row text-center">
       <div class="col-lg-12">
-        <h2 class="section-heading">Vendors Directory</h2>
+        <h2 class="section-heading">Event Space Directory</h2>
       </div>
     </div>
 
 		<div class="row text-muted">
 			<div class="col-lg-12">
-			     <p>As with everything on this site, the list of vendors is a community driven directory of vendors that have been used or referred to by other board members. This list will become increasingly useful as more vendors are added. If you have previously used a vendor for an event, please use our link below to submit this vendor to our directory.</p>
+			     <p>As with everything on this site, the list of low-cost or free event spaces is a community-driven directory of vendors that have been used or referred to by other board members.
+						 This list will become increasingly useful as more vendors are added. Please use our link below to submit a vendor to our directory and if you have used an event space that is already listed, please add a review to help others learn more about your experience.</p>
 			</div>
 		</div>
 
@@ -41,7 +42,7 @@
 			</div>
 			<div class="col-md-3">
 				<div class="row">
-					<p><%= link_to 'Add a vendor', new_vendor_path %></p>
+					<p><%= link_to 'Add an Event Space', new_vendor_path %></p>
 					<span class="text-info"><small>Note that you have to be a board owner to submit a vendor to this list.</span> </small>
 				</div>
 			</div>
