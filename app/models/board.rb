@@ -4,7 +4,7 @@ class Board < ActiveRecord::Base
   validates :name, presence: true, length: { minimum: 3 }
   validates :slug, presence: true, uniqueness: { case_sensitive: false }
 
-  before_validation :add_http_to_url, :create_slug
+  before_validation :add_http_to_url, :remove_at_symbol_from_twitter_name, :add_https_to_facebook_page_url, :create_slug
 
   # define associations
   has_many :reviews, dependent: :destroy
@@ -100,6 +100,21 @@ class Board < ActiveRecord::Base
     if !self.url.blank?
       unless self.url[/\Ahttp:\/\//] || self.url[/\Ahttps:\/\//]
         self.url = "http://#{self.url}"
+      end
+    end
+  end
+
+  # function to remove the @ symbol from twitter_name
+  def remove_at_symbol_from_twitter_name
+    if !self.twitter_name.blank?
+      self.twitter_name = self.twitter_name.sub('@','').strip
+    end
+  end
+
+  def add_https_to_facebook_page_url
+    if !self.facebook_page_url.blank?
+      unless self.facebook_page_url[/\Ahttp:\/\//] || self.facebook_page_url[/\Ahttps:\/\//]
+        self.facebook_page_url = "https://#{self.facebook_page_url}"
       end
     end
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160504192429) do
+ActiveRecord::Schema.define(version: 20160504200425) do
 
   create_table "announcements", force: :cascade do |t|
     t.text     "text"
@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(version: 20160504192429) do
     t.date     "founding_date"
     t.integer  "membership_size_id"
     t.integer  "parent_organization_id"
+    t.string   "twitter_name"
+    t.string   "facebook_page_url"
   end
 
   create_table "boards_categories", id: false, force: :cascade do |t|

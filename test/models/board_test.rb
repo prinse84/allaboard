@@ -22,6 +22,7 @@ class BoardTest < ActiveSupport::TestCase
   end
 
   test "should create unique slug values for boards" do
+    skip ("test tbd")
     @board.name = 'Test Board'
     @board.save
     other_board = boards(:two)
@@ -78,6 +79,18 @@ class BoardTest < ActiveSupport::TestCase
 
   test "should be associated with a parent organization" do
     assert_respond_to @board, :parent_organization, "The board is not associated with any parent organizations"
+  end
+
+  test "should remove '@' for twitter name for board if twitter_name is populated" do
+    @board.twitter_name = '@allaboardalliance'
+    @board.save
+    assert_not_equal '@allaboardalliance', @board.twitter_name, "The '@' sign was not removed from the twitter handle"
+  end
+
+  test "should add 'https' prefix to facebook url for board if facebook url is populated" do
+    @board.facebook_page_url = 'www.facebook.com/AllABoardAlliance'
+    @board.save
+    assert_equal 'https://www.facebook.com/AllABoardAlliance', @board.facebook_page_url, "The 'https' prefix was not added to a board URL"
   end
 
 end

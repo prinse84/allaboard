@@ -32,6 +32,33 @@
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group">
+					<%= f.label :twitter_name, 'Twitter name'%>
+					<%= f.text_field :twitter_name, :placeholder=>"@ABoardAlliance", class:"form-control" %>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+					<%= f.label :facebook_page_url, 'Facebook Page URL'%>
+					<%= f.text_field :facebook_page_url, :placeholder=>"https://www.facebook.com/AllABoardAlliance", class:"form-control" %>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+					<%= f.label :url, 'URL to board home page'%>
+					<%= f.text_field :url, :placeholder=>"http://example.com/board_name", class:"form-control" %>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
 					<%= f.label :parent_company, 'Parent Organization'%>
 					<%= f.text_field :parent_company, :placeholder=>"Parent Organization", class:"form-control" %>
 				</div>

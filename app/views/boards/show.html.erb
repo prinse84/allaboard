@@ -175,6 +175,23 @@
 
 				<div class="row">
 					<div class="col-md-12">
+						<span><strong>Social</strong></span>
+						<p><% if !@board.twitter_name.blank? %>
+							<%= link_to "", generate_twitter_url(@board.twitter_name), class:"fa fa-twitter fa-lg", target: "_blank" %>
+						<% end %>
+						<% if !@board.facebook_page_url.blank? %>
+							<%= link_to "", @board.facebook_page_url, class:"fa fa-facebook fa-lg", target: "_blank" %></p>
+						<% end %>
+					</p>
+						<% if @board.twitter_name.blank? && @board.facebook_page_url.blank?  %>
+							<p><small>N/A</small></p>
+						<% end %>
+
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12">
 						<span><strong>Founded:</strong></span>
 						<% if !@board.founding_date.blank? %>
 							<p><small><%= @board.founding_date.strftime("%B %Y")  %></small></p>
