@@ -11,33 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151102213758) do
+ActiveRecord::Schema.define(version: 20160504192429) do
 
-  create_table "announcements", force: true do |t|
+  create_table "announcements", force: :cascade do |t|
     t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "board_id"
   end
 
-  create_table "articles", force: true do |t|
-    t.string   "title"
+  create_table "articles", force: :cascade do |t|
+    t.string   "title",      limit: 255
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "slug"
+    t.string   "slug",       limit: 255
     t.integer  "user_id"
   end
 
-  create_table "boards", force: true do |t|
-    t.string   "name"
+  create_table "boards", force: :cascade do |t|
+    t.string   "name",                   limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
     t.text     "description"
-    t.string   "parent_company"
-    t.string   "url"
-    t.string   "slug"
+    t.string   "parent_company",         limit: 255
+    t.string   "url",                    limit: 255
+    t.string   "slug",                   limit: 255
     t.date     "claim_date"
     t.integer  "period_id"
     t.date     "founding_date"
@@ -45,24 +45,24 @@ ActiveRecord::Schema.define(version: 20151102213758) do
     t.integer  "parent_organization_id"
   end
 
-  create_table "boards_categories", id: false, force: true do |t|
+  create_table "boards_categories", id: false, force: :cascade do |t|
     t.integer "category_id"
     t.integer "board_id"
   end
 
-  create_table "categories", force: true do |t|
-    t.string   "name"
-    t.string   "forr"
+  create_table "categories", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "forr",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "categories_events", id: false, force: true do |t|
+  create_table "categories_events", id: false, force: :cascade do |t|
     t.integer "category_id"
     t.integer "event_id"
   end
 
-  create_table "comments", force: true do |t|
+  create_table "comments", force: :cascade do |t|
     t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -70,49 +70,49 @@ ActiveRecord::Schema.define(version: 20151102213758) do
     t.integer  "user_id"
   end
 
-  create_table "events", force: true do |t|
-    t.string   "name"
+  create_table "events", force: :cascade do |t|
+    t.string   "name",             limit: 255
     t.text     "description"
     t.date     "date"
     t.time     "start_time"
     t.time     "end_time"
-    t.string   "location"
-    t.string   "location_address"
-    t.string   "event_url"
+    t.string   "location",         limit: 255
+    t.string   "location_address", limit: 255
+    t.string   "event_url",        limit: 255
     t.integer  "board_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "slug"
+    t.string   "slug",             limit: 255
   end
 
-  create_table "membership_sizes", force: true do |t|
-    t.string   "name"
+  create_table "membership_sizes", force: :cascade do |t|
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "parent_organizations", force: true do |t|
-    t.string   "ein"
-    t.string   "name"
+  create_table "parent_organizations", force: :cascade do |t|
+    t.string   "ein",        limit: 255
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "periods", force: true do |t|
-    t.string   "name"
-    t.string   "description"
+  create_table "periods", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.string   "description", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "reviewer_types", force: true do |t|
-    t.string   "name"
+  create_table "reviewer_types", force: :cascade do |t|
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "reviews", force: true do |t|
-    t.string   "title"
+  create_table "reviews", force: :cascade do |t|
+    t.string   "title",            limit: 255
     t.text     "pros"
     t.text     "cons"
     t.float    "rating"
@@ -122,36 +122,36 @@ ActiveRecord::Schema.define(version: 20151102213758) do
     t.integer  "reviewer_type_id"
   end
 
-  create_table "suggestions", force: true do |t|
-    t.string   "suggester_email"
-    t.string   "suggested_board_name"
+  create_table "suggestions", force: :cascade do |t|
+    t.string   "suggester_email",      limit: 255
+    t.string   "suggested_board_name", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
-    t.string   "email",                  default: "",    null: false
-    t.string   "encrypted_password",     default: "",    null: false
-    t.string   "reset_password_token"
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  limit: 255, default: "",    null: false
+    t.string   "encrypted_password",     limit: 255, default: "",    null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
+    t.integer  "sign_in_count",                      default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.boolean  "admin",                  default: false
+    t.string   "first_name",             limit: 255
+    t.string   "last_name",              limit: 255
+    t.boolean  "admin",                              default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
-  create_table "vendor_reviews", force: true do |t|
-    t.string   "title"
+  create_table "vendor_reviews", force: :cascade do |t|
+    t.string   "title",      limit: 255
     t.float    "rating"
     t.text     "pros"
     t.text     "cons"
@@ -160,21 +160,22 @@ ActiveRecord::Schema.define(version: 20151102213758) do
     t.datetime "updated_at"
   end
 
-  create_table "vendors", force: true do |t|
-    t.string   "name"
-    t.string   "address"
-    t.string   "phone"
-    t.string   "email"
-    t.string   "contact"
+  create_table "vendors", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.string   "address",     limit: 255
+    t.string   "phone",       limit: 255
+    t.string   "email",       limit: 255
+    t.string   "contact",     limit: 255
     t.integer  "board_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "outdoor"
     t.boolean  "indoor"
-    t.integer  "capacity"
-    t.integer  "cost"
+    t.string   "capacity"
+    t.string   "cost"
     t.boolean  "food"
     t.boolean  "catering"
+    t.string   "website_url"
   end
 
 end

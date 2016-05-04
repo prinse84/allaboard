@@ -1,13 +1,13 @@
 class VendorsController < ApplicationController
-  
+
   before_action :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
   before_action :user_owns_board, :only => [:new, :create]
   before_action :user_owns_this_vendor, :only => [:edit, :update, :destroy]
-  
+
   def index
     @vendors = Vendor.all.paginate(:page => params[:page], :per_page => 20).order('name')
   end
-  
+
   # Show action. This will respond to /vendors/:id
   def show
     # Check to see that a valid vendor id was sent in. If not, redirect to vendors index page
@@ -20,12 +20,12 @@ class VendorsController < ApplicationController
       redirect_to vendors_path
     end
   end
-  
+
   def new
     @vendor = Vendor.new
     @all_boards = Board.all
   end
-  
+
   def create
     @vendor = Vendor.new(vendor_params)
     if @vendor.save
@@ -56,12 +56,12 @@ class VendorsController < ApplicationController
     flash[:success] = "The vendor has been deleted."
     redirect_to vendors_path
   end
-  
+
   private
     def vendor_params
-      params.require(:vendor).permit(:name, :address, :phone, :email, :contact, :board_id, :outdoor, :indoor, :capacity, :cost, :food, :catering)
+      params.require(:vendor).permit(:name, :address, :phone, :email, :contact, :board_id, :outdoor, :indoor, :capacity, :cost, :food, :catering, :website_url)
     end
-    
+
     def suggestion_params
       params.require(:suggestion).permit(:suggested_vendor_name, :suggester_email)
     end

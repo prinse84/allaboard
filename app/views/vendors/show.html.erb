@@ -27,6 +27,11 @@
               <p><%= @vendor.address %></p>
             <% end %>
 
+						<h4>Website</h4>
+            <% if !@vendor.website_url.blank? %>
+              <p><%= link_to @vendor.website_url, @vendor.website_url, :target => "_blank" %></p>
+            <% end %>
+
             <h4>Phone number</h4>
             <% if !@vendor.phone.blank? %>
               <p><%= @vendor.phone %></p>
@@ -52,10 +57,10 @@
             <% end %>
 
             <h4>Capacity</h4>
-            <p><%= number_with_delimiter(@vendor.capacity) %></p>
+            <p><%= @vendor.capacity %></p>
 
             <h4>Cost estimate for using this vendor</h4>
-            <p><%= number_with_delimiter(@vendor.cost) %></p>
+            <p><%= @vendor.cost %></p>
 
             <h4>Provides food</h4>
             <% if @vendor.food %>
