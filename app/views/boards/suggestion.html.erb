@@ -32,9 +32,12 @@
 							<div class="form-group">
 								<%= f.label :suggester_email, 'Your email address'%>
 								<%= f.text_field :suggester_email, :placeholder=>"you@example.com", class:"form-control" %>
+								<%= recaptcha_tags %>
 							</div>
 						</div>
 					</div>
+
+
 
     			<div class="clearfix"></div>
 					<div class="row">

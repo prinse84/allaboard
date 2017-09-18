@@ -33,11 +33,15 @@ gem 'actionview-encoded_mail_to'
 gem 'has_scope', '~> 0.6.0' # to help with model searches
 gem 'select2-rails' # to help with dropdown searches
 
+# recaptcha gem
+gem "recaptcha", require: "recaptcha/rails"
+
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3', '1.3.11'
   gem 'faker'
   gem 'better_errors'
+  gem 'dotenv-rails', :require => 'dotenv/rails-now'
 end
 
 group :development do

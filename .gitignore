@@ -26,3 +26,4 @@ doc/
 .idea
 .secret
 Gemfile.lock
+.env

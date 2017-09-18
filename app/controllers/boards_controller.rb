@@ -164,7 +164,10 @@ class BoardsController < ApplicationController
 
   def suggestion_create
     @suggestion = Suggestion.new(suggestion_params)
-    if @suggestion.save
+
+    # recaptcha changes
+    if verify_recaptcha(model: @suggestion) && @suggestion.save
+      #if @suggestion.save
       # Tell the BoardMailer to send a suggestion over email after save
       BoardMailer.suggestion_email(@suggestion).deliver
       flash[:success] = "Thank you for your submission."
